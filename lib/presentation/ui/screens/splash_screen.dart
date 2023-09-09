@@ -1,4 +1,4 @@
-import 'package:crafty_bay/presentation/ui/screens/home_screen.dart';
+import 'package:crafty_bay/presentation/ui/screens/auth/email_verification_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/image_paths.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
       const Duration(seconds: 2),
     ).then(
       (value) => Get.offAll(
-        () => const HomeScreen(),
+        () => const EmailVerificationScreen(), //HomeScreen(),
       ),
     );
   }

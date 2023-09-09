@@ -13,6 +13,33 @@ class CraftyBayApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: MaterialColor(
             ColorPalette.primaryColor.value, ColorPalette().colors),
+        inputDecorationTheme: InputDecorationTheme(
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 15,
+              vertical: 8,
+            ),
+            hintStyle: TextStyle(
+              color: Colors.grey[350],
+            ),
+            filled: true,
+            fillColor: Colors.grey[50],
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(5.0),
+              borderSide: const BorderSide(color: ColorPalette.primaryColor),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(5.0),
+              borderSide: const BorderSide(color: ColorPalette.primaryColor),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(5.0),
+              borderSide: const BorderSide(color: Colors.redAccent),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(5.0),
+              borderSide: const BorderSide(color: Colors.redAccent),
+            ),
+            errorStyle: const TextStyle(color: Colors.redAccent)),
       ),
       home: const SplashScreen(),
     );
