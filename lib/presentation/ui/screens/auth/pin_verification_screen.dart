@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:crafty_bay/presentation/ui/screens/auth/complete_profile_screen.dart';
+import 'package:crafty_bay/presentation/ui/utils/asset_images.dart';
 import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
-import 'package:crafty_bay/presentation/ui/utils/image_paths.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -71,7 +71,7 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
               ),
               Center(
                   child: SvgPicture.asset(
-                ImagePaths.craftyBayLogoSVG,
+                AssetImages.craftyBayLogoSVG,
                 width: 120,
               )),
               const SizedBox(

@@ -1,5 +1,6 @@
-import 'package:crafty_bay/presentation/ui/screens/auth/email_verification_screen.dart';
-import 'package:crafty_bay/presentation/ui/utils/image_paths.dart';
+import 'package:crafty_bay/presentation/ui/screens/bottom_nav_base_screen.dart';
+import 'package:crafty_bay/presentation/ui/screens/home_screen.dart';
+import 'package:crafty_bay/presentation/ui/utils/asset_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/route_manager.dart';
@@ -23,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
       const Duration(seconds: 2),
     ).then(
       (value) => Get.offAll(
-        () => const EmailVerificationScreen(), //HomeScreen(),
+        () => const BottomNavBaseScreen(),
       ),
     );
   }
@@ -36,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
           const Spacer(),
           Center(
             child: SvgPicture.asset(
-              ImagePaths.craftyBayLogoSVG,
+              AssetImages.craftyBayLogoSVG,
               width: 163,
             ),
           ),

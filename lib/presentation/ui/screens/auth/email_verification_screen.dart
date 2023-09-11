@@ -1,5 +1,5 @@
 import 'package:crafty_bay/presentation/ui/screens/auth/pin_verification_screen.dart';
-import 'package:crafty_bay/presentation/ui/utils/image_paths.dart';
+import 'package:crafty_bay/presentation/ui/utils/asset_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -29,7 +29,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
               ),
               Center(
                   child: SvgPicture.asset(
-                ImagePaths.craftyBayLogoSVG,
+                AssetImages.craftyBayLogoSVG,
                 width: 120,
               )),
               const SizedBox(

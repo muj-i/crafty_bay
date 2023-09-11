@@ -1,5 +1,5 @@
 import 'package:crafty_bay/presentation/ui/screens/home_screen.dart';
-import 'package:crafty_bay/presentation/ui/utils/image_paths.dart';
+import 'package:crafty_bay/presentation/ui/utils/asset_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
@@ -36,7 +36,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                 ),
                 Center(
                     child: SvgPicture.asset(
-                  ImagePaths.craftyBayLogoSVG,
+                  AssetImages.craftyBayLogoSVG,
                   width: 120,
                 )),
                 const SizedBox(

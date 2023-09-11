@@ -1,7 +1,14 @@
-import 'package:crafty_bay/presentation/ui/utils/image_paths.dart';
-import 'package:crafty_bay/presentation/ui/widgets/app_bar_icon_button.dart';
+import 'package:crafty_bay/presentation/ui/screens/auth/email_verification_screen.dart';
+import 'package:crafty_bay/presentation/ui/utils/asset_images.dart';
+import 'package:crafty_bay/presentation/ui/widgets/appbar_icon_button.dart';
+import 'package:crafty_bay/presentation/ui/widgets/category_card.dart';
+import 'package:crafty_bay/presentation/ui/widgets/home/home_carousel_slider.dart';
+import 'package:crafty_bay/presentation/ui/widgets/home/home_search_field.dart';
+import 'package:crafty_bay/presentation/ui/widgets/home/section_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:get/route_manager.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -14,11 +21,12 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
         title: SvgPicture.asset(
-          ImagePaths.craftyBayLogoNavSVG,
+          AssetImages.craftyBayLogoNavSVG,
           width: 115,
         ),
         actions: [
@@ -33,23 +41,63 @@ class _HomeScreenState extends State<HomeScreen> {
             },
           ),
           const SizedBox(
-            width: 8,
+            width: 12,
           ),
           AppBarIconButton(
-            icon: Icons.phone_outlined,
-            onPressed: () {},
+            icon: Icons.call_outlined,
+            onPressed: () {
+              Get.to(const EmailVerificationScreen());
+            },
           ),
           const SizedBox(
-            width: 8,
+            width: 12,
           ),
           AppBarIconButton(
             icon: Icons.notifications_active_outlined,
             onPressed: () {},
           ),
           const SizedBox(
-            width: 8,
+            width: 16,
           ),
         ],
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Column(
+            children: [
+              const HomeSearchField(),
+              const SizedBox(
+                height: 16,
+              ),
+              const HomeCarouselSlider(),
+              SectionHeader(
+                title: 'All Categories',
+                onTap: () {},
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              SizedBox(
+                height: 90,
+                child: ListView.builder(
+                  itemCount: 10,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return const CategoryCard();
+                  },
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              SectionHeader(
+                title: 'Popular',
+                onTap: () {},
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
