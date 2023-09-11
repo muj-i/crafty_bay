@@ -4,7 +4,7 @@ A new Flutter project.
 
 ## View
 
-![Alt Text](screenshots/ss0.png)
+![Alt Text](screenshots/ss1.png)
 
 ## Getting Started
 
