@@ -71,7 +71,7 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
               ),
               Center(
                   child: SvgPicture.asset(
-                AssetImages.craftyBayLogoSVG,
+                AppImageAssets.craftyBayLogoSVG,
                 width: 120,
               )),
               const SizedBox(

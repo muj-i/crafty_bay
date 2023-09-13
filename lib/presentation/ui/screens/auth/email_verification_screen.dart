@@ -29,7 +29,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
               ),
               Center(
                   child: SvgPicture.asset(
-                AssetImages.craftyBayLogoSVG,
+                AppImageAssets.craftyBayLogoSVG,
                 width: 120,
               )),
               const SizedBox(

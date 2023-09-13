@@ -1,5 +1,4 @@
 import 'package:crafty_bay/presentation/ui/screens/bottom_nav_base_screen.dart';
-import 'package:crafty_bay/presentation/ui/screens/home_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/asset_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -37,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
           const Spacer(),
           Center(
             child: SvgPicture.asset(
-              AssetImages.craftyBayLogoSVG,
+              AppImageAssets.craftyBayLogoSVG,
               width: 163,
             ),
           ),

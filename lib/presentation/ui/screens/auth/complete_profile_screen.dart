@@ -36,7 +36,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                 ),
                 Center(
                     child: SvgPicture.asset(
-                  AssetImages.craftyBayLogoSVG,
+                  AppImageAssets.craftyBayLogoSVG,
                   width: 120,
                 )),
                 const SizedBox(
