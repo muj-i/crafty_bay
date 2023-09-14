@@ -1,7 +1,10 @@
 import 'package:crafty_bay/presentation/ui/screens/auth/email_verification_screen.dart';
+import 'package:crafty_bay/presentation/ui/screens/categories_screen.dart';
+import 'package:crafty_bay/presentation/ui/screens/categories_screens/electronics_categories_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/asset_images.dart';
 import 'package:crafty_bay/presentation/ui/widgets/appbar_icon_button.dart';
 import 'package:crafty_bay/presentation/ui/widgets/category_card.dart';
+import 'package:crafty_bay/presentation/ui/widgets/constraints.dart';
 import 'package:crafty_bay/presentation/ui/widgets/home/home_carousel_slider.dart';
 import 'package:crafty_bay/presentation/ui/widgets/home/home_search_field.dart';
 import 'package:crafty_bay/presentation/ui/widgets/home/section_header.dart';
@@ -22,10 +25,10 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: appBackgroundColor,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.white,
+        backgroundColor: appBackgroundColor,
         title: SvgPicture.asset(
           AppImageAssets.craftyBayLogoNavSVG,
           width: 115,
@@ -74,15 +77,21 @@ class _HomeScreenState extends State<HomeScreen> {
               const HomeCarouselSlider(),
               SectionHeader(
                 title: 'All Categories',
-                onTap: () {},
+                onTap: () {
+                  Get.to(() => const CategoriesScreen());
+                },
               ),
               SizedBox(
                 height: 90,
                 child: ListView.builder(
-                  itemCount: 10,
+                  itemCount: 6,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
-                    return const CategoryCard();
+                    return GestureDetector(
+                        onTap: () {
+                          Get.to(ElectronicsCategoriesScreen());
+                        },
+                        child: const CategoryCard());
                   },
                 ),
               ),
@@ -96,10 +105,12 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 height: 155,
                 child: ListView.builder(
-                  itemCount: 5,
+                  itemCount: 6,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
-                    return const ProductCard();
+                    return const ProductCard(
+                      icon: Icons.favorite_border_rounded,
+                    );
                   },
                 ),
               ),
@@ -113,7 +124,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemCount: 6,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
-                    return const ProductCard();
+                    return const ProductCard(
+                      icon: Icons.favorite_border_rounded,
+                    );
                   },
                 ),
               ),
@@ -127,7 +140,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemCount: 6,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
-                    return const ProductCard();
+                    return const ProductCard(
+                      icon: Icons.favorite_border_rounded,
+                    );
                   },
                 ),
               ),

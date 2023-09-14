@@ -14,7 +14,7 @@ class BottomNavBaseScreen extends StatefulWidget {
 }
 
 class _BottomNavBaseScreenState extends State<BottomNavBaseScreen> {
-   int _selectedScreenIndex = 0;
+  int _selectedScreenIndex = 0;
   final List<Widget> _screens = const [
     HomeScreen(),
     CategoriesScreen(),
@@ -24,31 +24,32 @@ class _BottomNavBaseScreenState extends State<BottomNavBaseScreen> {
 
   @override
   Widget build(BuildContext context) {
-  
     return Scaffold(
-     
       body: _screens[_selectedScreenIndex],
       bottomNavigationBar: BottomNavigationBar(
-       type: BottomNavigationBarType.fixed, 
+        type: BottomNavigationBarType.fixed,
         currentIndex: _selectedScreenIndex,
         unselectedItemColor: Colors.grey,
-        unselectedLabelStyle: const TextStyle(
-          color: Colors.grey
-        ),
+        unselectedLabelStyle: const TextStyle(color: Colors.grey),
         showUnselectedLabels: true,
         selectedItemColor: ColorPalette.primaryColor,
         onTap: (int index) {
           _selectedScreenIndex = index;
-     
+
           if (mounted) {
             setState(() {});
           }
         },
         items: const [
-          BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.house), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.tableCellsLarge), label: 'Categories'),
-          BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.basketShopping), label: 'Cart'),
-          BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.gift), label: 'Wish'),
+          BottomNavigationBarItem(
+              icon: Icon(FontAwesomeIcons.house,), label: 'Home'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.dashboard_rounded, size: 25,),
+              label: 'Categories'),
+          BottomNavigationBarItem(
+              icon: Icon(FontAwesomeIcons.basketShopping), label: 'Cart'),
+          BottomNavigationBarItem(
+              icon: Icon(FontAwesomeIcons.gift), label: 'Wish'),
         ],
       ),
     );

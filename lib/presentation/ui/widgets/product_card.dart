@@ -3,8 +3,9 @@ import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
 import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
+  final IconData icon;
   const ProductCard({
-    super.key,
+    super.key, required this.icon,
   });
 
   @override
@@ -87,17 +88,17 @@ class ProductCard extends StatelessWidget {
                       const SizedBox(
                         width: 12,
                       ),
-                      const Card(
+                      Card(
                         color: ColorPalette.primaryColor,
                         child: Padding(
-                          padding: EdgeInsets.all(2.0),
+                          padding: const EdgeInsets.all(4.0),
                           child: Icon(
-                            Icons.favorite_border_rounded,
+                            icon,
                             color: Colors.white,
-                            size: 12,
+                            size: 8,
                           ),
                         ),
-                      )
+                      ),
                     ],
                   )
                 ],
