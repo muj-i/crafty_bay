@@ -1,6 +1,9 @@
+import 'package:crafty_bay/application/state_holder_binder.dart';
+import 'package:crafty_bay/presentation/state_holders/bottom_nav_base_controller.dart';
 import 'package:crafty_bay/presentation/ui/screens/splash_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
 
 class CraftyBayApp extends StatelessWidget {
@@ -42,6 +45,8 @@ class CraftyBayApp extends StatelessWidget {
             errorStyle: const TextStyle(color: Colors.redAccent)),
       ),
       home: const SplashScreen(),
+      initialBinding: StateHolderBinder(),
     );
   }
 }
+

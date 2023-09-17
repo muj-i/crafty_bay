@@ -1,18 +1,17 @@
 import 'package:crafty_bay/presentation/ui/screens/bottom_nav_base_screen.dart';
-import 'package:crafty_bay/presentation/ui/widgets/constraints.dart';
+import 'package:crafty_bay/presentation/ui/utils/constraints.dart';
 import 'package:crafty_bay/presentation/ui/widgets/product_card.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
-class WishScreen extends StatefulWidget {
-  const WishScreen({super.key});
+class ProductListScreen extends StatefulWidget {
+  const ProductListScreen({super.key});
 
   @override
-  State<WishScreen> createState() => _WishScreenState();
+  State<ProductListScreen> createState() => _ProductListScreenState();
 }
 
-class _WishScreenState extends State<WishScreen> {
+class _ProductListScreenState extends State<ProductListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +19,7 @@ class _WishScreenState extends State<WishScreen> {
       appBar: AppBar(
         elevation: 0.5,
         backgroundColor: appBackgroundColor,
-        title: Text('Wish List', style: appBarStyle),
+        title: Text('prefered catagories', style: appBarStyle),
         leading: IconButton(
           color: iconColor,
           icon: const Icon(Icons.arrow_back_ios_new_rounded),
@@ -43,7 +42,7 @@ class _WishScreenState extends State<WishScreen> {
             return const FittedBox(
                 fit: BoxFit.cover,
                 child: ProductCard(
-                  icon: FontAwesomeIcons.trashCan,
+                  icon: Icons.favorite_border_rounded,
                 ));
           },
         ),

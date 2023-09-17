@@ -142,7 +142,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                   maxLines: 4,
                   controller: _shippingAddressController,
                   keyboardType: TextInputType.text,
-                  textInputAction: TextInputAction.next,
+                  textInputAction: TextInputAction.done,
                   decoration: const InputDecoration(
                       hintText: 'Shipping Address',
                       contentPadding:

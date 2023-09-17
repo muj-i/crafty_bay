@@ -1,10 +1,10 @@
+import 'package:crafty_bay/presentation/state_holders/bottom_nav_base_controller.dart';
 import 'package:crafty_bay/presentation/ui/screens/auth/email_verification_screen.dart';
-import 'package:crafty_bay/presentation/ui/screens/categories_screen.dart';
-import 'package:crafty_bay/presentation/ui/screens/categories_screens/electronics_categories_screen.dart';
+import 'package:crafty_bay/presentation/ui/screens/product_list_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/asset_images.dart';
+import 'package:crafty_bay/presentation/ui/utils/constraints.dart';
 import 'package:crafty_bay/presentation/ui/widgets/appbar_icon_button.dart';
 import 'package:crafty_bay/presentation/ui/widgets/category_card.dart';
-import 'package:crafty_bay/presentation/ui/widgets/constraints.dart';
 import 'package:crafty_bay/presentation/ui/widgets/home/home_carousel_slider.dart';
 import 'package:crafty_bay/presentation/ui/widgets/home/home_search_field.dart';
 import 'package:crafty_bay/presentation/ui/widgets/home/section_header.dart';
@@ -12,7 +12,6 @@ import 'package:crafty_bay/presentation/ui/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/route_manager.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -78,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
               SectionHeader(
                 title: 'All Categories',
                 onTap: () {
-                  Get.to(() => const CategoriesScreen());
+                  Get.find<BottomNavBaseController>().changeScreen(1);
                 },
               ),
               SizedBox(
@@ -89,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                         onTap: () {
-                          Get.to(ElectronicsCategoriesScreen());
+                          Get.to(() => const ProductListScreen());
                         },
                         child: const CategoryCard());
                   },
@@ -100,7 +99,9 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SectionHeader(
                 title: 'Popular',
-                onTap: () {},
+                onTap: () {
+                  Get.to(() => const ProductListScreen());
+                },
               ),
               SizedBox(
                 height: 155,
@@ -116,7 +117,9 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SectionHeader(
                 title: 'Special',
-                onTap: () {},
+                onTap: () {
+                  Get.to(() => const ProductListScreen());
+                },
               ),
               SizedBox(
                 height: 155,
@@ -132,7 +135,9 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SectionHeader(
                 title: 'New',
-                onTap: () {},
+                onTap: () {
+                  Get.to(() => const ProductListScreen());
+                },
               ),
               SizedBox(
                 height: 155,
