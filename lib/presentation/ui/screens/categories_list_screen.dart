@@ -1,5 +1,6 @@
 import 'package:crafty_bay/presentation/state_holders/bottom_nav_base_controller.dart';
 import 'package:crafty_bay/presentation/ui/utils/constraints.dart';
+import 'package:crafty_bay/presentation/ui/widgets/all_over_appbar.dart';
 import 'package:crafty_bay/presentation/ui/widgets/category_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,18 +22,15 @@ class _CategoriesListScreenState extends State<CategoriesListScreen> {
       },
       child: Scaffold(
         backgroundColor: appBackgroundColor,
-        appBar: AppBar(
-          elevation: 0.5,
-          backgroundColor: appBackgroundColor,
-          title: Text('Categories', style: appBarStyle),
-          leading: IconButton(
-            color: iconColor,
-            icon: const Icon(Icons.arrow_back_ios_new_rounded),
-            onPressed: () {
-              Get.find<BottomNavBaseController>().backRoHome();
-            },
-          ),
+        appBar: PreferredSize(
+         preferredSize: const Size.fromHeight(kToolbarHeight),
+        child: AllOverAppBar(
+          pageTitle: 'Categories',
+          backButton: () {
+             Get.find<BottomNavBaseController>().backRoHome();
+          },
         ),
+      ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
           child: GridView.builder(

@@ -86,11 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemCount: 6,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
-                    return GestureDetector(
-                        onTap: () {
-                          Get.to(() => const ProductListScreen());
-                        },
-                        child: const CategoryCard());
+                    return const CategoryCard();
                   },
                 ),
               ),

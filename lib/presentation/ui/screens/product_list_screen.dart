@@ -1,5 +1,6 @@
 import 'package:crafty_bay/presentation/ui/screens/bottom_nav_base_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/constraints.dart';
+import 'package:crafty_bay/presentation/ui/widgets/all_over_appbar.dart';
 import 'package:crafty_bay/presentation/ui/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,16 +17,14 @@ class _ProductListScreenState extends State<ProductListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: appBackgroundColor,
-      appBar: AppBar(
-        elevation: 0.5,
-        backgroundColor: appBackgroundColor,
-        title: Text('prefered catagories', style: appBarStyle),
-        leading: IconButton(
-          color: iconColor,
-          icon: const Icon(Icons.arrow_back_ios_new_rounded),
-          onPressed: () {
-            // Get.back();
-            Get.offAll(() => const BottomNavBaseScreen());
+      appBar: PreferredSize(
+         preferredSize: const Size.fromHeight(kToolbarHeight),
+        child: AllOverAppBar(
+          pageTitle: 'prefered categories',
+          backButton: () {
+            Get.offAll(
+              () => const BottomNavBaseScreen(),
+            );
           },
         ),
       ),

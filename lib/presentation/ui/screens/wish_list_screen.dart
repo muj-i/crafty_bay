@@ -1,5 +1,6 @@
 import 'package:crafty_bay/presentation/state_holders/bottom_nav_base_controller.dart';
 import 'package:crafty_bay/presentation/ui/utils/constraints.dart';
+import 'package:crafty_bay/presentation/ui/widgets/all_over_appbar.dart';
 import 'package:crafty_bay/presentation/ui/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -22,14 +23,11 @@ class _WishScreenState extends State<WishScreen> {
       },
       child: Scaffold(
         backgroundColor: appBackgroundColor,
-        appBar: AppBar(
-          elevation: 0.5,
-          backgroundColor: appBackgroundColor,
-          title: Text('Wish List', style: appBarStyle),
-          leading: IconButton(
-            color: iconColor,
-            icon: const Icon(Icons.arrow_back_ios_new_rounded),
-            onPressed: () {
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(kToolbarHeight),
+          child: AllOverAppBar(
+            pageTitle: "Wish List",
+            backButton: () {
               Get.find<BottomNavBaseController>().backRoHome();
             },
           ),
