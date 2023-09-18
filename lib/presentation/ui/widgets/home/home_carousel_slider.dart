@@ -19,12 +19,9 @@ class _HomeCarouselSliderState extends State<HomeCarouselSlider> {
           options: CarouselOptions(
             height: 160.0,
             viewportFraction: 0.8,
-
             autoPlay: true,
-          
             enlargeCenterPage: true,
-enlargeFactor: 0.2,
-
+            enlargeFactor: 0.2,
             autoPlayInterval: const Duration(seconds: 3),
             onPageChanged: (index, _) {
               _selectedCarouselSlider.value = index;
