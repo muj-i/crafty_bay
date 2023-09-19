@@ -4,14 +4,21 @@ import 'package:flutter/material.dart';
 class AllOverAppBar extends StatelessWidget {
   final String pageTitle;
   final VoidCallback backButton;
-  const AllOverAppBar(
-      {super.key, required this.pageTitle, required this.backButton});
+  final Color? backgroundColor;
+  final double? elevation;
+  const AllOverAppBar({
+    super.key,
+    required this.pageTitle,
+    required this.backButton,
+    this.backgroundColor = Colors.white,
+    this.elevation = 0.5,
+  });
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      elevation: 0.5,
-      backgroundColor: appBackgroundColor,
+      elevation: elevation,
+      backgroundColor: backgroundColor,
       title: Text(pageTitle, style: appBarStyle),
       leading: IconButton(
         color: iconColor,

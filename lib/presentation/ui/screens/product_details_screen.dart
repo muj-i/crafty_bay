@@ -1,6 +1,4 @@
-import 'package:crafty_bay/presentation/ui/screens/product_review_screen.dart';
-import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
-import 'package:crafty_bay/presentation/ui/widgets/product_details/product_details_appbar.dart';
+import 'package:crafty_bay/presentation/ui/widgets/all_over_appbar.dart';
 import 'package:crafty_bay/presentation/ui/widgets/product_details/product_details_carousel_slider.dart';
 import 'package:crafty_bay/presentation/ui/widgets/product_details/rating_review_wishbutton_row.dart';
 import 'package:flutter/material.dart';
@@ -16,17 +14,24 @@ class ProductDetailsScreen extends StatefulWidget {
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SafeArea(
         child: Column(
           children: [
             Stack(
               children: [
-                ProductDetailsCarouselSlider(),
-                ProductDetailsAppBar(),
+                const ProductDetailsCarouselSlider(),
+                AllOverAppBar(
+                  pageTitle: 'Product Details',
+                  backButton: () {
+                      Get.back();
+                  },
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                )
               ],
             ),
-            Padding(
+            const Padding(
               padding: EdgeInsets.all(16.0),
               child: Column(
                 children: [
@@ -54,4 +59,3 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     );
   }
 }
-
