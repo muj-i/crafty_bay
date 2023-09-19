@@ -12,9 +12,9 @@ class RatingReviewWishButtonRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Wrap(
+        Wrap(
           children: [
-            Icon(
+            const Icon(
               Icons.star,
               size: 18,
               color: Colors.amber,
@@ -23,11 +23,14 @@ class RatingReviewWishButtonRow extends StatelessWidget {
               '4.8',
               style: TextStyle(
                   overflow: TextOverflow.ellipsis,
-                  fontSize: 15,
+                  fontSize: 16,
                   fontWeight: FontWeight.w500,
-                  color: Colors.blueGrey),
+                  color: Colors.grey.shade600),
             ),
           ],
+        ),
+        const SizedBox(
+          width: 5,
         ),
         TextButton(
           onPressed: () {
@@ -38,10 +41,13 @@ class RatingReviewWishButtonRow extends StatelessWidget {
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
           ),
         ),
+        const SizedBox(
+          width: 5,
+        ),
         const Card(
           color: ColorPalette.primaryColor,
           child: Padding(
-            padding: EdgeInsets.all(2.0),
+            padding: EdgeInsets.symmetric(horizontal: 5, vertical: 4),
             child: Icon(
               Icons.favorite_border,
               size: 16,
