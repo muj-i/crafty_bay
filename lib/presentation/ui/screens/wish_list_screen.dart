@@ -23,14 +23,11 @@ class _WishScreenState extends State<WishScreen> {
       },
       child: Scaffold(
         backgroundColor: appBackgroundColor,
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(kToolbarHeight),
-          child: AllOverAppBar(
-            pageTitle: "Wish List",
-            backButton: () {
-              Get.find<BottomNavBaseController>().backRoHome();
-            },
-          ),
+        appBar: AllOverAppBar(
+          pageTitle: "Wish List",
+          backButton: () {
+            Get.find<BottomNavBaseController>().backRoHome();
+          },
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 20.0),
@@ -46,7 +43,7 @@ class _WishScreenState extends State<WishScreen> {
                   fit: BoxFit.cover,
                   child: ProductCard(
                     icon: FontAwesomeIcons.trashCan,
-                  ));
+                  ),);
             },
           ),
         ),

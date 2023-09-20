@@ -17,16 +17,13 @@ class _ProductListScreenState extends State<ProductListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: appBackgroundColor,
-      appBar: PreferredSize(
-         preferredSize: const Size.fromHeight(kToolbarHeight),
-        child: AllOverAppBar(
-          pageTitle: 'prefered categories',
-          backButton: () {
-            Get.offAll(
-              () => const BottomNavBaseScreen(),
-            );
-          },
-        ),
+      appBar: AllOverAppBar(
+        pageTitle: 'prefered categories',
+        backButton: () {
+          Get.offAll(
+            () => const BottomNavBaseScreen(),
+          );
+        },
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 20.0),

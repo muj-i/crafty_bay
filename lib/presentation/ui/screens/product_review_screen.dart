@@ -12,14 +12,11 @@ class ProductReviewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(kToolbarHeight),
-        child: AllOverAppBar(
-          pageTitle: "Reviews",
-          backButton: () {
-            Get.back();
-          },
-        ),
+      appBar: AllOverAppBar(
+        pageTitle: "Reviews",
+        backButton: () {
+          Get.back();
+        },
       ),
       body: Column(
         children: [

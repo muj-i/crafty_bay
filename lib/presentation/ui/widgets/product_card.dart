@@ -7,7 +7,8 @@ import 'package:get/get.dart';
 class ProductCard extends StatelessWidget {
   final IconData icon;
   const ProductCard({
-    super.key, required this.icon,
+    super.key,
+    required this.icon,
   });
 
   @override
@@ -15,7 +16,7 @@ class ProductCard extends StatelessWidget {
     return InkWell(
       borderRadius: BorderRadius.circular(8),
       onTap: () {
-        Get.to(const ProductDetailsScreen());
+        Get.to(() => const ProductDetailsScreen());
       },
       child: Card(
         shadowColor: ColorPalette.primaryColor.withOpacity(0.1),

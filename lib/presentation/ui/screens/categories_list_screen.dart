@@ -22,15 +22,12 @@ class _CategoriesListScreenState extends State<CategoriesListScreen> {
       },
       child: Scaffold(
         backgroundColor: appBackgroundColor,
-        appBar: PreferredSize(
-         preferredSize: const Size.fromHeight(kToolbarHeight),
-        child: AllOverAppBar(
+        appBar: AllOverAppBar(
           pageTitle: 'Categories',
           backButton: () {
              Get.find<BottomNavBaseController>().backRoHome();
           },
         ),
-      ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
           child: GridView.builder(

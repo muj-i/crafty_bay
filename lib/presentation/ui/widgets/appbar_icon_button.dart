@@ -11,23 +11,16 @@ class AppBarIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      shape: const CircleBorder(),
-      clipBehavior: Clip.antiAlias,
-      child: InkWell(
- 
-        onTap: onPressed,
-        child: Container(
-          width: 32,
-          decoration: BoxDecoration(
-            color: Colors.grey[200],
-            shape: BoxShape.circle,
-          ),
-          child: Icon(
-            icon,
-            color: Colors.grey,
-            size: 22,
-          ),
+    return InkWell(
+      borderRadius: BorderRadius.circular(15),
+      onTap: onPressed,
+      child: CircleAvatar(
+        radius: 16,
+        backgroundColor:Colors.grey[200],
+        child: Icon(
+          icon,
+          color: Colors.grey,
+          size: 22,
         ),
       ),
     );

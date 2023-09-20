@@ -1,7 +1,7 @@
 import 'package:crafty_bay/presentation/ui/utils/constraints.dart';
 import 'package:flutter/material.dart';
 
-class AllOverAppBar extends StatelessWidget {
+class AllOverAppBar extends StatelessWidget implements PreferredSizeWidget{
   final String pageTitle;
   final VoidCallback backButton;
   final Color? backgroundColor;
@@ -27,4 +27,8 @@ class AllOverAppBar extends StatelessWidget {
       ),
     );
   }
+  
+  @override
+
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
