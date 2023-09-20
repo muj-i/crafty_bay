@@ -33,16 +33,17 @@ class _ProductReviewListTileState extends State<ProductReviewListTile> {
             const SizedBox(
               width: 8,
             ),
-            const Text('Name'),
+            const Text('User Name Placeholder'),
           ],
         ),
         subtitle: const Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
               height: 8,
             ),
             Text(
-              'No description foundNo description foundNo description foundNo description foundNo description foundNo description foundNo description foundNo description foundNo description foundNo description foundNo description foundNo description foundNo description foundNo description found',
+              'Product Review placeholder Product Review placeholder Product Review placeholder Product Review placeholder Product Review placeholder Product Review placeholder Product Review placeholder Product Review placeholder',
               style: TextStyle(fontSize: 12),
             ),
           ],

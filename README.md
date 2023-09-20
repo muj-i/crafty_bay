@@ -1,10 +1,16 @@
-# crafty_bay
+# CraftyBay
 
 A new Flutter project.
 
-## View
+#### CraftyBay UI
+<img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss1.png" width="160" />
+<img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss1.png" width="160" />
+<img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss1.png" width="160" />
+<img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss1.png" width="160" />
+<img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss1.png" width="160" />
+<img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss1.png" width="160" />
 
-![Alt Text](screenshots/ss1.png)
+
 
 ## Getting Started
 
