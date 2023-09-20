@@ -1,5 +1,8 @@
 import 'package:crafty_bay/presentation/state_holders/bottom_nav_base_controller.dart';
 import 'package:crafty_bay/presentation/ui/widgets/all_over_appbar.dart';
+import 'package:crafty_bay/presentation/ui/widgets/bottom_container.dart';
+import 'package:crafty_bay/presentation/ui/widgets/bottom_container_button.dart';
+import 'package:crafty_bay/presentation/ui/widgets/cart_product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,7 +27,26 @@ class _CartScreenState extends State<CartScreen> {
             backButton: () {
               Get.find<BottomNavBaseController>().backRoHome();
             }),
-        body: const Center(child: Text('Cart Screen')),
+        body: Column(
+          children: [
+            Expanded(
+              child: ListView.builder(
+                itemCount: 4,
+                itemBuilder: (context, index) {
+                  return const CartProductCard();
+                },
+              ),
+            ),
+            BottomContainer(
+              title: 'Total Price',
+              subTitle: '\$100,000.00',
+              button: BottomContainerButton(
+                text: 'Checkout',
+                onPressed: () {},
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

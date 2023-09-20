@@ -59,7 +59,7 @@ class CustomStepperState extends State<CustomStepper> {
             child: Text(
               '${widget.value}',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                color: Colors.black,
+                color: Colors.black, fontSize: 18
               ),
               textAlign: TextAlign.center,
             ),

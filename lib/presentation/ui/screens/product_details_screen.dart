@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:crafty_bay/presentation/ui/screens/product_review_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
 import 'package:crafty_bay/presentation/ui/widgets/all_over_appbar.dart';
+import 'package:crafty_bay/presentation/ui/widgets/bottom_container.dart';
 import 'package:crafty_bay/presentation/ui/widgets/bottom_container_button.dart';
 import 'package:crafty_bay/presentation/ui/widgets/custom_stepper.dart';
 import 'package:crafty_bay/presentation/ui/widgets/product_details/product_color_picker.dart';
@@ -66,11 +67,13 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 ),
               ),
             ),
-            BottomContainerButton(
+            BottomContainer(
               title: 'Price',
               subTitle: '\$1,000',
-              button: ElevatedButton(
-                  onPressed: () {}, child: const Text('Add To Cart')),
+              button: BottomContainerButton(
+                text: 'Add To Cart',
+                onPressed: () {},
+              ),
             ),
           ],
         ),

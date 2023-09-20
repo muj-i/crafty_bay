@@ -1,7 +1,7 @@
 import 'package:crafty_bay/presentation/ui/screens/add_product_review_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
 import 'package:crafty_bay/presentation/ui/widgets/all_over_appbar.dart';
-import 'package:crafty_bay/presentation/ui/widgets/bottom_container_button.dart';
+import 'package:crafty_bay/presentation/ui/widgets/bottom_container.dart';
 import 'package:crafty_bay/presentation/ui/widgets/product_review_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -35,7 +35,7 @@ class ProductReviewScreen extends StatelessWidget {
               ),
             ),
           ),
-          BottomContainerButton(
+          BottomContainer(
             title: 'Reviews',
             subTitle: '1,000',
             button: FloatingActionButton(
