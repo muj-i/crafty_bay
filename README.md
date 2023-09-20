@@ -4,18 +4,18 @@ A new Flutter project.
 
 #### CraftyBay UI
 <div style="display: flex; flex-wrap: wrap;">
-    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss0.png" width="250" />
-    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss1.png" width="250" />
-    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss2.png" width="250" />
-    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss3.png" width="250" />
-    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss4.png" width="250" />
-    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss5.png" width="250" />
-    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss11.png" width="250" />
-    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss6.png" width="250" />
-    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss7.png" width="250" />
-    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss8.png" width="250" />
-    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss9.png" width="250" />
-    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss10.png" width="250" />
+    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss0.png" width="225" />
+    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss1.png" width="225" />
+    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss2.png" width="225" />
+    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss3.png" width="225" />
+    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss4.png" width="225" />
+    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss5.png" width="225" />
+    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss11.png" width="225" />
+    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss6.png" width="225" />
+    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss7.png" width="225" />
+    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss8.png" width="225" />
+    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss9.png" width="225" />
+    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss10.png" width="225" />
 </div>
 
 
