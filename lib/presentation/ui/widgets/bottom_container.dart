@@ -3,19 +3,22 @@ import 'package:flutter/material.dart';
 
 class BottomContainer extends StatelessWidget {
   final String title;
-  final String subTitle;
+  final EdgeInsetsGeometry? padding;
+  final String? subTitle;
   final Widget button;
   const BottomContainer({
     super.key,
     required this.title,
-    required this.subTitle,
+    this.subTitle,
     required this.button,
+    this.padding,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      padding:
+          padding ?? const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       decoration: BoxDecoration(
         color: ColorPalette.primaryColor.withOpacity(0.12),
         borderRadius: const BorderRadius.only(
@@ -37,15 +40,16 @@ class BottomContainer extends StatelessWidget {
                     color: Colors.black54),
               ),
               const SizedBox(
-                height: 4,
+                height: 2,
               ),
-              Text(
-                subTitle.toString(),
-                style: const TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 17,
-                    color: ColorPalette.primaryColor),
-              ),
+              if (subTitle != null)
+                Text(
+                  subTitle.toString(),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 17,
+                      color: ColorPalette.primaryColor),
+                ),
             ],
           ),
           SizedBox(

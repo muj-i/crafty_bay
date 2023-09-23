@@ -96,14 +96,19 @@ class ProductCard extends StatelessWidget {
                         const SizedBox(
                           width: 12,
                         ),
-                        Card(
-                          color: ColorPalette.primaryColor,
-                          child: Padding(
-                            padding: const EdgeInsets.all(4.0),
-                            child: Icon(
-                              icon,
-                              color: Colors.white,
-                              size: 8,
+                        SizedBox(
+                          height: 22,
+                          child: FittedBox(
+                            child: Card(
+                              color: ColorPalette.primaryColor,
+                              child: Padding(
+                                padding: const EdgeInsets.all(4.0),
+                                child: Icon(
+                                  icon,
+                                  color: Colors.white,
+                                  size: 8,
+                                ),
+                              ),
                             ),
                           ),
                         ),

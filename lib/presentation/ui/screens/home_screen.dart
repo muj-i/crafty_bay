@@ -27,6 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: appBackgroundColor,
+        centerTitle: false,
         title: SvgPicture.asset(
           AppImageAssets.craftyBayLogoNavSVG,
           width: 115,

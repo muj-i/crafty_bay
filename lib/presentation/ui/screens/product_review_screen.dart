@@ -36,8 +36,7 @@ class ProductReviewScreen extends StatelessWidget {
             ),
           ),
           BottomContainer(
-            title: 'Reviews',
-            subTitle: '1,000',
+            title: 'Reviews (1000)',
             button: FloatingActionButton(
                 backgroundColor: ColorPalette.primaryColor,
                 onPressed: () {

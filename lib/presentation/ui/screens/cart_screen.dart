@@ -38,6 +38,7 @@ class _CartScreenState extends State<CartScreen> {
               ),
             ),
             BottomContainer(
+              padding: EdgeInsets.symmetric(vertical: 21,horizontal: 17),
               title: 'Total Price',
               subTitle: '\$100,000.00',
               button: BottomContainerButton(

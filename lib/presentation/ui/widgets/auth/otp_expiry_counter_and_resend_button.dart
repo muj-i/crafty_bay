@@ -60,7 +60,7 @@ class _OtpExpiryCounterAndResendButtonState extends State<OtpExpiryCounterAndRes
               children: [
                 const TextSpan(text: 'This code will expire in '),
                 TextSpan(
-                  text: '${_secondsRemaining}s', // Pluralize "second" if needed
+                  text: '${_secondsRemaining}s', 
                   style: const TextStyle(
                     color: ColorPalette.primaryColor,
                     fontWeight: FontWeight.bold,
