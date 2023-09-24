@@ -7,12 +7,16 @@ class OtpExpiryCounterAndResendButton extends StatefulWidget {
   const OtpExpiryCounterAndResendButton({super.key});
 
   @override
-  State<OtpExpiryCounterAndResendButton> createState() => _OtpExpiryCounterAndResendButtonState();
+  State<OtpExpiryCounterAndResendButton> createState() =>
+      _OtpExpiryCounterAndResendButtonState();
 }
 
-class _OtpExpiryCounterAndResendButtonState extends State<OtpExpiryCounterAndResendButton> {
+class _OtpExpiryCounterAndResendButtonState
+    extends State<OtpExpiryCounterAndResendButton> {
   int _secondsRemaining = 120;
   late Timer _timer;
+  bool _showCountdown = true;
+
   @override
   void initState() {
     super.initState();
@@ -24,22 +28,23 @@ class _OtpExpiryCounterAndResendButtonState extends State<OtpExpiryCounterAndRes
     _timer = Timer.periodic(
       oneSecond,
       (Timer timer) {
-        if (_secondsRemaining == 0) {
+        if (_secondsRemaining == 1) {
           timer.cancel();
+          _showCountdown = false;
+          setState(() {});
         } else {
-          setState(() {
-            _secondsRemaining--;
-          });
+          _secondsRemaining--;
+          setState(() {});
         }
       },
     );
   }
 
   void resetTimer() {
-    setState(() {
-      _secondsRemaining = 120;
-    });
+    _secondsRemaining = 120;
+    _showCountdown = true;
     startTimer();
+    setState(() {});
   }
 
   @override
@@ -50,43 +55,46 @@ class _OtpExpiryCounterAndResendButtonState extends State<OtpExpiryCounterAndRes
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        if (_secondsRemaining > 0)
-          RichText(
-            text: TextSpan(
-              style: const TextStyle(color: Colors.grey),
-              children: [
-                const TextSpan(text: 'This code will expire in '),
-                TextSpan(
-                  text: '${_secondsRemaining}s', 
-                  style: const TextStyle(
-                    color: ColorPalette.primaryColor,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
+    if (_showCountdown) {
+      return RichText(
+        text: TextSpan(
+          style: const TextStyle(color: Colors.grey),
+          children: [
+            const TextSpan(text: '\nThis code will expire in '),
+            TextSpan(
+              text: '${_secondsRemaining}s',
+              style: const TextStyle(
+                color: ColorPalette.primaryColor,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+      );
+    } else {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text(
+            'Code has expired.',
+            style: TextStyle(
+              color: Colors.grey,
             ),
           ),
-        if (_secondsRemaining == 0)
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text('Code has expired',
-                  style: TextStyle(color: Colors.grey)),
-              TextButton(
-                onPressed: () {
-                  resetTimer();
-                },
-                style: TextButton.styleFrom(
-                  foregroundColor: ColorPalette.primaryColor,
-                ),
-                child: const Text('Resend Code'),
-              ),
-            ],
+          TextButton(
+            onPressed: () {
+              resetTimer();
+            },
+            style: TextButton.styleFrom(
+              padding: const EdgeInsets.all(2),
+              foregroundColor: ColorPalette.primaryColor,
+            ),
+            child: const Text(
+              'Resend Code',
+            ),
           ),
-      ],
-    );
+        ],
+      );
+    }
   }
 }

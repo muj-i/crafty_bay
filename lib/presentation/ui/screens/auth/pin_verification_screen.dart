@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:crafty_bay/presentation/ui/screens/auth/complete_profile_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
 import 'package:crafty_bay/presentation/ui/widgets/all_over_elevatedbutton.dart';
@@ -91,9 +89,7 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
                 Get.offAll(() => const CompleteProfileScreen());
               },
             ),
-            const SizedBox(
-              height: 10,
-            ),
+            
             const OtpExpiryCounterAndResendButton(),
           ],
         );
