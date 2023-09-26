@@ -42,14 +42,17 @@ class BottomContainer extends StatelessWidget {
               const SizedBox(
                 height: 2,
               ),
-              if (subTitle != null)
-                Text(
+              Visibility(
+                visible: subTitle != null,
+                child: Text(
                   subTitle.toString(),
                   style: const TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 17,
-                      color: ColorPalette.primaryColor),
+                    fontWeight: FontWeight.w600,
+                    fontSize: 17,
+                    color: ColorPalette.primaryColor,
+                  ),
                 ),
+              ),
             ],
           ),
           SizedBox(

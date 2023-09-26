@@ -55,24 +55,9 @@ class _OtpExpiryCounterAndResendButtonState
 
   @override
   Widget build(BuildContext context) {
-    if (_showCountdown) {
-      return RichText(
-        text: TextSpan(
-          style: const TextStyle(color: Colors.grey),
-          children: [
-            const TextSpan(text: '\nThis code will expire in '),
-            TextSpan(
-              text: '${_secondsRemaining}s',
-              style: const TextStyle(
-                color: ColorPalette.primaryColor,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
-      );
-    } else {
-      return Row(
+    return Visibility(
+      visible: _showCountdown,
+      replacement: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Text(
@@ -94,7 +79,22 @@ class _OtpExpiryCounterAndResendButtonState
             ),
           ),
         ],
-      );
-    }
+      ),
+      child: RichText(
+        text: TextSpan(
+          style: const TextStyle(color: Colors.grey),
+          children: [
+            const TextSpan(text: '\nThis code will expire in '),
+            TextSpan(
+              text: '${_secondsRemaining}s',
+              style: const TextStyle(
+                color: ColorPalette.primaryColor,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

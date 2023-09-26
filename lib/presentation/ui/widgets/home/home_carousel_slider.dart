@@ -18,9 +18,10 @@ class _HomeCarouselSliderState extends State<HomeCarouselSlider> {
         CarouselSlider(
           options: CarouselOptions(
             height: 160.0,
-            viewportFraction: 0.8,
+            // viewportFraction: 0.8,
+            viewportFraction: 1.0,
             autoPlay: true,
-            enlargeCenterPage: true,
+            // enlargeCenterPage: true,
             enlargeFactor: 0.2,
             autoPlayInterval: const Duration(seconds: 3),
             onPageChanged: (index, _) {
@@ -63,8 +64,8 @@ class _HomeCarouselSliderState extends State<HomeCarouselSlider> {
             List<Widget> carouselDotList = [];
             for (int i = 0; i < 5; i++) {
               carouselDotList.add(Container(
-                width: value == i ? 30 : 10,
-                height: 10,
+                width: value == i ? 11 : 11,
+                height: 11,
                 margin: const EdgeInsets.symmetric(horizontal: 4),
                 decoration: BoxDecoration(
                   border: Border.all(
