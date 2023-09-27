@@ -1,4 +1,5 @@
-import 'package:crafty_bay/presentation/ui/screens/bottom_nav_base_screen.dart';
+import 'package:crafty_bay/presentation/ui/screens/auth/email_verification_screen.dart';
+//import 'package:crafty_bay/presentation/ui/screens/bottom_nav_base_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/asset_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -23,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
       const Duration(seconds: 2),
     ).then(
       (value) => Get.offAll(
-        () => const BottomNavBaseScreen(),
+        () => const EmailVerificationScreen()/*  BottomNavBaseScreen() */,
       ),
     );
   }

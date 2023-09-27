@@ -1,4 +1,6 @@
+import 'package:crafty_bay/presentation/state_holders/email_verification_controller.dart';
 import 'package:crafty_bay/presentation/ui/screens/auth/pin_verification_screen.dart';
+import 'package:crafty_bay/presentation/ui/utils/custom_sncakbar.dart';
 import 'package:crafty_bay/presentation/ui/widgets/all_over_elevatedbutton.dart';
 import 'package:crafty_bay/presentation/ui/widgets/auth/auth_screens_upper_parts.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +46,10 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
             if (value?.isEmpty ?? true) {
               return "Enter your email address";
             }
-            if (!RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$')
+            // else if (value!.isEmail == false) {
+            //   return "Enter a valid email address";
+            // }
+            else if (!RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$')
                 .hasMatch(value!)) {
               return "Enter a valid email address";
             }
@@ -54,17 +59,32 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
         const SizedBox(
           height: 10,
         ),
-        AllOverElevatedButton(
-          buttonName: 'Next',
-          onPressed: () {
-            if (!_formKey.currentState!.validate()) {
-              return;
-            }
-
-            Get.offAll(() => const PinVerificationScreen());
-          },
-        ),
+        GetBuilder<EmailVerificationController>(builder: (controller) {
+          if (controller.emailVerificationInProgress) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          return AllOverElevatedButton(
+            buttonName: 'Next',
+            onPressed: () async {
+              if (_formKey.currentState!.validate()) {
+                verifyEmail(controller);
+              }
+            },
+          );
+        }),
       ],
     );
+  }
+
+  Future<void> verifyEmail(EmailVerificationController controller) async {
+    final response = await controller.verifyEmail(_emailController.text.trim());
+    if (response) {
+      Get.to(() => const PinVerificationScreen());
+    } else {
+      if (mounted) {
+        CustomSnackbar.show(
+            context: context, message: 'Email verification failed! Try again');
+      }
+    }
   }
 }
