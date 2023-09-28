@@ -1,9 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:crafty_bay/data/models/slider_model_data.dart';
 import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
 import 'package:flutter/material.dart';
 
 class HomeCarouselSlider extends StatefulWidget {
-  const HomeCarouselSlider({super.key});
+  final List<SliderModelData> sliders;
+  const HomeCarouselSlider({super.key, required this.sliders});
 
   @override
   State<HomeCarouselSlider> createState() => _HomeCarouselSliderState();
@@ -17,7 +19,7 @@ class _HomeCarouselSliderState extends State<HomeCarouselSlider> {
       children: [
         CarouselSlider(
           options: CarouselOptions(
-            height: 160.0,
+            height: 210.0,
             // viewportFraction: 0.8,
             viewportFraction: 1.0,
             autoPlay: true,
@@ -28,8 +30,8 @@ class _HomeCarouselSliderState extends State<HomeCarouselSlider> {
               _selectedCarouselSlider.value = index;
             },
           ),
-          items: [1, 2, 3, 4, 5].map(
-            (i) {
+          items: widget.sliders.map(
+            (sliderModelData) {
               return Builder(
                 builder: (BuildContext context) {
                   return Container(
@@ -39,13 +41,40 @@ class _HomeCarouselSliderState extends State<HomeCarouselSlider> {
                         color: ColorPalette.primaryColor,
                         borderRadius: BorderRadius.circular(10)),
                     alignment: Alignment.center,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        const Icon(Icons.image_not_supported_rounded, size: 60),
-                        Text(
-                          'Product $i',
-                          style: const TextStyle(fontSize: 20.0),
+                        Image.network(
+                          sliderModelData.image ?? '',
+                          fit: BoxFit.fill,
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              sliderModelData.title ?? '',
+                              style: const TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            SizedBox(
+                              width: 120,
+                              child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    elevation: 0,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(8)),
+                                    backgroundColor: Colors.white,
+                                    foregroundColor: ColorPalette.primaryColor,
+                                  ),
+                                  child: const Text('Buy Now'),
+                                  onPressed: () {}),
+                            )
+                          ],
                         ),
                       ],
                     ),
@@ -62,7 +91,7 @@ class _HomeCarouselSliderState extends State<HomeCarouselSlider> {
           valueListenable: _selectedCarouselSlider,
           builder: (context, value, _) {
             List<Widget> carouselDotList = [];
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < widget.sliders.length; i++) {
               carouselDotList.add(Container(
                 width: value == i ? 11 : 11,
                 height: 11,

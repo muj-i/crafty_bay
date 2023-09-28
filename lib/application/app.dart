@@ -41,7 +41,12 @@ class CraftyBayApp extends StatelessWidget {
               borderRadius: BorderRadius.circular(5.0),
               borderSide: const BorderSide(color: Colors.redAccent),
             ),
-            errorStyle: const TextStyle(color: Colors.redAccent)),
+            errorStyle: const TextStyle(color: Colors.redAccent),
+            
+            ),
+            // elevatedButtonTheme: const ElevatedButtonThemeData(
+            //   style: Colors.accents
+            // )
       ),
       home: const SplashScreen(),
       initialBinding: StateHolderBinder(),

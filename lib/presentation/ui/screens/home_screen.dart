@@ -1,4 +1,5 @@
 import 'package:crafty_bay/presentation/state_holders/bottom_nav_base_controller.dart';
+import 'package:crafty_bay/presentation/state_holders/home_slider_controlle.dart';
 import 'package:crafty_bay/presentation/ui/screens/product_list_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/asset_images.dart';
 import 'package:crafty_bay/presentation/ui/utils/constraints.dart';
@@ -52,7 +53,12 @@ class _HomeScreenState extends State<HomeScreen> {
         const SizedBox(
           height: 16,
         ),
-        const HomeCarouselSlider(),
+        GetBuilder<HomeSliderController>(
+        
+          builder: (homeSliderController) {
+            return  HomeCarouselSlider(sliders: homeSliderController.sliderModel.data?? [],);
+          }
+        ),
         SectionHeader(
           title: 'All Categories',
           onTap: () {
