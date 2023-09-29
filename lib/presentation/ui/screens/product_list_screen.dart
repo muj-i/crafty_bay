@@ -1,4 +1,4 @@
-import 'package:crafty_bay/data/models/remark_product/product_data.dart';
+import 'package:crafty_bay/data/models/product_data.dart';
 import 'package:crafty_bay/presentation/ui/utils/constraints.dart';
 import 'package:crafty_bay/presentation/ui/widgets/all_over_appbar.dart';
 import 'package:crafty_bay/presentation/ui/widgets/product_card.dart';

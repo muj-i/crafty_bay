@@ -1,4 +1,4 @@
-import 'package:crafty_bay/data/models/remark_product/product_data.dart';
+import 'package:crafty_bay/data/models/product_data.dart';
 import 'package:crafty_bay/presentation/ui/screens/product_details_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
 import 'package:flutter/material.dart';
@@ -30,15 +30,18 @@ class ProductCard extends StatelessWidget {
             children: [
               Container(
                 height: 90,
+                width: double.infinity,
+                padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   color: ColorPalette.primaryColor.withOpacity(0.1),
                   borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(8),
                     topRight: Radius.circular(8),
                   ),
-                  image: DecorationImage(
-                    image: NetworkImage(productData.image ?? ''),
-                  ),
+                ),
+                child: Image.network(
+                  productData.image ?? '',
+                  fit: BoxFit.contain,
                 ),
               ),
               Padding(

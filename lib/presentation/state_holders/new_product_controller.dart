@@ -1,17 +1,17 @@
 import 'package:crafty_bay/data/models/network_response.dart';
-import 'package:crafty_bay/data/models/remark_product/new_product_model.dart';
+import 'package:crafty_bay/data/models/product_model.dart';
 import 'package:crafty_bay/data/services/network_caller.dart';
 import 'package:crafty_bay/data/utils/urls.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 class NewProductController extends GetxController {
   bool _getNewProductsInProgress = false;
-  NewProductModel _newProductModel = NewProductModel();
+  ProductModel _newProductModel = ProductModel();
   String _errorMessage = '';
 
   bool get getNewProductsInProgress => _getNewProductsInProgress;
 
-  NewProductModel get newProductModel => _newProductModel;
+  ProductModel get newProductModel => _newProductModel;
 
   String get errorMessage => _errorMessage;
 
@@ -22,7 +22,7 @@ class NewProductController extends GetxController {
         await NetworkResponseCaller().getRequest(Urls.newProduct);
     _getNewProductsInProgress = false;
     if (response.isSuccess) {
-      _newProductModel = NewProductModel.fromJson(response.responseJson ?? {});
+      _newProductModel = ProductModel.fromJson(response.responseJson ?? {});
       update();
       return true;
     } else {
