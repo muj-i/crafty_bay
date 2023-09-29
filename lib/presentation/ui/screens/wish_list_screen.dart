@@ -18,7 +18,7 @@ class _WishScreenState extends State<WishScreen> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        Get.find<BottomNavBaseController>().backRoHome();
+        Get.find<BottomNavBaseController>().backToHome();
         return false;
       },
       child: Scaffold(
@@ -26,7 +26,7 @@ class _WishScreenState extends State<WishScreen> {
         appBar: AllOverAppBar(
           pageTitle: "Wish List",
           backButton: () {
-            Get.find<BottomNavBaseController>().backRoHome();
+            Get.find<BottomNavBaseController>().backToHome();
           },
         ),
         body: Padding(
@@ -40,10 +40,11 @@ class _WishScreenState extends State<WishScreen> {
             ),
             itemBuilder: (context, index) {
               return const FittedBox(
-                  fit: BoxFit.cover,
-                  child: ProductCard(
-                    icon: FontAwesomeIcons.trashCan,
-                  ),);
+                fit: BoxFit.cover,
+                // child: ProductCard(
+                //   icon: FontAwesomeIcons.trashCan, productData: null,
+                // ),
+              );
             },
           ),
         ),

@@ -18,14 +18,14 @@ class _CartScreenState extends State<CartScreen> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        Get.find<BottomNavBaseController>().backRoHome();
+        Get.find<BottomNavBaseController>().backToHome();
         return false;
       },
       child: Scaffold(
         appBar: AllOverAppBar(
             pageTitle: 'Cart',
             backButton: () {
-              Get.find<BottomNavBaseController>().backRoHome();
+              Get.find<BottomNavBaseController>().backToHome();
             }),
         body: Column(
           children: [
@@ -38,7 +38,7 @@ class _CartScreenState extends State<CartScreen> {
               ),
             ),
             BottomContainer(
-              padding: const EdgeInsets.symmetric(vertical: 21,horizontal: 17),
+              padding: const EdgeInsets.symmetric(vertical: 21, horizontal: 17),
               title: 'Total Price',
               subTitle: '\$100,000.00',
               button: BottomContainerButton(

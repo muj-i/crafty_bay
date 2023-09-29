@@ -1,14 +1,16 @@
+import 'package:crafty_bay/data/models/remark_product/product_data.dart';
 import 'package:crafty_bay/presentation/ui/screens/product_details_screen.dart';
-import 'package:crafty_bay/presentation/ui/utils/asset_images.dart';
 import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProductCard extends StatelessWidget {
+  final ProductData productData;
   final IconData icon;
   const ProductCard({
     super.key,
     required this.icon,
+    required this.productData,
   });
 
   @override
@@ -34,8 +36,8 @@ class ProductCard extends StatelessWidget {
                     topLeft: Radius.circular(8),
                     topRight: Radius.circular(8),
                   ),
-                  image: const DecorationImage(
-                    image: AssetImage(AppImageAssets.productShoe),
+                  image: DecorationImage(
+                    image: NetworkImage(productData.image ?? ''),
                   ),
                 ),
               ),
@@ -45,7 +47,7 @@ class ProductCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'New Shoe',
+                      productData.title ?? '',
                       maxLines: 1,
                       style: TextStyle(
                         overflow: TextOverflow.ellipsis,
@@ -61,7 +63,7 @@ class ProductCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          '\$99',
+                          "৳${productData.price ?? ''}",
                           maxLines: 1,
                           style: TextStyle(
                             overflow: TextOverflow.ellipsis,
@@ -71,7 +73,7 @@ class ProductCard extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(
-                          width: 12,
+                          width: 4,
                         ),
                         Wrap(
                           crossAxisAlignment: WrapCrossAlignment.center,
@@ -82,7 +84,7 @@ class ProductCard extends StatelessWidget {
                               size: 15,
                             ),
                             Text(
-                              '4.9',
+                              productData.star.toString(),
                               maxLines: 1,
                               style: TextStyle(
                                 overflow: TextOverflow.ellipsis,
@@ -94,7 +96,7 @@ class ProductCard extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(
-                          width: 12,
+                          width: 4,
                         ),
                         SizedBox(
                           height: 22,

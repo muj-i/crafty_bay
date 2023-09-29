@@ -1,5 +1,9 @@
 import 'package:crafty_bay/presentation/state_holders/bottom_nav_base_controller.dart';
-import 'package:crafty_bay/presentation/state_holders/home_slider_controlle.dart';
+import 'package:crafty_bay/presentation/state_holders/categories_controller.dart';
+import 'package:crafty_bay/presentation/state_holders/home_slider_controller.dart';
+import 'package:crafty_bay/presentation/state_holders/new_product_controller.dart';
+import 'package:crafty_bay/presentation/state_holders/popular_product_controller.dart';
+import 'package:crafty_bay/presentation/state_holders/special_product_controller.dart';
 import 'package:crafty_bay/presentation/ui/screens/cart_screen.dart';
 import 'package:crafty_bay/presentation/ui/screens/categories_list_screen.dart';
 import 'package:crafty_bay/presentation/ui/screens/home_screen.dart';
@@ -23,10 +27,14 @@ class _BottomNavBaseScreenState extends State<BottomNavBaseScreen> {
     CartScreen(),
     WishScreen()
   ];
-@override
+  @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Get.find<HomeSliderController>().getHomeSliders();
+      Get.find<CategoriesController>().getCategories();
+      Get.find<PopularProductController>().getPopularProducts();
+      Get.find<SpecialProductController>().getSpecialProducts();
+      Get.find<NewProductController>().getNewProducts();
     });
     super.initState();
   }

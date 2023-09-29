@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 
 class HomeSliderController extends GetxController {
   bool _getHomeSlidersInProgress = false;
-  final String _message = "";
+  String _message = "";
   SliderModel _sliderModel = SliderModel();
 
   SliderModel get sliderModel => _sliderModel;
@@ -17,7 +17,7 @@ class HomeSliderController extends GetxController {
     _getHomeSlidersInProgress = true;
     update();
     final NetworkResponseRequest response =
-        await NetworkResponseCaller().getRequest(Urls.listProductSlider);
+        await NetworkResponseCaller().getRequest(Urls.homeSlider);
     _getHomeSlidersInProgress = false;
 
     if (response.isSuccess) {
@@ -25,6 +25,7 @@ class HomeSliderController extends GetxController {
       update();
       return true;
     } else {
+      _message = 'Slider data fetched failed';
       update();
       return false;
     }

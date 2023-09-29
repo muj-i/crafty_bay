@@ -1,45 +1,43 @@
-import 'package:crafty_bay/presentation/ui/screens/bottom_nav_base_screen.dart';
+import 'package:crafty_bay/data/models/remark_product/product_data.dart';
 import 'package:crafty_bay/presentation/ui/utils/constraints.dart';
 import 'package:crafty_bay/presentation/ui/widgets/all_over_appbar.dart';
 import 'package:crafty_bay/presentation/ui/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ProductListScreen extends StatefulWidget {
-  const ProductListScreen({super.key});
+class ProductListScreen extends StatelessWidget {
+  final List<ProductData> productData;
+  final String appBarRemark;
+  const ProductListScreen(
+      {super.key, required this.productData, required this.appBarRemark});
 
-  @override
-  State<ProductListScreen> createState() => _ProductListScreenState();
-}
-
-class _ProductListScreenState extends State<ProductListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: appBackgroundColor,
       appBar: AllOverAppBar(
-        pageTitle: 'prefered categories',
+        pageTitle: appBarRemark,
         backButton: () {
-          Get.offAll(
-            () => const BottomNavBaseScreen(),
-          );
+          Get.back();
         },
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 20.0),
         child: GridView.builder(
-          itemCount: 9,
+          itemCount: productData.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,
             crossAxisSpacing: 6,
             mainAxisSpacing: 32,
           ),
           itemBuilder: (context, index) {
-            return const FittedBox(
-                fit: BoxFit.cover,
-                child: ProductCard(
-                  icon: Icons.favorite_border_rounded,
-                ));
+            return FittedBox(
+              fit: BoxFit.cover,
+              child: ProductCard(
+                icon: Icons.favorite_border_rounded,
+                productData: productData[index],
+              ),
+            );
           },
         ),
       ),

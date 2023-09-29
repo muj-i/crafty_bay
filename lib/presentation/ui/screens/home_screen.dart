@@ -1,5 +1,9 @@
 import 'package:crafty_bay/presentation/state_holders/bottom_nav_base_controller.dart';
-import 'package:crafty_bay/presentation/state_holders/home_slider_controlle.dart';
+import 'package:crafty_bay/presentation/state_holders/categories_controller.dart';
+import 'package:crafty_bay/presentation/state_holders/home_slider_controller.dart';
+import 'package:crafty_bay/presentation/state_holders/new_product_controller.dart';
+import 'package:crafty_bay/presentation/state_holders/popular_product_controller.dart';
+import 'package:crafty_bay/presentation/state_holders/special_product_controller.dart';
 import 'package:crafty_bay/presentation/ui/screens/product_list_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/asset_images.dart';
 import 'package:crafty_bay/presentation/ui/utils/constraints.dart';
@@ -53,85 +57,140 @@ class _HomeScreenState extends State<HomeScreen> {
         const SizedBox(
           height: 16,
         ),
-        GetBuilder<HomeSliderController>(
-        
-          builder: (homeSliderController) {
-            return  HomeCarouselSlider(sliders: homeSliderController.sliderModel.data?? [],);
-          }
-        ),
+        GetBuilder<HomeSliderController>(builder: (homeSliderController) {
+          return Visibility(
+            visible: homeSliderController.getHomeSlidersInProgress == false,
+            replacement: const SizedBox(
+                height: 220, child: Center(child: CircularProgressIndicator())),
+            child: HomeCarouselSlider(
+              sliders: homeSliderController.sliderModel.data ?? [],
+            ),
+          );
+        }),
         SectionHeader(
           title: 'All Categories',
           onTap: () {
             Get.find<BottomNavBaseController>().changeScreen(1);
           },
         ),
-        SizedBox(
-          height: 90,
-          child: ListView.builder(
-            itemCount: 6,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              return const CategoryCard();
-            },
-          ),
-        ),
+        GetBuilder<CategoriesController>(builder: (categoriesController) {
+          return Visibility(
+            visible: categoriesController.getCategoriesInProgress == false,
+            replacement: const SizedBox(
+              height: 90,
+              child: Center(
+                child: CircularProgressIndicator(),
+              ),
+            ),
+            child: SizedBox(
+              height: 90,
+              child: ListView.builder(
+                itemCount:
+                    categoriesController.categoriesModel.data?.length ?? 0,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return CategoryCard(
+                    categoriesData:
+                        categoriesController.categoriesModel.data![index],
+                  );
+                },
+              ),
+            ),
+          );
+        }),
         const SizedBox(
           height: 8,
         ),
         SectionHeader(
           title: 'Popular',
           onTap: () {
-            Get.to(() => const ProductListScreen());
+            Get.to(
+              () => ProductListScreen(
+                productData:
+                    Get.find<PopularProductController>().popularProductModel.data ?? [],
+                appBarRemark: 'Popular Product',
+              ),
+            );
           },
         ),
-        SizedBox(
-          height: 155,
-          child: ListView.builder(
-            itemCount: 6,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              return const ProductCard(
-                icon: Icons.favorite_border_rounded,
-              );
-            },
-          ),
-        ),
+        GetBuilder<PopularProductController>(
+            builder: (popularProductController) {
+          return SizedBox(
+            height: 155,
+            child: ListView.builder(
+              itemCount:
+                  popularProductController.popularProductModel.data?.length ??
+                      0,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return ProductCard(
+                  icon: Icons.favorite_border_rounded,
+                  productData:
+                      popularProductController.popularProductModel.data![index],
+                );
+              },
+            ),
+          );
+        }),
         SectionHeader(
           title: 'Special',
           onTap: () {
-            Get.to(() => const ProductListScreen());
+            Get.to(
+              () => ProductListScreen(
+                productData:
+                    Get.find<SpecialProductController>().specialProductModel.data ?? [],
+                appBarRemark: 'Special Product',
+              ),
+            );
           },
         ),
-        SizedBox(
-          height: 155,
-          child: ListView.builder(
-            itemCount: 6,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              return const ProductCard(
-                icon: Icons.favorite_border_rounded,
-              );
-            },
-          ),
-        ),
+        GetBuilder<SpecialProductController>(
+            builder: (specialProductController) {
+          return SizedBox(
+            height: 155,
+            child: ListView.builder(
+              itemCount:
+                  specialProductController.specialProductModel.data?.length ??
+                      0,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return ProductCard(
+                  icon: Icons.favorite_border_rounded,
+                  productData:
+                      specialProductController.specialProductModel.data![index],
+                );
+              },
+            ),
+          );
+        }),
         SectionHeader(
           title: 'New',
           onTap: () {
-            Get.to(() => const ProductListScreen());
+            Get.to(
+              () => ProductListScreen(
+                productData:
+                    Get.find<NewProductController>().newProductModel.data ?? [],
+                appBarRemark: 'New Product',
+              ),
+            );
           },
         ),
-        SizedBox(
-          height: 155,
-          child: ListView.builder(
-            itemCount: 6,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              return const ProductCard(
-                icon: Icons.favorite_border_rounded,
-              );
-            },
-          ),
-        ),
+        GetBuilder<NewProductController>(builder: (newProductController) {
+          return SizedBox(
+            height: 155,
+            child: ListView.builder(
+              itemCount: newProductController.newProductModel.data?.length ?? 0,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return ProductCard(
+                  icon: Icons.favorite_border_rounded,
+                  productData:
+                      newProductController.newProductModel.data![index],
+                );
+              },
+            ),
+          );
+        }),
       ],
     );
   }

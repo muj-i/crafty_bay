@@ -7,7 +7,7 @@ class BottomNavBaseController extends GetxController {
     update();
   }
 
-  void backRoHome() {
+  void backToHome() {
     changeScreen(0);
   }
 }
