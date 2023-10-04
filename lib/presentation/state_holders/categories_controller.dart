@@ -17,7 +17,7 @@ class CategoriesController extends GetxController {
     _getCategoriesInProgress = true;
     update();
     final NetworkResponseRequest response =
-        await NetworkResponseCaller().getRequest(Urls.categories);
+        await NetworkResponseCaller.getRequest(Urls.getCategories);
     _getCategoriesInProgress = false;
 
     if (response.isSuccess) {

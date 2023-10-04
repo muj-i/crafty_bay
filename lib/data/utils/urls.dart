@@ -5,8 +5,10 @@ class Urls {
 
   static String verifyEmail(String email) => "$_baseUrl/UserLogin/$email";
   static String homeSlider = "$_baseUrl/ListProductSlider";
-  static String categories = "$_baseUrl/CategoryList";
-  static String popularProduct = "$_baseUrl/ListProductByRemark/popular";
-  static String specialProduct = "$_baseUrl/ListProductByRemark/special";
-  static String newProduct = "$_baseUrl/ListProductByRemark/new";
+  static String getCategories = "$_baseUrl/CategoryList";
+  static String getPopularProduct = "$_baseUrl/ListProductByRemark/popular";
+  static String getSpecialProduct = "$_baseUrl/ListProductByRemark/special";
+  static String getNewProduct = "$_baseUrl/ListProductByRemark/new";
+  static String getProductDetails(int productId) =>
+      "$_baseUrl/ProductDetailsById/$productId";
 }

@@ -5,7 +5,7 @@ import 'package:crafty_bay/data/models/network_response.dart';
 import 'package:http/http.dart';
 
 class NetworkResponseCaller {
-  Future<NetworkResponseRequest> getRequest(String url) async {
+ static Future<NetworkResponseRequest> getRequest(String url) async {
     try {
       Response response = await get(Uri.parse(url));
       log(response.statusCode.toString());
@@ -25,7 +25,7 @@ class NetworkResponseCaller {
     return NetworkResponseRequest(false, -1, null);
   }
 
-  Future<NetworkResponseRequest> putRequest(
+ static Future<NetworkResponseRequest> putRequest(
       String url, Map<String, dynamic> body,
       {bool isLogin = false}) async {
     try {
@@ -55,7 +55,7 @@ class NetworkResponseCaller {
     return NetworkResponseRequest(false, -1, null);
   }
 
-  Future<void> gotoLogin() async {
+  static Future<void> gotoLogin() async {
     // await AuthUtility.clearUserInfo();
     // Navigator.pushAndRemoveUntil(
     //     TaskManagerApp.globalKey.currentContext!,

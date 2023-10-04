@@ -1,4 +1,3 @@
-
 import 'package:crafty_bay/presentation/ui/widgets/product_details/section_title.dart';
 import 'package:flutter/material.dart';
 
@@ -28,13 +27,15 @@ class _ProductColorPickerState extends State<ProductColorPicker> {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [const SectionTittle(
-            title: 'Color',
-          ),
-          const SizedBox(
-            height: 12,
-          ),
-        SizedBox(height: 28,
+      children: [
+        const SectionTittle(
+          title: 'Color',
+        ),
+        const SizedBox(
+          height: 12,
+        ),
+        SizedBox(
+          height: 28,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {

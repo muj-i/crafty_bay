@@ -31,12 +31,13 @@ class _ProductSizePickerState extends State<ProductSizePicker> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SectionTittle(
-            title: 'Size',
-          ),
-          const SizedBox(
-            height: 12,
-          ),
-        SizedBox(height: 28,
+          title: 'Size',
+        ),
+        const SizedBox(
+          height: 12,
+        ),
+        SizedBox(
+          height: 28,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
@@ -48,33 +49,36 @@ class _ProductSizePickerState extends State<ProductSizePicker> {
                     setState(() {});
                   }
                 },
-                child: SizedBox(
-                  width: 33,
-                  child: FittedBox(
-                      child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(25),
-                      border: Border.all(
-                        color: _selectedSizeIndex == index
-                            ? ColorPalette.primaryColor
-                            : Colors.grey.shade700,
-                        width: 2,
-                      ),
+                child: Container(
+                  height: 60,
+                  width: 60,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    border: Border.all(
+                      color: _selectedSizeIndex == index
+                          ? ColorPalette.primaryColor
+                          : Colors.grey.shade600,
+                      width: 2,
                     ),
-                    child: CircleAvatar(
-                      foregroundColor: _selectedSizeIndex == index
-                          ? Colors.white
-                          : Colors.grey.shade700,
-                      radius: 17,
-                      backgroundColor: _selectedSizeIndex == index
+                  ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: _selectedSizeIndex == index
                           ? ColorPalette.primaryColor
                           : Colors.white,
+                    ),
+                    child: Center(
                       child: Text(
                         widget.sizes[index],
-                        style: const TextStyle(fontSize: 18),
+                        style: TextStyle(
+                            fontSize: 18,
+                            color: _selectedSizeIndex == index
+                                ? Colors.white
+                                : Colors.grey.shade600),
                       ),
                     ),
-                  )),
+                  ),
                 ),
               );
             },

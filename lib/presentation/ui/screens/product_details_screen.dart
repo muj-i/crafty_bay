@@ -1,5 +1,6 @@
-import 'dart:math';
+import 'dart:developer';
 
+import 'package:crafty_bay/presentation/state_holders/product_details_controller.dart';
 import 'package:crafty_bay/presentation/ui/screens/product_review_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
 import 'package:crafty_bay/presentation/ui/widgets/all_over_appbar.dart';
@@ -14,74 +15,95 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
-  const ProductDetailsScreen({super.key});
+  final int productId;
+  const ProductDetailsScreen({
+    super.key,
+    required this.productId,
+  });
 
   @override
   State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
 }
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
-  List<Color> colors = [
-    Colors.black,
-    ColorPalette.primaryColor,
-    Colors.brown,
-    Colors.grey.shade500,
-    Colors.grey.shade700,
-  ];
-
-  List<String> sizes = [
-    'X',
-    'XL',
-    '2L',
-    'X',
-  ];
-  //!!!!!!!!
   int _selectedColorIndex = 0;
   int _selectedSizeIndex = 0;
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Get.find<ProductDetailsController>().getProductDetails(widget.productId);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Stack(
-                      children: [
-                        const ProductDetailsCarouselSlider(),
-                        AllOverAppBar(
-                          pageTitle: 'Product Details',
-                          backButton: () {
-                            Get.back();
-                          },
-                          backgroundColor: Colors.transparent,
-                          elevation: 0,
-                        )
-                      ],
-                    ),
-                    productDetails,
-                  ],
+      body: GetBuilder<ProductDetailsController>(
+          builder: (productDetailsController) {
+        if (productDetailsController.getProductDetailsDataInProgress) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+        return SafeArea(
+          child: Column(
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Stack(
+                        children: [
+                          ProductDetailsCarouselSlider(
+                            imageList: [
+                              productDetailsController
+                                      .productDetailsData.img1 ??
+                                  '',
+                              productDetailsController
+                                      .productDetailsData.img2 ??
+                                  '',
+                              productDetailsController
+                                      .productDetailsData.img3 ??
+                                  '',
+                              productDetailsController
+                                      .productDetailsData.img4 ??
+                                  ''
+                            ],
+                          ),
+                          AllOverAppBar(
+                            pageTitle: 'Product Details',
+                            backButton: () {
+                              Get.back();
+                            },
+                            backgroundColor: Colors.transparent,
+                            elevation: 0,
+                          )
+                        ],
+                      ),
+                      productDetails(productDetailsController,
+                          productDetailsController.availableColors),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            BottomContainer(
-              title: 'Price',
-              subTitle: '\$1,000',
-              button: BottomContainerButton(
-                text: 'Add To Cart',
-                onPressed: () {},
+              BottomContainer(
+                title: 'Price',
+                subTitle: '\$1,000',
+                button: BottomContainerButton(
+                  text: 'Add To Cart',
+                  onPressed: () {},
+                ),
               ),
-            ),
-          ],
-        ),
-      ),
+            ],
+          ),
+        );
+      }),
     );
   }
 
-  Padding get productDetails {
+  Padding productDetails(
+      ProductDetailsController productDetailsController, List<Color> colors) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -89,10 +111,11 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         children: [
           Row(
             children: [
-              const Expanded(
+              Expanded(
                 child: Text(
-                  'Product Name Placeholder',
-                  style: TextStyle(
+                  productDetailsController.productDetailsData.product!.title ??
+                      '',
+                  style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w700,
                       letterSpacing: 0.5),
@@ -104,7 +127,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   stepValue: 1,
                   value: 1,
                   onChange: (newValue) {
-                    log(newValue);
+                    log(newValue.toString());
                   })
             ],
           ),
@@ -118,7 +141,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     color: Colors.amber,
                   ),
                   Text(
-                    '4.8',
+                    '${productDetailsController.productDetailsData.product!.star ?? 0}',
                     style: TextStyle(
                         overflow: TextOverflow.ellipsis,
                         fontSize: 16,
@@ -156,10 +179,13 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             ],
           ),
           ProductColorPicker(
-            colors: colors,
+            colors: productDetailsController.availableColors,
             onSelected: (int selectedColor) {
-              //!!!!!!!!
+              log(selectedColor.toString());
               _selectedColorIndex = selectedColor;
+              log(_selectedColorIndex.toString());
+              log(productDetailsController.availableColors[_selectedColorIndex]
+                  .toString());
             },
             initialSelectedColor: 0,
           ),
@@ -167,10 +193,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             height: 12,
           ),
           ProductSizePicker(
-            sizes: sizes,
+            sizes: productDetailsController.availableSizes,
             onSelected: (int selectedSize) {
-              //!!!!!!!!
               _selectedSizeIndex = selectedSize;
+              log(selectedSize.toString());
             },
             initialSelectedSize: 0,
           ),
@@ -182,8 +208,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             height: 12,
           ),
           Text(
-            '''Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                                  ''',
+            productDetailsController.productDetailsData.des ?? '',
             style: TextStyle(color: Colors.grey[600]),
           ),
         ],
