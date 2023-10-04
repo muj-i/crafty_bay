@@ -4,28 +4,28 @@ import 'dart:developer';
 import 'package:crafty_bay/data/models/network_response.dart';
 import 'package:http/http.dart';
 
-class NetworkResponseCaller {
- static Future<NetworkResponseRequest> getRequest(String url) async {
+class NetworkCaller {
+ static Future<NetworkResponse> getRequest(String url) async {
     try {
       Response response = await get(Uri.parse(url));
       log(response.statusCode.toString());
       log(response.body);
       if (response.statusCode == 200 &&
           jsonDecode(response.body)['msg'] == 'success') {
-        return NetworkResponseRequest(
+        return NetworkResponse(
             true, response.statusCode, jsonDecode(response.body));
       } else if (response.statusCode == 401) {
         gotoLogin();
       } else {
-        return NetworkResponseRequest(false, response.statusCode, null);
+        return NetworkResponse(false, response.statusCode, null);
       }
     } catch (e) {
       log(e.toString());
     }
-    return NetworkResponseRequest(false, -1, null);
+    return NetworkResponse(false, -1, null);
   }
 
- static Future<NetworkResponseRequest> putRequest(
+ static Future<NetworkResponse> postRequest(
       String url, Map<String, dynamic> body,
       {bool isLogin = false}) async {
     try {
@@ -37,22 +37,22 @@ class NetworkResponseCaller {
         body: jsonEncode(body),
       );
       log(response.statusCode.toString());
-      log(response.body);
+     // log(response.body);
       if (response.statusCode == 200 &&
           jsonDecode(response.body)['msg'] == 'success') {
-        return NetworkResponseRequest(
+        return NetworkResponse(
             true, response.statusCode, jsonDecode(response.body));
       } else if (response.statusCode == 401) {
         if (isLogin = false) {
           gotoLogin();
         }
       } else {
-        return NetworkResponseRequest(false, response.statusCode, null);
+        return NetworkResponse(false, response.statusCode, null);
       }
     } catch (e) {
       log(e.toString());
     }
-    return NetworkResponseRequest(false, -1, null);
+    return NetworkResponse(false, -1, null);
   }
 
   static Future<void> gotoLogin() async {

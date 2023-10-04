@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:crafty_bay/presentation/state_holders/add_to_cart_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/product_details_controller.dart';
 import 'package:crafty_bay/presentation/ui/screens/product_review_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
@@ -28,12 +29,13 @@ class ProductDetailsScreen extends StatefulWidget {
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   int _selectedColorIndex = 0;
   int _selectedSizeIndex = 0;
+
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Get.find<ProductDetailsController>().getProductDetails(widget.productId);
-    });
+     WidgetsBinding.instance.addPostFrameCallback((_) {
+    Get.find<ProductDetailsController>().getProductDetails(widget.productId);
+     });
   }
 
   @override
@@ -89,10 +91,20 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               ),
               BottomContainer(
                 title: 'Price',
-                subTitle: '\$1,000',
+                subTitle:
+                    '৳${productDetailsController.productDetailsData.product!.price ?? ''}',
                 button: BottomContainerButton(
                   text: 'Add To Cart',
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.find<AddToCartController>().addToCart(
+                        productDetailsController.productDetailsData.id!,
+                        productDetailsController
+                            .availableColors[_selectedColorIndex]
+                            .toString(),
+                        productDetailsController
+                            .availableSizes[_selectedSizeIndex],);
+
+                  },
                 ),
               ),
             ],
@@ -182,7 +194,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             colors: productDetailsController.availableColors,
             onSelected: (int selectedColor) {
               log(selectedColor.toString());
+
               _selectedColorIndex = selectedColor;
+
               log(_selectedColorIndex.toString());
               log(productDetailsController.availableColors[_selectedColorIndex]
                   .toString());
@@ -196,7 +210,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             sizes: productDetailsController.availableSizes,
             onSelected: (int selectedSize) {
               _selectedSizeIndex = selectedSize;
+              
               log(selectedSize.toString());
+              log(_selectedSizeIndex.toString());
             },
             initialSelectedSize: 0,
           ),

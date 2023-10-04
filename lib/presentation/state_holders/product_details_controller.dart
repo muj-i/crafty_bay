@@ -29,8 +29,8 @@ class ProductDetailsController extends GetxController {
   Future<bool> getProductDetails(int id) async {
     _getProductDetailsDataInProgress = true;
     update();
-    final NetworkResponseRequest response =
-        await NetworkResponseCaller.getRequest(Urls.getProductDetails(id));
+    final NetworkResponse response =
+        await NetworkCaller.getRequest(Urls.getProductDetails(id));
     _getProductDetailsDataInProgress = false;
     if (response.isSuccess) {
       _productDetailsData =

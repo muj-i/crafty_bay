@@ -1,8 +1,8 @@
 
-class NetworkResponseRequest {
+class NetworkResponse {
   final bool isSuccess;
   final int statusCode;
   final dynamic responseJson;
 
-  NetworkResponseRequest(this.isSuccess, this.statusCode, this.responseJson);
+  NetworkResponse(this.isSuccess, this.statusCode, this.responseJson);
 }

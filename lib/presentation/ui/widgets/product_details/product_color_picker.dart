@@ -5,6 +5,7 @@ class ProductColorPicker extends StatefulWidget {
   final List<Color> colors;
   final Function(int selectIndex) onSelected;
   final int initialSelectedColor;
+  
   const ProductColorPicker(
       {super.key,
       required this.colors,
@@ -42,6 +43,7 @@ class _ProductColorPickerState extends State<ProductColorPicker> {
               return GestureDetector(
                 onTap: () {
                   _selectedColorIndex = index;
+                  widget.onSelected(index);
                   if (mounted) {
                     setState(() {});
                   }

@@ -11,4 +11,5 @@ class Urls {
   static String getNewProduct = "$_baseUrl/ListProductByRemark/new";
   static String getProductDetails(int productId) =>
       "$_baseUrl/ProductDetailsById/$productId";
+  static const String addToCart = '$_baseUrl/CreateCartList';
 }

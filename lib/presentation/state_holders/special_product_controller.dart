@@ -18,8 +18,8 @@ class SpecialProductController extends GetxController {
   Future<bool> getSpecialProducts() async {
     _getSpecialProductsInProgress = true;
     update();
-    final NetworkResponseRequest response =
-        await NetworkResponseCaller.getRequest(Urls.getSpecialProduct);
+    final NetworkResponse response =
+        await NetworkCaller.getRequest(Urls.getSpecialProduct);
     _getSpecialProductsInProgress = false;
     if (response.isSuccess) {
       _specialProductModel = ProductModel.fromJson(response.responseJson ?? {});
