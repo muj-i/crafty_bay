@@ -1,3 +1,4 @@
+import 'package:crafty_bay/presentation/state_holders/auth_token_controller.dart';
 import 'package:crafty_bay/presentation/ui/screens/bottom_nav_base_screen.dart';
 //import 'package:crafty_bay/presentation/ui/screens/bottom_nav_base_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/asset_images.dart';
@@ -19,7 +20,8 @@ class _SplashScreenState extends State<SplashScreen> {
     goToHomepage();
   }
 
-  void goToHomepage() {
+  void goToHomepage() async {
+    await AuthTokenController.getAccessToken();
     Future.delayed(
       const Duration(seconds: 2),
     ).then(

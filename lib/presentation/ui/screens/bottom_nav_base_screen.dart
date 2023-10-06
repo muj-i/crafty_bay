@@ -1,5 +1,6 @@
 import 'package:crafty_bay/presentation/state_holders/bottom_nav_base_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/categories_controller.dart';
+import 'package:crafty_bay/presentation/state_holders/categories_list_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/home_slider_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/new_product_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/popular_product_controller.dart';
@@ -29,12 +30,13 @@ class _BottomNavBaseScreenState extends State<BottomNavBaseScreen> {
   ];
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Get.find<HomeSliderController>().getHomeSliders();
-      Get.find<CategoriesController>().getCategories();
-      Get.find<PopularProductController>().getPopularProducts();
-      Get.find<SpecialProductController>().getSpecialProducts();
-      Get.find<NewProductController>().getNewProducts();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await Get.find<HomeSliderController>().getHomeSliders();
+      await Get.find<CategoriesController>().getCategories();
+      await Get.find<CategoryProductListController>().getProductsByCategory(3);
+      await Get.find<PopularProductController>().getPopularProducts();
+      await Get.find<SpecialProductController>().getSpecialProducts();
+      await Get.find<NewProductController>().getNewProducts();
     });
     super.initState();
   }

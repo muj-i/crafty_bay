@@ -41,9 +41,9 @@ class _WishScreenState extends State<WishScreen> {
             itemBuilder: (context, index) {
               return const FittedBox(
                 fit: BoxFit.cover,
-                // child: ProductCard(
-                //   icon: FontAwesomeIcons.trashCan, productData: null,
-                // ),
+                child: ProductCard(
+                  icon: FontAwesomeIcons.trashCan,
+                ),
               );
             },
           ),

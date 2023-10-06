@@ -2,16 +2,15 @@ import 'dart:developer';
 
 import 'package:crafty_bay/presentation/state_holders/add_to_cart_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/product_details_controller.dart';
-import 'package:crafty_bay/presentation/ui/screens/auth/email_verification_screen.dart';
-import 'package:crafty_bay/presentation/ui/screens/product_review_screen.dart';
-import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
 import 'package:crafty_bay/presentation/ui/widgets/all_over_appbar.dart';
 import 'package:crafty_bay/presentation/ui/widgets/bottom_container.dart';
 import 'package:crafty_bay/presentation/ui/widgets/bottom_container_button.dart';
 import 'package:crafty_bay/presentation/ui/widgets/custom_stepper.dart';
 import 'package:crafty_bay/presentation/ui/widgets/product_details/product_color_picker.dart';
 import 'package:crafty_bay/presentation/ui/widgets/product_details/product_details_carousel_slider.dart';
+import 'package:crafty_bay/presentation/ui/widgets/product_details/product_details_shimmer.dart';
 import 'package:crafty_bay/presentation/ui/widgets/product_details/product_size_picker.dart';
+import 'package:crafty_bay/presentation/ui/widgets/product_details/rating_review_wishbutton_row.dart';
 import 'package:crafty_bay/presentation/ui/widgets/product_details/section_title.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -45,9 +44,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
       body: GetBuilder<ProductDetailsController>(
           builder: (productDetailsController) {
         if (productDetailsController.getProductDetailsDataInProgress) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
+          return const ProductDetailsShimmer();
         }
         return SafeArea(
           child: Column(
@@ -104,22 +101,25 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     onPressed: () async {
                       final result = await addToCartController.addToCart(
                         productDetailsController.productDetailsData.id!,
-                        productDetailsController
-                            .availableColors[_selectedColorIndex]
+                        productDetailsController.colorCode[_selectedColorIndex]
                             .toString(),
                         productDetailsController
                             .availableSizes[_selectedSizeIndex],
                       );
                       if (result) {
-                        Get.snackbar('Added to cart',
-                            'This product has been added to cart list',
-                            snackPosition: SnackPosition.BOTTOM);
+                        Get.snackbar(
+                          'Happy Shopping! ツ',
+                          'This product has been added to cart list',
+                          backgroundColor: Colors.green.withOpacity(.2),
+                          snackPosition: SnackPosition.TOP,
+                        );
                       } else {
-                        Get.snackbar('Product cannot be added to cart', ' ',
-                            backgroundColor: Colors.redAccent,
-                            snackPosition: SnackPosition.TOP);
-                        //!!!!
-                        Get.to(() => const EmailVerificationScreen());
+                        Get.snackbar(
+                          'Product cannot be added to cart',
+                          'You need to verify your email before shopping',
+                          backgroundColor: Colors.redAccent.withOpacity(.2),
+                          snackPosition: SnackPosition.TOP,
+                        );
                       }
                     },
                   );
@@ -161,53 +161,55 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   })
             ],
           ),
-          Row(
-            children: [
-              Wrap(
-                children: [
-                  const Icon(
-                    Icons.star,
-                    size: 18,
-                    color: Colors.amber,
-                  ),
-                  Text(
-                    '${productDetailsController.productDetailsData.product!.star ?? 0}',
-                    style: TextStyle(
-                        overflow: TextOverflow.ellipsis,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.grey.shade600),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                width: 5,
-              ),
-              TextButton(
-                onPressed: () {
-                  Get.to(() => const ProductReviewScreen());
-                },
-                child: const Text(
-                  'Reviews',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                ),
-              ),
-              const SizedBox(
-                width: 5,
-              ),
-              const Card(
-                color: ColorPalette.primaryColor,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 5, vertical: 4),
-                  child: Icon(
-                    Icons.favorite_border,
-                    size: 16,
-                    color: Colors.white,
-                  ),
-                ),
-              )
-            ],
-          ),
+          const RatingReviewWishButtonRow(),
+          // Row(
+          //   children: [
+          //     Wrap(
+          //       children: [
+          //         const Icon(
+          //           Icons.star,
+          //           size: 18,
+          //           color: Colors.amber,
+          //         ),
+          //         Text(
+          //           '${productDetailsController.productDetailsData.product!.star ?? 0}',
+          //           style: TextStyle(
+          //               overflow: TextOverflow.ellipsis,
+          //               fontSize: 16,
+          //               fontWeight: FontWeight.w500,
+          //               color: Colors.grey.shade600),
+          //         ),
+          //       ],
+          //     ),
+          //     const SizedBox(
+          //       width: 5,
+          //     ),
+          //     TextButton(
+          //       onPressed: () {
+          //         Get.to(() => const ProductReviewScreen());
+          //       },
+          //       child: const Text(
+          //         'Reviews',
+          //         style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+          //       ),
+          //     ),
+          //     const SizedBox(
+          //       width: 5,
+          //     ),
+          //     const Card(
+          //       color: ColorPalette.primaryColor,
+          //       child: Padding(
+          //         padding: EdgeInsets.symmetric(horizontal: 5, vertical: 4),
+          //         child: Icon(
+          //           Icons.favorite_border,
+          //           size: 16,
+          //           color: Colors.white,
+          //         ),
+          //       ),
+          //     )
+          //   ],
+          // ),
+
           ProductColorPicker(
             colors: productDetailsController.availableColors,
             onSelected: (int selectedColor) {

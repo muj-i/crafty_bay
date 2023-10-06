@@ -1,3 +1,4 @@
+import 'package:crafty_bay/presentation/state_holders/product_details_controller.dart';
 import 'package:crafty_bay/presentation/ui/screens/product_review_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class RatingReviewWishButtonRow extends StatelessWidget {
               color: Colors.amber,
             ),
             Text(
-              '4.8',
+              '${Get.find<ProductDetailsController>().productDetailsData.product?.star ?? 0}',
               style: TextStyle(
                   overflow: TextOverflow.ellipsis,
                   fontSize: 16,

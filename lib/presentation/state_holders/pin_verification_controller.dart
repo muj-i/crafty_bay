@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 
 class PinVerificationController extends GetxController {
   bool _pinVerificationInProgress = false;
-  String _message = "";
+  final String _message = "";
   bool get pinVerificationInProgress => _pinVerificationInProgress;
   String get messeage => _message;
 
@@ -18,8 +18,8 @@ class PinVerificationController extends GetxController {
     _pinVerificationInProgress = false;
     update();
     if (response.isSuccess) {
-     await AuthTokenController.setAccessToken(response.responseJson?['data']);
-      
+      await AuthTokenController.setAccessToken(response.responseJson?["data"]);
+
       return true;
     } else {
       return false;

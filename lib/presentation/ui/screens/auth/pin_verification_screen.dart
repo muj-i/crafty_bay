@@ -1,5 +1,4 @@
 import 'package:crafty_bay/presentation/state_holders/pin_verification_controller.dart';
-import 'package:crafty_bay/presentation/ui/screens/auth/complete_profile_screen.dart';
 import 'package:crafty_bay/presentation/ui/screens/bottom_nav_base_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
 import 'package:crafty_bay/presentation/ui/utils/custom_sncakbar.dart';
@@ -87,9 +86,9 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
           ),
           GetBuilder<PinVerificationController>(
               builder: (pinVerificationController) {
-                if(pinVerificationController.pinVerificationInProgress){
-                  return Center(child: CircularProgressIndicator());
-                }
+            if (pinVerificationController.pinVerificationInProgress) {
+              return const Center(child: CircularProgressIndicator());
+            }
             return AllOverElevatedButton(
               buttonName: 'Next',
               onPressed: () {
@@ -111,9 +110,7 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
     final response = await pinVerificationController.verifyPin(
         widget.email, _pinController.text.trim());
     if (response) {
-      //!
-       Get.offAll(() => const BottomNavBaseScreen());
-      //Get.to(() => const PinVerificationScreen());  Get.offAll(() => const CompleteProfileScreen());
+      Get.offAll(() => const BottomNavBaseScreen());
     } else {
       if (mounted) {
         CustomSnackbar.show(

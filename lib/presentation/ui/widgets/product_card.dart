@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProductCard extends StatelessWidget {
-  final ProductData productData;
+  final ProductData? productData;
   final IconData icon;
   const ProductCard({
     super.key,
     required this.icon,
-    required this.productData,
+     this.productData,
   });
 
   @override
@@ -18,7 +18,7 @@ class ProductCard extends StatelessWidget {
     return InkWell(
       borderRadius: BorderRadius.circular(8),
       onTap: () {
-        Get.to(() =>  ProductDetailsScreen(productId: productData.id!,));
+        Get.to(() =>  ProductDetailsScreen(productId: productData!.id!,));
       },
       child: Card(
         shadowColor: ColorPalette.primaryColor.withOpacity(0.1),
@@ -40,7 +40,7 @@ class ProductCard extends StatelessWidget {
                   ),
                 ),
                 child: Image.network(
-                  productData.image ?? '',
+                  productData?.image ?? '',
                   fit: BoxFit.contain,
                 ),
               ),
@@ -50,7 +50,7 @@ class ProductCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      productData.title ?? '',
+                      productData?.title ?? '',
                       maxLines: 1,
                       style: TextStyle(
                         overflow: TextOverflow.ellipsis,
@@ -66,7 +66,7 @@ class ProductCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          "৳${productData.price ?? ''}",
+                          "৳${productData?.price ?? ''}",
                           maxLines: 1,
                           style: TextStyle(
                             overflow: TextOverflow.ellipsis,
@@ -87,7 +87,7 @@ class ProductCard extends StatelessWidget {
                               size: 15,
                             ),
                             Text(
-                              productData.star.toString(),
+                              productData?.star.toString() ?? '',
                               maxLines: 1,
                               style: TextStyle(
                                 overflow: TextOverflow.ellipsis,

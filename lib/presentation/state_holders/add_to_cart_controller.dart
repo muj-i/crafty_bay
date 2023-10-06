@@ -1,4 +1,5 @@
 import 'dart:developer';
+
 import 'package:crafty_bay/data/models/network_response.dart';
 import 'package:crafty_bay/data/services/network_caller.dart';
 import 'package:crafty_bay/data/utils/urls.dart';
@@ -15,11 +16,9 @@ class AddToCartController extends GetxController {
   Future<bool> addToCart(int productId, String color, String size) async {
     _addToCartInProgress = true;
     update();
-    final NetworkResponse response = await NetworkCaller.postRequest(Urls.addToCart, {
-      "product_id": productId,
-      "color": color,
-      "size": size
-    });
+    final NetworkResponse response = await NetworkCaller.postRequest(
+        Urls.addToCart,
+        {"product_id": productId, "color": color, "size": size});
     log(productId.toString());
     log('color: $color');
     log('Size: $size');
