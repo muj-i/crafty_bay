@@ -79,7 +79,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
   Future<void> verifyEmail(EmailVerificationController controller) async {
     final response = await controller.verifyEmail(_emailController.text.trim());
     if (response) {
-      Get.to(() => const PinVerificationScreen());
+      Get.to(() =>  PinVerificationScreen(email: _emailController.text.trim(),));
     } else {
       if (mounted) {
         CustomSnackbar.show(

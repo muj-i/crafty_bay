@@ -5,13 +5,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
 
-class CraftyBayApp extends StatelessWidget {
+class CraftyBayApp extends StatefulWidget {
+ static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   const CraftyBayApp({super.key});
 
+  @override
+  State<CraftyBayApp> createState() => _CraftyBayAppState();
+}
+
+class _CraftyBayAppState extends State<CraftyBayApp> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
+      navigatorKey: CraftyBayApp.navigatorKey,
       theme: ThemeData(
         primarySwatch: MaterialColor(
             ColorPalette.primaryColor.value, ColorPalette().colors),

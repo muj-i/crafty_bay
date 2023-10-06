@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:crafty_bay/presentation/state_holders/add_to_cart_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/product_details_controller.dart';
+import 'package:crafty_bay/presentation/ui/screens/auth/email_verification_screen.dart';
 import 'package:crafty_bay/presentation/ui/screens/product_review_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
 import 'package:crafty_bay/presentation/ui/widgets/all_over_appbar.dart';
@@ -33,9 +34,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   @override
   void initState() {
     super.initState();
-     WidgetsBinding.instance.addPostFrameCallback((_) {
+    //  WidgetsBinding.instance.addPostFrameCallback((_) {
     Get.find<ProductDetailsController>().getProductDetails(widget.productId);
-     });
+    //  });
   }
 
   @override
@@ -93,19 +94,36 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 title: 'Price',
                 subTitle:
                     '৳${productDetailsController.productDetailsData.product!.price ?? ''}',
-                button: BottomContainerButton(
-                  text: 'Add To Cart',
-                  onPressed: () {
-                    Get.find<AddToCartController>().addToCart(
+                button: GetBuilder<AddToCartController>(
+                    builder: (addToCartController) {
+                  if (addToCartController.addToCartInProgress) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                  return BottomContainerButton(
+                    text: 'Add To Cart',
+                    onPressed: () async {
+                      final result = await addToCartController.addToCart(
                         productDetailsController.productDetailsData.id!,
                         productDetailsController
                             .availableColors[_selectedColorIndex]
                             .toString(),
                         productDetailsController
-                            .availableSizes[_selectedSizeIndex],);
-
-                  },
-                ),
+                            .availableSizes[_selectedSizeIndex],
+                      );
+                      if (result) {
+                        Get.snackbar('Added to cart',
+                            'This product has been added to cart list',
+                            snackPosition: SnackPosition.BOTTOM);
+                      } else {
+                        Get.snackbar('Product cannot be added to cart', ' ',
+                            backgroundColor: Colors.redAccent,
+                            snackPosition: SnackPosition.TOP);
+                        //!!!!
+                        Get.to(() => const EmailVerificationScreen());
+                      }
+                    },
+                  );
+                }),
               ),
             ],
           ),
@@ -210,7 +228,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             sizes: productDetailsController.availableSizes,
             onSelected: (int selectedSize) {
               _selectedSizeIndex = selectedSize;
-              
+
               log(selectedSize.toString());
               log(_selectedSizeIndex.toString());
             },
