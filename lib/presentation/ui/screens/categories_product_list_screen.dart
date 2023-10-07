@@ -1,4 +1,4 @@
-import 'package:crafty_bay/data/models/product_model.dart';
+import 'package:crafty_bay/data/models/product_data.dart';
 import 'package:crafty_bay/presentation/state_holders/categories_list_controller.dart';
 import 'package:crafty_bay/presentation/ui/utils/constraints.dart';
 import 'package:crafty_bay/presentation/ui/widgets/all_over_appbar.dart';
@@ -8,11 +8,10 @@ import 'package:get/get.dart';
 
 class CategoriesProductListScreen extends StatefulWidget {
   final int? categoryId;
-  final ProductModel? productModel;
   final String appBarRemark;
   const CategoriesProductListScreen({
     super.key,
-    this.productModel,
+
     required this.appBarRemark,
     this.categoryId,
   });
@@ -25,15 +24,16 @@ class CategoriesProductListScreen extends StatefulWidget {
 class _CategoriesProductListScreenState
     extends State<CategoriesProductListScreen> {
   @override
-  void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      if (widget.categoryId != null) {
-        Get.find<CategoryProductListController>()
+  void initState()  {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp)async {
+      //if (widget.categoryId != null) {
+       await Get.find<CategoryProductListController>()
             .getProductsByCategory(widget.categoryId!);
-      } else if (widget.productModel != null) {
-        Get.find<CategoryProductListController>()
-            .setProducts(widget.productModel!);
-      }
+     // } 
+      // else if (widget.productModel != null) {
+      //   Get.find<CategoryProductListController>()
+      //       .setProducts(widget.productModel!);
+      // }
     });
     super.initState();
   }
@@ -48,13 +48,15 @@ class _CategoriesProductListScreenState
           Get.back();
         },
       ),
-      body: GetBuilder<CategoryProductListController>(builder: (controller) {
-        if (controller.getCategoryProductsListInProgress) {
+      body: GetBuilder<CategoryProductListController>(builder: (categoryProductListController) {
+        List<ProductData> productData =
+            categoryProductListController.productModel.data ?? [];
+        if (categoryProductListController.getCategoryProductsListInProgress) {
           return const Center(
             child: CircularProgressIndicator(),
           );
         }
-        if (controller.productModel.data?.isEmpty ?? true) {
+        if (productData.isEmpty) {
           return const Center(
             child: Text('Empty list'),
           );
@@ -62,7 +64,7 @@ class _CategoriesProductListScreenState
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
           child: GridView.builder(
-            itemCount: controller.productModel.data?.length ?? 0,
+            itemCount: productData.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
                 crossAxisSpacing: 16,
@@ -73,7 +75,7 @@ class _CategoriesProductListScreenState
                 fit: BoxFit.cover,
                 child: ProductCard(
                   icon: Icons.favorite_border_rounded,
-                  productData: controller.productModel.data![index],
+                  productData: productData[index],
                 ),
               );
             },

@@ -27,19 +27,17 @@ class CustomStepperState extends State<CustomStepper> {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(50)),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(50)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           InkWell(
             borderRadius: BorderRadius.circular(30),
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal:5, vertical: 3),
+              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
               decoration: BoxDecoration(
-                color: ColorPalette.primaryColor.withOpacity(0.6),
-                borderRadius: BorderRadius.circular(3)
-              ),
+                  color: ColorPalette.primaryColor.withOpacity(0.6),
+                  borderRadius: BorderRadius.circular(3)),
               child: const Icon(
                 Icons.remove,
                 color: Colors.white,
@@ -58,20 +56,20 @@ class CustomStepperState extends State<CustomStepper> {
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Text(
               '${widget.value}',
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                color: Colors.black, fontSize: 18
-              ),
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge
+                  ?.copyWith(color: Colors.black, fontSize: 18),
               textAlign: TextAlign.center,
             ),
           ),
           InkWell(
             borderRadius: BorderRadius.circular(30),
             child: Container(
-               padding: const EdgeInsets.symmetric(horizontal:5, vertical: 3),
+              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
               decoration: BoxDecoration(
                   color: ColorPalette.primaryColor,
-                  borderRadius: BorderRadius.circular(3)
-              ),
+                  borderRadius: BorderRadius.circular(3)),
               child: const Icon(
                 Icons.add,
                 color: Colors.white,
