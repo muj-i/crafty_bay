@@ -1,3 +1,4 @@
+import 'package:crafty_bay/presentation/state_holders/email_verification_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/pin_verification_controller.dart';
 import 'package:crafty_bay/presentation/ui/screens/bottom_nav_base_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
@@ -19,12 +20,11 @@ class PinVerificationScreen extends StatefulWidget {
 
 class _PinVerificationScreenState extends State<PinVerificationScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _pinController = TextEditingController();
+  final TextEditingController _pinTEController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -41,13 +41,36 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
         children: [
           const AuthScreensUpperParts(
               title: 'Enter OTP Code',
-              subTitle: 'A 4 digit OTP code has been sent'),
+              subTitle: 'A 4 digit OTP code has been sent to your email'),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                'Entered wrong email address?\n\n',
+                style: TextStyle(
+                  color: Colors.grey,
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  Get.back();
+                },
+                style: TextButton.styleFrom(
+                  padding: const EdgeInsets.all(2),
+                  foregroundColor: ColorPalette.primaryColor,
+                ),
+                child: const Text(
+                  'Reset Email\n\n',
+                ),
+              ),
+            ],
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 60,
             ),
             child: PinCodeTextField(
-              controller: _pinController,
+              controller: _pinTEController,
               length: 4,
               obscureText: false,
               keyboardType: TextInputType.number,
@@ -95,24 +118,29 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
                 if (!_formKey.currentState!.validate()) {
                   return;
                 }
-                verifyPin(pinVerificationController);
+                pinVerify(pinVerificationController);
               },
             );
           }),
-          const OtpExpiryCounterAndResendButton(),
+          OtpExpiryCounterAndResendButton(
+            onPressed: () {
+              Get.find<EmailVerificationController>().verifyEmail(widget.email);
+            },
+          ),
         ],
       ),
     );
   }
 
-  Future<void> verifyPin(
+  Future<void> pinVerify(
       PinVerificationController pinVerificationController) async {
     final response = await pinVerificationController.verifyPin(
-        widget.email, _pinController.text.trim());
+        widget.email, _pinTEController.text.trim());
     if (response) {
       Get.offAll(() => const BottomNavBaseScreen());
     } else {
       if (mounted) {
+        _pinTEController.clear();
         CustomSnackbar.show(
             context: context, message: 'Otp verification failed! Try again');
       }

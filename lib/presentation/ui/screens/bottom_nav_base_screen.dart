@@ -30,13 +30,13 @@ class _BottomNavBaseScreenState extends State<BottomNavBaseScreen> {
   ];
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await Get.find<HomeSliderController>().getHomeSliders();
-      await Get.find<CategoriesController>().getCategories();
-      await Get.find<CategoryProductListController>().getProductsByCategory(3);
-      await Get.find<PopularProductController>().getPopularProducts();
-      await Get.find<SpecialProductController>().getSpecialProducts();
-      await Get.find<NewProductController>().getNewProducts();
+    WidgetsBinding.instance.addPostFrameCallback((_)  {
+       Get.find<HomeSliderController>().getHomeSliders();
+       Get.find<CategoriesController>().getCategories();
+       Get.find<CategoryProductListController>().getProductsByCategory(3);
+       Get.find<PopularProductController>().getPopularProducts();
+       Get.find<SpecialProductController>().getSpecialProducts();
+       Get.find<NewProductController>().getNewProducts();
     });
     super.initState();
   }

@@ -9,7 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
 class NetworkCaller {
-  static Future<NetworkResponse> getRequest(String url) async {
+  static Future<NetworkResponse> getRequest(String url,
+      {bool loginRequired = false}) async {
     try {
       Response response = await get(
         Uri.parse(url),
@@ -26,7 +27,9 @@ class NetworkCaller {
         return NetworkResponse(
             true, response.statusCode, jsonDecode(response.body));
       } else if (response.statusCode == 401) {
-        gotoLogin();
+        if (loginRequired) {
+          gotoLogin();
+        }
       } else {
         return NetworkResponse(false, response.statusCode, null);
       }

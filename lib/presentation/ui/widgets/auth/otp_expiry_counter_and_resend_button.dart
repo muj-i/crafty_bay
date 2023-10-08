@@ -4,7 +4,8 @@ import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
 import 'package:flutter/material.dart';
 
 class OtpExpiryCounterAndResendButton extends StatefulWidget {
-  const OtpExpiryCounterAndResendButton({super.key});
+  final Function onPressed;
+  const OtpExpiryCounterAndResendButton({super.key, required this.onPressed});
 
   @override
   State<OtpExpiryCounterAndResendButton> createState() =>
@@ -68,6 +69,7 @@ class _OtpExpiryCounterAndResendButtonState
           ),
           TextButton(
             onPressed: () {
+              widget.onPressed();
               resetTimer();
             },
             style: TextButton.styleFrom(
