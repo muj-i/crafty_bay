@@ -1,3 +1,5 @@
+import 'package:crafty_bay/data/models/categories_model_data.dart';
+
 class ProductData {
   int? id;
   String? title;
@@ -14,7 +16,7 @@ class ProductData {
   String? createdAt;
   String? updatedAt;
   Brand? brand;
-  Category? category;
+  CategoriesData? categoriesData;
 
   ProductData(
       {this.id,
@@ -32,7 +34,7 @@ class ProductData {
       this.createdAt,
       this.updatedAt,
       this.brand,
-      this.category});
+      this.categoriesData});
 
   ProductData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -50,8 +52,9 @@ class ProductData {
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     brand = json['brand'] != null ? Brand.fromJson(json['brand']) : null;
-    category =
-        json['category'] != null ? Category.fromJson(json['category']) : null;
+    categoriesData = json['category'] != null
+        ? CategoriesData.fromJson(json['category'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -73,8 +76,8 @@ class ProductData {
     if (brand != null) {
       data['brand'] = brand!.toJson();
     }
-    if (category != null) {
-      data['category'] = category!.toJson();
+    if (categoriesData != null) {
+      data['category'] = categoriesData!.toJson();
     }
     return data;
   }

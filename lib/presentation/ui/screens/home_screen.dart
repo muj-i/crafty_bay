@@ -149,9 +149,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
                       return ProductCard(
-                        icon: Icons.favorite_border_rounded,
                         productData: popularProductController
                             .popularProductModel.data![index],
+                        onPressed: () {},
                       );
                     },
                   ),
@@ -193,9 +193,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
                       return ProductCard(
-                        icon: Icons.favorite_border_rounded,
                         productData: specialProductController
                             .specialProductModel.data![index],
+                        onPressed: () {},
                       );
                     },
                   ),
@@ -234,9 +234,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
                       return ProductCard(
-                        icon: Icons.favorite_border_rounded,
                         productData:
                             newProductController.newProductModel.data![index],
+                        onPressed: () {},
                       );
                     },
                   ),

@@ -1,16 +1,17 @@
-import 'package:crafty_bay/data/models/product_data.dart';
+import 'package:crafty_bay/data/models/cart_and_wish_list_model.dart';
 import 'package:crafty_bay/presentation/ui/screens/product_details_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
-class ProductCard extends StatelessWidget {
-  final ProductData? productData;
+class WishListProductCard extends StatelessWidget {
+  final CartAndWishData wishData;
   final VoidCallback onPressed;
-  const ProductCard({
+  const WishListProductCard({
     super.key,
-    this.productData,
     required this.onPressed,
+    required this.wishData,
   });
 
   @override
@@ -18,9 +19,11 @@ class ProductCard extends StatelessWidget {
     return InkWell(
       borderRadius: BorderRadius.circular(8),
       onTap: () {
-        Get.to(() => ProductDetailsScreen(
-              productId: productData!.id!,
-            ));
+        Get.to(
+          () => ProductDetailsScreen(
+            productId: wishData.productId!,
+          ),
+        );
       },
       child: Card(
         shadowColor: ColorPalette.primaryColor.withOpacity(0.1),
@@ -42,7 +45,7 @@ class ProductCard extends StatelessWidget {
                   ),
                 ),
                 child: Image.network(
-                  productData?.image ?? '',
+                  wishData.productData?.image ?? '',
                   fit: BoxFit.contain,
                 ),
               ),
@@ -52,7 +55,8 @@ class ProductCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      productData?.title ?? '',
+                      wishData.productData?.title ??
+                          'Wished product name not found',
                       maxLines: 1,
                       style: TextStyle(
                         overflow: TextOverflow.ellipsis,
@@ -68,7 +72,7 @@ class ProductCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          "৳${productData?.price ?? ''}",
+                          "৳${wishData.productData?.price ?? '0'}",
                           maxLines: 1,
                           style: TextStyle(
                             overflow: TextOverflow.ellipsis,
@@ -89,7 +93,7 @@ class ProductCard extends StatelessWidget {
                               size: 15,
                             ),
                             Text(
-                              productData?.star.toString() ?? '',
+                              wishData.productData?.star.toString() ?? '0',
                               maxLines: 1,
                               style: TextStyle(
                                 overflow: TextOverflow.ellipsis,
@@ -112,7 +116,7 @@ class ProductCard extends StatelessWidget {
                                 padding: const EdgeInsets.all(4.0),
                                 child: IconButton(
                                   icon: const Icon(
-                                    Icons.favorite_border_rounded,
+                                    FontAwesomeIcons.trashCan,
                                     size: 32,
                                   ),
                                   color: Colors.white,

@@ -34,8 +34,8 @@ class ProductListScreen extends StatelessWidget {
             return FittedBox(
               fit: BoxFit.cover,
               child: ProductCard(
-                icon: Icons.favorite_border_rounded,
                 productData: productData[index],
+                onPressed: () {},
               ),
             );
           },

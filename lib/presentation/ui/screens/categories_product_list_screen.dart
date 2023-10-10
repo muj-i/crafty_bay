@@ -11,7 +11,6 @@ class CategoriesProductListScreen extends StatefulWidget {
   final String appBarRemark;
   const CategoriesProductListScreen({
     super.key,
-
     required this.appBarRemark,
     this.categoryId,
   });
@@ -24,12 +23,12 @@ class CategoriesProductListScreen extends StatefulWidget {
 class _CategoriesProductListScreenState
     extends State<CategoriesProductListScreen> {
   @override
-  void initState()  {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp)async {
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       //if (widget.categoryId != null) {
-       await Get.find<CategoryProductListController>()
-            .getProductsByCategory(widget.categoryId!);
-     // } 
+      await Get.find<CategoryProductListController>()
+          .getProductsByCategory(widget.categoryId!);
+      // }
       // else if (widget.productModel != null) {
       //   Get.find<CategoryProductListController>()
       //       .setProducts(widget.productModel!);
@@ -48,7 +47,8 @@ class _CategoriesProductListScreenState
           Get.back();
         },
       ),
-      body: GetBuilder<CategoryProductListController>(builder: (categoryProductListController) {
+      body: GetBuilder<CategoryProductListController>(
+          builder: (categoryProductListController) {
         List<ProductData> productData =
             categoryProductListController.productModel.data ?? [];
         if (categoryProductListController.getCategoryProductsListInProgress) {
@@ -74,8 +74,8 @@ class _CategoriesProductListScreenState
               return FittedBox(
                 fit: BoxFit.cover,
                 child: ProductCard(
-                  icon: Icons.favorite_border_rounded,
                   productData: productData[index],
+                  onPressed: () {},
                 ),
               );
             },
