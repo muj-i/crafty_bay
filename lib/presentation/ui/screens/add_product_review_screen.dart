@@ -1,21 +1,22 @@
+import 'package:crafty_bay/presentation/state_holders/create_product_review_controller.dart';
+import 'package:crafty_bay/presentation/state_holders/get_product_review_controller.dart';
 import 'package:crafty_bay/presentation/ui/widgets/all_over_appbar.dart';
 import 'package:crafty_bay/presentation/ui/widgets/all_over_elevatedbutton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AddProductReviewScreen extends StatefulWidget {
-  const AddProductReviewScreen({super.key});
+class AddProductReviewScreen extends StatelessWidget {
+  AddProductReviewScreen({super.key, required this.productId});
+  final int productId;
 
-  @override
-  State<AddProductReviewScreen> createState() => _AddProductReviewScreenState();
-}
-
-class _AddProductReviewScreenState extends State<AddProductReviewScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   final TextEditingController _firstNameEditingController =
       TextEditingController();
+
   final TextEditingController _lastNameEditingController =
       TextEditingController();
+
   final TextEditingController _writeReviewEditingController =
       TextEditingController();
 
@@ -94,15 +95,43 @@ class _AddProductReviewScreenState extends State<AddProductReviewScreen> {
         const SizedBox(
           height: 16,
         ),
-        AllOverElevatedButton(
-          buttonName: 'Submit',
-          onPressed: () {
-            if (!_formKey.currentState!.validate()) {
-              return;
-            }
-            Get.back();
-          },
-        ),
+        GetBuilder<CreateProductReviewController>(
+            builder: (createProductReviewController) {
+          if (createProductReviewController.createProductReviewInProgress) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          return AllOverElevatedButton(
+            buttonName: 'Submit',
+            onPressed: () {
+              if (_formKey.currentState!.validate()) {
+                createProductReviewController
+                    .createProductReview(
+                        _writeReviewEditingController.text.trim(), productId)
+                    .then(
+                  (result) {
+                    if (result) {
+                      Get.snackbar(
+                        'Thank you for your feedback! ツ',
+                        'Review added successfully',
+                        backgroundColor: Colors.green.withOpacity(.2),
+                        snackPosition: SnackPosition.TOP,
+                      );
+                      Get.find<GetProductReviewController>()
+                          .getProductReview(productId);
+                    } else {
+                      Get.snackbar('Opps! :(', 'Review added failed',
+                          backgroundColor: Colors.red.withOpacity(.2),
+                          snackPosition: SnackPosition.BOTTOM);
+                    }
+                  },
+                );
+                Get.back();
+              }
+            },
+          );
+        }),
       ],
     );
   }

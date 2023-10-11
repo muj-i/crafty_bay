@@ -44,6 +44,7 @@ dependencies:
   flutter_launcher_icons: ^0.13.1 #icon generate command: flutter pub run flutter_launcher_icons
   shared_preferences: ^2.2.1
   shimmer: ^3.0.0
+  get_storage: ^2.1.1
   
 
 flutter_launcher_icons:

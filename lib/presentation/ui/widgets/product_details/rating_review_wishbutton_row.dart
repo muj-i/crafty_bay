@@ -1,12 +1,15 @@
-import 'package:crafty_bay/presentation/state_holders/product_details_controller.dart';
+import 'package:crafty_bay/data/models/product_details_model.dart';
+import 'package:crafty_bay/presentation/state_holders/create_wish_list_controller.dart';
 import 'package:crafty_bay/presentation/ui/screens/product_review_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class RatingReviewWishButtonRow extends StatelessWidget {
+  final ProductDetailsData productDetailsData;
   const RatingReviewWishButtonRow({
     super.key,
+    required this.productDetailsData,
   });
 
   @override
@@ -21,7 +24,7 @@ class RatingReviewWishButtonRow extends StatelessWidget {
               color: Colors.amber,
             ),
             Text(
-              '${Get.find<ProductDetailsController>().productDetailsData.product?.star ?? 0}',
+              '${productDetailsData.product?.star ?? 0}',
               style: TextStyle(
                   overflow: TextOverflow.ellipsis,
                   fontSize: 16,
@@ -35,7 +38,9 @@ class RatingReviewWishButtonRow extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {
-            Get.to(() => const ProductReviewScreen());
+            Get.to(() => ProductReviewScreen(
+                  productId: productDetailsData.productId!,
+                ));
           },
           child: const Text(
             'Reviews',
@@ -45,17 +50,47 @@ class RatingReviewWishButtonRow extends StatelessWidget {
         const SizedBox(
           width: 5,
         ),
-        const Card(
-          color: ColorPalette.primaryColor,
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 5, vertical: 4),
-            child: Icon(
-              Icons.favorite_border,
-              size: 16,
-              color: Colors.white,
+        GetBuilder<CreateWishListController>(
+            builder: (createWishListController) {
+          return SizedBox(
+            height: 22,
+            child: FittedBox(
+              child: Card(
+                color: ColorPalette.primaryColor,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 5, vertical: 4),
+                  child: IconButton(
+                    onPressed: () async {
+                      final response = await createWishListController
+                          .createWishList(productDetailsData.productId!);
+                      if (response) {
+                        Get.snackbar(
+                          'Happy Shopping! ツ',
+                          'This product has been added to wish list',
+                          backgroundColor: Colors.green.withOpacity(.2),
+                          snackPosition: SnackPosition.BOTTOM,
+                        );
+                      } else {
+                        Get.snackbar(
+                          'Opps!',
+                          'Unable add to wish to list',
+                          backgroundColor: Colors.red.withOpacity(.2),
+                          snackPosition: SnackPosition.BOTTOM,
+                        );
+                      }
+                    },
+                    icon: const Icon(
+                      Icons.favorite_border,
+                      size: 32,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
             ),
-          ),
-        )
+          );
+        })
       ],
     );
   }

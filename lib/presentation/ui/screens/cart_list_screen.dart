@@ -42,6 +42,7 @@ class _CartListScreenState extends State<CartListScreen> {
               child: CircularProgressIndicator(),
             );
           }
+
           if (cartListController.cartListModel.data == null ||
               cartListController.cartListModel.data!.isEmpty) {
             return const Center(

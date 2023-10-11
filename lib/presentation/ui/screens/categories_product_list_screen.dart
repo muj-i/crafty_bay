@@ -75,7 +75,6 @@ class _CategoriesProductListScreenState
                 fit: BoxFit.cover,
                 child: ProductCard(
                   productData: productData[index],
-                  onPressed: () {},
                 ),
               );
             },

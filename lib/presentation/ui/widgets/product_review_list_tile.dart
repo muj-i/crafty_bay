@@ -1,15 +1,13 @@
+import 'package:crafty_bay/data/models/get_product_review_model.dart';
 import 'package:flutter/material.dart';
 
-class ProductReviewListTile extends StatefulWidget {
+class ProductReviewListTile extends StatelessWidget {
+  final ProductReviewData productReviewData;
   const ProductReviewListTile({
     super.key,
+    required this.productReviewData,
   });
 
-  @override
-  State<ProductReviewListTile> createState() => _ProductReviewListTileState();
-}
-
-class _ProductReviewListTileState extends State<ProductReviewListTile> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,18 +31,19 @@ class _ProductReviewListTileState extends State<ProductReviewListTile> {
             const SizedBox(
               width: 8,
             ),
-            const Text('User Name Placeholder'),
+            Text(
+                '${productReviewData.profile?.firstName ?? ''} ${productReviewData.profile?.lastName ?? ''}'),
           ],
         ),
-        subtitle: const Column(
+        subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 8,
             ),
             Text(
-              'Product Review placeholder Product Review placeholder Product Review placeholder Product Review placeholder Product Review placeholder Product Review placeholder Product Review placeholder Product Review placeholder',
-              style: TextStyle(fontSize: 12),
+              productReviewData.description ?? '',
+              style: const TextStyle(fontSize: 12),
             ),
           ],
         ),

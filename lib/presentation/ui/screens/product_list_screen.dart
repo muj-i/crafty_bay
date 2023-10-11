@@ -35,7 +35,6 @@ class ProductListScreen extends StatelessWidget {
               fit: BoxFit.cover,
               child: ProductCard(
                 productData: productData[index],
-                onPressed: () {},
               ),
             );
           },

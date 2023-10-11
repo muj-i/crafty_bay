@@ -1,4 +1,5 @@
 import 'package:crafty_bay/data/models/product_data.dart';
+import 'package:crafty_bay/presentation/state_holders/create_wish_list_controller.dart';
 import 'package:crafty_bay/presentation/ui/screens/product_details_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
 import 'package:flutter/material.dart';
@@ -6,11 +7,10 @@ import 'package:get/get.dart';
 
 class ProductCard extends StatelessWidget {
   final ProductData? productData;
-  final VoidCallback onPressed;
+
   const ProductCard({
     super.key,
     this.productData,
-    required this.onPressed,
   });
 
   @override
@@ -103,25 +103,49 @@ class ProductCard extends StatelessWidget {
                         const SizedBox(
                           width: 4,
                         ),
-                        SizedBox(
-                          height: 22,
-                          child: FittedBox(
-                            child: Card(
-                              color: ColorPalette.primaryColor,
-                              child: Padding(
-                                padding: const EdgeInsets.all(4.0),
-                                child: IconButton(
-                                  icon: const Icon(
-                                    Icons.favorite_border_rounded,
-                                    size: 32,
+                        GetBuilder<CreateWishListController>(
+                            builder: (createWishListController) {
+                          return SizedBox(
+                            height: 22,
+                            child: FittedBox(
+                              child: Card(
+                                color: ColorPalette.primaryColor,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(4.0),
+                                  child: IconButton(
+                                    icon: const Icon(
+                                      Icons.favorite_border_rounded,
+                                      size: 32,
+                                    ),
+                                    color: Colors.white,
+                                    onPressed: () async {
+                                      final response =
+                                          await createWishListController
+                                              .createWishList(productData!.id!);
+                                      if (response) {
+                                        Get.snackbar(
+                                          'Happy Shopping! ツ',
+                                          'This product has been added to wish list',
+                                          backgroundColor:
+                                              Colors.green.withOpacity(.2),
+                                          snackPosition: SnackPosition.BOTTOM,
+                                        );
+                                      } else {
+                                        Get.snackbar(
+                                          'Opps!',
+                                          'Unable add to wish to list',
+                                          backgroundColor:
+                                              Colors.red.withOpacity(.2),
+                                          snackPosition: SnackPosition.BOTTOM,
+                                        );
+                                      }
+                                    },
                                   ),
-                                  color: Colors.white,
-                                  onPressed: onPressed,
                                 ),
                               ),
                             ),
-                          ),
-                        ),
+                          );
+                        }),
                       ],
                     )
                   ],

@@ -1,4 +1,7 @@
-import 'package:crafty_bay/presentation/ui/screens/home_screen.dart';
+import 'dart:developer';
+
+import 'package:crafty_bay/presentation/state_holders/auth/read_profile_controller.dart';
+import 'package:crafty_bay/presentation/ui/screens/bottom_nav_base_screen.dart';
 import 'package:crafty_bay/presentation/ui/widgets/all_over_elevatedbutton.dart';
 import 'package:crafty_bay/presentation/ui/widgets/auth/auth_screens_upper_parts.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +23,14 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   final TextEditingController _cityController = TextEditingController();
   final TextEditingController _shippingAddressController =
       TextEditingController();
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      log('Read profile');
+      await Get.find<ReadProfileController>().readProfileData();
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +50,10 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   Column get userInfoTextFormFields {
     return Column(
       children: [
-        const AuthScreensUpperParts(title: 'Complete Profile', subTitle: 'Get started wiyh us with your details',),
+        const AuthScreensUpperParts(
+          title: 'Complete Profile',
+          subTitle: 'Get started wiyh us with your details',
+        ),
         TextFormField(
           controller: _firstNameController,
           keyboardType: TextInputType.text,
@@ -79,7 +93,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
           keyboardType: TextInputType.phone,
           textInputAction: TextInputAction.next,
           inputFormatters: [
-            FilteringTextInputFormatter.digitsOnly, // Only allow digits
+            FilteringTextInputFormatter.digitsOnly,
             LengthLimitingTextInputFormatter(11), // Limit the length
           ],
           decoration: const InputDecoration(
@@ -141,13 +155,10 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
             if (!_formKey.currentState!.validate()) {
               return;
             }
-
-            Get.offAll(() => const HomeScreen());
+            Get.offAll(() => const BottomNavBaseScreen());
           },
         ),
       ],
     );
   }
 }
-
-

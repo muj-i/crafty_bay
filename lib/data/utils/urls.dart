@@ -8,6 +8,10 @@ class Urls {
   static String verifyPin(String email, String pin) =>
       "$_baseUrl/VerifyLogin/$email/$pin";
 
+  static String readProfile = "$_baseUrl/ReadProfile";
+
+  static String createProfile = "$_baseUrl/CreateProfile";
+
   static String getHomeSlider = "$_baseUrl/ListProductSlider";
 
   static String getCategories = "$_baseUrl/CategoryList";
@@ -31,4 +35,10 @@ class Urls {
   static String deleteCartItem(String id) => '$_baseUrl/DeleteCartList/$id';
 
   static String getWishItem = '$_baseUrl/ProductWishList';
+
+  static String createWishItem(int id) => '$_baseUrl/CreateWishList/$id';
+
+  static String getProductReview(int id) => '$_baseUrl/ListReviewByProduct/$id';
+
+  static String createProductReview = '$_baseUrl/CreateProductReview';
 }

@@ -1,7 +1,7 @@
 import 'package:crafty_bay/data/models/network_response.dart';
 import 'package:crafty_bay/data/services/network_caller.dart';
 import 'package:crafty_bay/data/utils/urls.dart';
-import 'package:crafty_bay/presentation/state_holders/auth_token_controller.dart';
+import 'package:crafty_bay/presentation/state_holders/auth/auth_token_controller.dart';
 import 'package:get/get.dart';
 
 class PinVerificationController extends GetxController {

@@ -151,7 +151,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       return ProductCard(
                         productData: popularProductController
                             .popularProductModel.data![index],
-                        onPressed: () {},
                       );
                     },
                   ),
@@ -195,7 +194,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       return ProductCard(
                         productData: specialProductController
                             .specialProductModel.data![index],
-                        onPressed: () {},
                       );
                     },
                   ),
@@ -236,7 +234,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       return ProductCard(
                         productData:
                             newProductController.newProductModel.data![index],
-                        onPressed: () {},
                       );
                     },
                   ),

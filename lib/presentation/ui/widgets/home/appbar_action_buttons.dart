@@ -1,4 +1,4 @@
-import 'package:crafty_bay/presentation/state_holders/auth_token_controller.dart';
+import 'package:crafty_bay/presentation/state_holders/auth/auth_token_controller.dart';
 import 'package:crafty_bay/presentation/ui/widgets/home_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,8 +14,8 @@ class AppBarActionButtons extends StatelessWidget {
       children: [
         HomeIconButton(
           icon: Icons.person_outlined,
-          onPressed: () async {
-            await AuthTokenController.clear();
+          onPressed: () {
+            AuthTokenController.clear();
           },
         ),
         const SizedBox(

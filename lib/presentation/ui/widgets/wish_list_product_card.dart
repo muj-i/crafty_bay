@@ -45,7 +45,8 @@ class WishListProductCard extends StatelessWidget {
                   ),
                 ),
                 child: Image.network(
-                  wishData.productData?.image ?? '',
+                  wishData.productData?.image ??
+                      'https://assets.adidas.com/images/w_600,f_auto,q_auto/f9d52817f7524d3fb442af3b01717dfa_9366/Runfalcon_3.0_Shoes_Black_HQ3790_01_standard.jpg',
                   fit: BoxFit.contain,
                 ),
               ),

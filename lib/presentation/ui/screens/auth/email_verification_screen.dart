@@ -1,4 +1,4 @@
-import 'package:crafty_bay/presentation/state_holders/email_verification_controller.dart';
+import 'package:crafty_bay/presentation/state_holders/auth/email_verification_controller.dart';
 import 'package:crafty_bay/presentation/ui/screens/auth/pin_verification_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/custom_sncakbar.dart';
 import 'package:crafty_bay/presentation/ui/widgets/all_over_elevatedbutton.dart';
@@ -79,7 +79,11 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
   Future<void> verifyEmail(EmailVerificationController controller) async {
     final response = await controller.verifyEmail(_emailController.text.trim());
     if (response) {
-      Get.to(() =>  PinVerificationScreen(email: _emailController.text.trim(),));
+      Get.to(
+        () => PinVerificationScreen(
+          email: _emailController.text.trim(),
+        ),
+      );
     } else {
       if (mounted) {
         CustomSnackbar.show(
