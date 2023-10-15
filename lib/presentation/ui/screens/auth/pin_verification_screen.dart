@@ -1,6 +1,8 @@
 import 'package:crafty_bay/presentation/state_holders/auth/email_verification_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/auth/pin_verification_controller.dart';
 import 'package:crafty_bay/presentation/ui/screens/auth/complete_profile_screen.dart';
+import 'package:crafty_bay/presentation/ui/screens/auth/read_profile_screen.dart';
+import 'package:crafty_bay/presentation/ui/screens/bottom_nav_base_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
 import 'package:crafty_bay/presentation/ui/utils/custom_sncakbar.dart';
 import 'package:crafty_bay/presentation/ui/widgets/all_over_elevatedbutton.dart';
@@ -137,8 +139,11 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
     final response = await pinVerificationController.verifyPin(
         widget.email, _pinTEController.text.trim());
     if (response) {
+      /* Future.delayed(Duration(seconds: 2))
+          .then((value) => */ Get.to(() => const CompleteProfileScreen());
+
       // Get.to(() => const ReadProfileScreen());
-      Get.to(() => const CompleteProfileScreen());
+
       // Get.offAll(() => const BottomNavBaseScreen());
     } else {
       if (mounted) {

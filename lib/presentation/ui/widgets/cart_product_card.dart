@@ -64,10 +64,10 @@ class CartProductCard extends StatelessWidget {
                           ),
                         ),
                         IconButton(
-                          onPressed: () {
-                            Get.find<DeleteCartItemController>()
+                          onPressed: () async {
+                            await Get.find<DeleteCartItemController>()
                                 .deleteCartItem(cartData.productId.toString());
-                            Get.find<CartListController>().getCartList();
+                            await Get.find<CartListController>().getCartList();
                           },
                           icon: const Icon(
                             FontAwesomeIcons.trashCan,

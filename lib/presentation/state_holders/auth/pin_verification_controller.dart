@@ -18,7 +18,7 @@ class PinVerificationController extends GetxController {
     _pinVerificationInProgress = false;
     update();
     if (response.isSuccess) {
-      await AuthTokenController.setAccessToken(response.responseJson?["data"]);
+     await AuthTokenController.setAccessToken(response.responseJson?["data"]);
 
       return true;
     } else {

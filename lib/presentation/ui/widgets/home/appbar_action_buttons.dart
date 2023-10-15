@@ -1,4 +1,5 @@
 import 'package:crafty_bay/presentation/state_holders/auth/auth_token_controller.dart';
+import 'package:crafty_bay/presentation/ui/screens/auth/complete_profile_screen.dart';
 import 'package:crafty_bay/presentation/ui/widgets/home_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,7 +16,8 @@ class AppBarActionButtons extends StatelessWidget {
         HomeIconButton(
           icon: Icons.person_outlined,
           onPressed: () {
-            AuthTokenController.clear();
+            // AuthTokenController.clear();
+            Get.to(const CompleteProfileScreen());
           },
         ),
         const SizedBox(
@@ -24,6 +26,7 @@ class AppBarActionButtons extends StatelessWidget {
         HomeIconButton(
           icon: Icons.call_outlined,
           onPressed: () {
+            AuthTokenController.clear();
             // Get.to(const EmailVerificationScreen());
           },
         ),

@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:crafty_bay/presentation/state_holders/auth/auth_token_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/auth/read_profile_controller.dart';
 import 'package:crafty_bay/presentation/ui/screens/bottom_nav_base_screen.dart';
 import 'package:crafty_bay/presentation/ui/widgets/all_over_elevatedbutton.dart';
@@ -9,7 +10,9 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class CompleteProfileScreen extends StatefulWidget {
-  const CompleteProfileScreen({super.key});
+  const CompleteProfileScreen({
+    super.key,
+  });
 
   @override
   State<CompleteProfileScreen> createState() => _CompleteProfileScreenState();
@@ -23,12 +26,20 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   final TextEditingController _cityController = TextEditingController();
   final TextEditingController _shippingAddressController =
       TextEditingController();
+
   @override
   void initState() {
+    //ReadProfileData readProfileData = ReadProfileData() ;
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       log('Read profile');
+
+
       await Get.find<ReadProfileController>().readProfileData();
     });
+
+    // _firstNameController.text = readProfileData.firstName ?? '';
+    // _lastNameController.text = readProfileData.lastName ?? '';
+
     super.initState();
   }
 
