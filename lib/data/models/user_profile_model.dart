@@ -1,20 +1,20 @@
-class ReadProfileModel {
+class UserProfileModel {
   String? msg;
-  List<ReadProfileData>? data;
+  List<UserProfileData>? data;
 
-  ReadProfileModel({this.msg, this.data});
+  UserProfileModel({this.msg, this.data});
 
-  ReadProfileModel.fromJson(Map<String, dynamic> json) {
+  UserProfileModel.fromJson(Map<String, dynamic> json) {
     msg = json['msg'];
     if (json['data'] != null) {
-      data = <ReadProfileData>[];
+      data = <UserProfileData>[];
       json['data'].forEach((v) {
-        data!.add(ReadProfileData.fromJson(v));
+        data!.add(UserProfileData.fromJson(v));
       });
     }
   }
 
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toJson(responseJson) {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['msg'] = msg;
     if (this.data != null) {
@@ -24,7 +24,7 @@ class ReadProfileModel {
   }
 }
 
-class ReadProfileData {
+class UserProfileData {
   int? id;
   String? firstName;
   String? lastName;
@@ -35,7 +35,7 @@ class ReadProfileData {
   String? createdAt;
   String? updatedAt;
 
-  ReadProfileData(
+  UserProfileData(
       {this.id,
       this.firstName,
       this.lastName,
@@ -46,7 +46,7 @@ class ReadProfileData {
       this.createdAt,
       this.updatedAt});
 
-  ReadProfileData.fromJson(Map<String, dynamic> json) {
+  UserProfileData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     firstName = json['firstName'];
     lastName = json['lastName'];

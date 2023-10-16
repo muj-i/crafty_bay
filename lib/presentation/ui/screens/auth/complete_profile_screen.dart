@@ -1,4 +1,5 @@
 import 'package:crafty_bay/presentation/state_holders/auth/create_profile_controller.dart';
+import 'package:crafty_bay/presentation/state_holders/auth/read_profile_controller.dart';
 import 'package:crafty_bay/presentation/ui/screens/bottom_nav_base_screen.dart';
 import 'package:crafty_bay/presentation/ui/widgets/all_over_elevatedbutton.dart';
 import 'package:crafty_bay/presentation/ui/widgets/auth/auth_screens_upper_parts.dart';
@@ -23,6 +24,19 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   final TextEditingController _cityController = TextEditingController();
   final TextEditingController _shippingAddressController =
       TextEditingController();
+  ReadProfileController readProfileController =
+      Get.put(ReadProfileController());
+
+    
+  @override
+  void initState() {
+    super.initState();    
+    _firstNameController.text = readProfileController.readProfileModel.data?.first.firstName ?? '';
+    _lastNameController.text = readProfileController.readProfileModel.data?.first.lastName ?? '';
+    _mobileController.text = readProfileController.readProfileModel.data?.first.mobile ?? '';
+    _cityController.text = readProfileController.readProfileModel.data?.first.city ?? '';
+    _shippingAddressController.text = readProfileController.readProfileModel.data?.first.shippingAddress ?? '';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -163,14 +177,15 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                     (result) {
                       if (result) {
                         Get.snackbar(
-                          'Thank you for your feedback! ツ',
-                          'Review added successfully',
+                          'Thank you for joining us! ツ',
+                          'Profile created successfully',
                           backgroundColor: Colors.green.withOpacity(.2),
                           snackPosition: SnackPosition.TOP,
                         );
                         Get.offAll(() => const BottomNavBaseScreen());
+                        
                       } else {
-                        Get.snackbar('Opps! :(', 'Review added failed',
+                        Get.snackbar('Opps! :(', 'Profile create failed',
                             backgroundColor: Colors.red.withOpacity(.2),
                             snackPosition: SnackPosition.BOTTOM);
                       }

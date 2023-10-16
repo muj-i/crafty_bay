@@ -1,3 +1,4 @@
+import 'package:crafty_bay/presentation/ui/widgets/shimmer_container.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -9,65 +10,41 @@ class ProductsShimmer extends StatelessWidget {
     return Shimmer.fromColors(
       baseColor: Colors.grey[300]!,
       highlightColor: Colors.grey[100]!,
-      child: SafeArea(
+      child: const SafeArea(
         child: ListTile(
           title: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(
-                height: 16,
-              ),
+              SizedBox(height: 16),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
+                  ShimmerContainer(
                     height: 20.0,
                     width: 120,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(6),
-                      color: Colors.white,
-                    ),
                   ),
-                  Container(
+                  ShimmerContainer(
                     height: 20.0,
                     width: 45,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(6),
-                      color: Colors.white,
-                    ),
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 12,
-              ),
+              SizedBox(height: 12),
               Row(
                 children: [
-                  Container(
+                  ShimmerContainer(
                     height: 123.0,
                     width: 113,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(6),
-                      color: Colors.white,
-                    ),
                   ),
-                  const Spacer(),
-                  Container(
+                  Spacer(),
+                  ShimmerContainer(
                     height: 123.0,
                     width: 113,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(6),
-                      color: Colors.white,
-                    ),
                   ),
-                  const Spacer(),
-                  Container(
+                  Spacer(),
+                  ShimmerContainer(
                     height: 123.0,
                     width: 113,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(6),
-                      color: Colors.white,
-                    ),
                   ),
                 ],
               ),

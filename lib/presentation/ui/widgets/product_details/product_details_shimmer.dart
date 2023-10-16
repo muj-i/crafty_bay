@@ -1,3 +1,4 @@
+import 'package:crafty_bay/presentation/ui/widgets/shimmer_container.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -14,256 +15,65 @@ class ProductDetailsShimmer extends StatelessWidget {
           title: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                height: 250.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(6),
-                  color: Colors.white,
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
+              const ShimmerContainer(height: 250.0, width: double.infinity),
+              const SizedBox(height: 20),
+              const Row(
                 children: [
-                  Container(
-                    height: 20.0,
-                    width: 190,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(6),
-                      color: Colors.white,
-                    ),
-                  ),
-                  const Spacer(),
-                  Container(
-                    height: 20.0,
-                    width: 70,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(6),
-                      color: Colors.white,
-                    ),
-                  ),
+                  ShimmerContainer(height: 20.0, width: 190),
+                  Spacer(),
+                  ShimmerContainer(height: 20.0, width: 70),
                 ],
               ),
-              const SizedBox(
-                height: 6,
-              ),
-              Container(
-                height: 20.0,
-                width: 140,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(6),
-                  color: Colors.white,
-                ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Row(
+              const SizedBox(height: 6),
+              const ShimmerContainer(height: 20.0, width: 140),
+              const SizedBox(height: 30),
+              const Row(
                 children: [
-                  Container(
-                    height: 20.0,
-                    width: 30,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(6),
-                      color: Colors.white,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 6,
-                  ),
-                  Container(
-                    height: 20.0,
-                    width: 60,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(6),
-                      color: Colors.white,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 6,
-                  ),
-                  Container(
-                    height: 20.0,
-                    width: 25,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(6),
-                      color: Colors.white,
-                    ),
-                  ),
+                  ShimmerContainer(height: 20.0, width: 30),
+                  SizedBox(width: 6),
+                  ShimmerContainer(height: 20.0, width: 60),
+                  SizedBox(width: 6),
+                  ShimmerContainer(height: 20.0, width: 25),
                 ],
               ),
-              const SizedBox(
-                height: 30,
-              ),
-              Container(
-                height: 20.0,
-                width: 50,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(6),
-                  color: Colors.white,
-                ),
-              ),
-              const SizedBox(
-                height: 6,
-              ),
-              Row(
+              const SizedBox(height: 30),
+              const ShimmerContainer(height: 20.0, width: 50),
+              const SizedBox(height: 6),
+              const Row(
                 children: [
-                  Container(
-                    height: 25.0,
-                    width: 25,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: Colors.white,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 12,
-                  ),
-                  Container(
-                    height: 25.0,
-                    width: 25,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: Colors.white,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 12,
-                  ),
-                  Container(
-                    height: 25.0,
-                    width: 25,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: Colors.white,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 12,
-                  ),
-                  Container(
-                    height: 25.0,
-                    width: 25,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: Colors.white,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 12,
-                  ),
-                  Container(
-                    height: 25.0,
-                    width: 25,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: Colors.white,
-                    ),
-                  ),
+                  ShimmerContainer(height: 25.0, width: 25, borderRadius: 50),
+                  SizedBox(width: 12),
+                  ShimmerContainer(height: 25.0, width: 25, borderRadius: 50),
+                  SizedBox(width: 12),
+                  ShimmerContainer(height: 25.0, width: 25, borderRadius: 50),
+                  SizedBox(width: 12),
+                  ShimmerContainer(height: 25.0, width: 25, borderRadius: 50),
+                  SizedBox(width: 12),
+                  ShimmerContainer(height: 25.0, width: 25, borderRadius: 50),
                 ],
               ),
-              const SizedBox(
-                height: 30,
-              ),
-              Container(
-                height: 20.0,
-                width: 50,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(6),
-                  color: Colors.white,
-                ),
-              ),
-              const SizedBox(
-                height: 6,
-              ),
-              Row(
+              const SizedBox(height: 30),
+              const ShimmerContainer(height: 20.0, width: 50),
+              const SizedBox(height: 6),
+              const Row(
                 children: [
-                  Container(
-                    height: 25.0,
-                    width: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: Colors.white,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 12,
-                  ),
-                  Container(
-                    height: 25.0,
-                    width: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: Colors.white,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 12,
-                  ),
-                  Container(
-                    height: 25.0,
-                    width: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: Colors.white,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 12,
-                  ),
-                  Container(
-                    height: 25.0,
-                    width: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: Colors.white,
-                    ),
-                  ),
+                  ShimmerContainer(height: 25.0, width: 40, borderRadius: 50),
+                  SizedBox(width: 12),
+                  ShimmerContainer(height: 25.0, width: 40, borderRadius: 50),
+                  SizedBox(width: 12),
+                  ShimmerContainer(height: 25.0, width: 40, borderRadius: 50),
+                  SizedBox(width: 12),
+                  ShimmerContainer(height: 25.0, width: 40, borderRadius: 50),
                 ],
               ),
-              const SizedBox(
-                height: 30,
-              ),
-              Container(
-                height: 20.0,
-                width: 100,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(6),
-                  color: Colors.white,
-                ),
-              ),
-              const SizedBox(
-                height: 6,
-              ),
-              Container(
-                height: 20.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(6),
-                  color: Colors.white,
-                ),
-              ),
-              const SizedBox(
-                height: 6,
-              ),
-              Container(
-                height: 20.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(6),
-                  color: Colors.white,
-                ),
-              ),
-              const SizedBox(
-                height: 6,
-              ),
-              Container(
-                height: 20.0,
-                width: 70,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(6),
-                  color: Colors.white,
-                ),
-              ),
+              const SizedBox(height: 30),
+              const ShimmerContainer(height: 20.0, width: 100),
+              const SizedBox(height: 6),
+              const ShimmerContainer(height: 20.0),
+              const SizedBox(height: 6),
+              const ShimmerContainer(height: 20.0),
+              const SizedBox(height: 6),
+              const ShimmerContainer(height: 20.0, width: 70),
               const Spacer(),
               Container(
                 padding:
@@ -277,11 +87,7 @@ class ProductDetailsShimmer extends StatelessWidget {
                 ),
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      height: 38,
-                    )
-                  ],
+                  children: [SizedBox(height: 38)],
                 ),
               )
             ],
