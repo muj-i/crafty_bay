@@ -1,4 +1,5 @@
 import 'package:crafty_bay/presentation/state_holders/add_to_cart_controller.dart';
+import 'package:crafty_bay/presentation/state_holders/auth/create_profile_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/auth/email_verification_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/auth/pin_verification_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/auth/read_profile_controller.dart';
@@ -39,5 +40,6 @@ class StateHolderBinder extends Bindings {
     Get.put(CreateWishListController());
     Get.put(GetProductReviewController());
     Get.put(CreateProductReviewController());
+    Get.put(CreateProfileController());
   }
 }

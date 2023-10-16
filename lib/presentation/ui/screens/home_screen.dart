@@ -72,9 +72,9 @@ class _HomeScreenState extends State<HomeScreen> {
         }),
         GetBuilder<CategoriesController>(builder: (categoriesController) {
           return Visibility(
-            visible: categoriesController.getCategoriesInProgress == false,
+            visible: categoriesController.getCategoriesInProgress == true,
             replacement: const Center(
-              child: CategoriesShimmer(),
+              child:My2Widget()/*  CategoriesShimmer() */,
             ),
             child: Column(
               children: [

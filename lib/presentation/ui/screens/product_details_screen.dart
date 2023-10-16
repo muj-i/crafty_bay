@@ -107,6 +107,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             .availableSizes[_selectedSizeIndex],
                       );
                       if (result) {
+                        // Get.to(const BottomNavBaseScreen());
+                        // Get.find<BottomNavBaseController>().changeScreen(2);
+
                         Get.snackbar(
                           'Happy Shopping! ツ',
                           'This product has been added to cart list',

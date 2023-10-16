@@ -1,10 +1,11 @@
+import 'dart:developer';
+
 import 'package:crafty_bay/presentation/state_holders/auth/email_verification_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/auth/pin_verification_controller.dart';
+import 'package:crafty_bay/presentation/state_holders/auth/read_profile_controller.dart';
 import 'package:crafty_bay/presentation/ui/screens/auth/complete_profile_screen.dart';
-import 'package:crafty_bay/presentation/ui/screens/auth/read_profile_screen.dart';
 import 'package:crafty_bay/presentation/ui/screens/bottom_nav_base_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
-import 'package:crafty_bay/presentation/ui/utils/custom_sncakbar.dart';
 import 'package:crafty_bay/presentation/ui/widgets/all_over_elevatedbutton.dart';
 import 'package:crafty_bay/presentation/ui/widgets/auth/auth_screens_upper_parts.dart';
 import 'package:crafty_bay/presentation/ui/widgets/auth/otp_expiry_counter_and_resend_button.dart';
@@ -139,17 +140,27 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
     final response = await pinVerificationController.verifyPin(
         widget.email, _pinTEController.text.trim());
     if (response) {
-      /* Future.delayed(Duration(seconds: 2))
-          .then((value) => */ Get.to(() => const CompleteProfileScreen());
+      await Future.delayed(const Duration(seconds: 3)).then(
+          (value) async => Get.find<ReadProfileController>().readProfileData());
 
-      // Get.to(() => const ReadProfileScreen());
+      log(Get.find<ReadProfileController>()
+          .readProfileModel
+          .data!
+          .length
+          .toString());
 
-      // Get.offAll(() => const BottomNavBaseScreen());
+      Get.find<ReadProfileController>().readProfileModel.data!.length == 1
+          ? Get.offAll(() => const BottomNavBaseScreen())
+          : Get.offAll(() => const CompleteProfileScreen());
     } else {
       if (mounted) {
         _pinTEController.clear();
-        CustomSnackbar.show(
-            context: context, message: 'Otp verification failed! Try again');
+        Get.snackbar(
+          'Failed',
+          'Otp verification failed! Try again',
+          backgroundColor: Colors.red.withOpacity(.2),
+          snackPosition: SnackPosition.BOTTOM,
+        );
       }
     }
   }

@@ -1,7 +1,6 @@
-import 'dart:developer';
-
-import 'package:crafty_bay/presentation/state_holders/auth/auth_token_controller.dart';
-import 'package:crafty_bay/presentation/state_holders/auth/read_profile_controller.dart';
+import 'package:crafty_bay/data/models/read_profile_model.dart';
+import 'package:crafty_bay/presentation/state_holders/auth/create_profile_controller.dart';
+import 'package:crafty_bay/presentation/state_holders/auth/user_data_controller.dart';
 import 'package:crafty_bay/presentation/ui/screens/bottom_nav_base_screen.dart';
 import 'package:crafty_bay/presentation/ui/widgets/all_over_elevatedbutton.dart';
 import 'package:crafty_bay/presentation/ui/widgets/auth/auth_screens_upper_parts.dart';
@@ -22,26 +21,21 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
-  final TextEditingController _mobileNumberController = TextEditingController();
+  final TextEditingController _mobileController = TextEditingController();
   final TextEditingController _cityController = TextEditingController();
   final TextEditingController _shippingAddressController =
       TextEditingController();
 
-  @override
-  void initState() {
-    //ReadProfileData readProfileData = ReadProfileData() ;
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      log('Read profile');
+// UserDataController().
+//   @override
+//   void initState() {
+//     super.initState();
+//     _firstNameController.text = userData.fir ?? '';
+//     _lastNameController.text = userSharedperfData.lastName ?? '';
+//     _mobileNumberController.text = userSharedperfData.mobile ?? '';
+//     _emailController.text = userSharedperfData.email ?? '';
+//   }
 
-
-      await Get.find<ReadProfileController>().readProfileData();
-    });
-
-    // _firstNameController.text = readProfileData.firstName ?? '';
-    // _lastNameController.text = readProfileData.lastName ?? '';
-
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +94,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
           height: 12,
         ),
         TextFormField(
-          controller: _mobileNumberController,
+          controller: _mobileController,
           keyboardType: TextInputType.phone,
           textInputAction: TextInputAction.next,
           inputFormatters: [
@@ -160,13 +154,44 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
         const SizedBox(
           height: 10,
         ),
-        AllOverElevatedButton(
-          buttonName: 'Complete',
-          onPressed: () {
-            if (!_formKey.currentState!.validate()) {
-              return;
+        GetBuilder<CreateProfileController>(
+          builder: (createProfileController) {
+            if (createProfileController.createProfileInProgress) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
             }
-            Get.offAll(() => const BottomNavBaseScreen());
+            return AllOverElevatedButton(
+              buttonName: 'Complete',
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  createProfileController
+                      .createProfileData(
+                          _firstNameController.text.trim(),
+                          _lastNameController.text.trim(),
+                          _mobileController.text.trim(),
+                          _cityController.text.trim(),
+                          _shippingAddressController.text.trim())
+                      .then(
+                    (result) {
+                      if (result) {
+                        Get.snackbar(
+                          'Thank you for your feedback! ツ',
+                          'Review added successfully',
+                          backgroundColor: Colors.green.withOpacity(.2),
+                          snackPosition: SnackPosition.TOP,
+                        );
+                        Get.offAll(() => const BottomNavBaseScreen());
+                      } else {
+                        Get.snackbar('Opps! :(', 'Review added failed',
+                            backgroundColor: Colors.red.withOpacity(.2),
+                            snackPosition: SnackPosition.BOTTOM);
+                      }
+                    },
+                  );
+                }
+              },
+            );
           },
         ),
       ],

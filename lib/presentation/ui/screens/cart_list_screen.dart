@@ -1,5 +1,7 @@
+import 'package:crafty_bay/presentation/state_holders/auth/auth_token_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/bottom_nav_base_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/cart_list_controller.dart';
+import 'package:crafty_bay/presentation/ui/screens/auth/email_verification_screen.dart';
 import 'package:crafty_bay/presentation/ui/widgets/all_over_appbar.dart';
 import 'package:crafty_bay/presentation/ui/widgets/bottom_container.dart';
 import 'package:crafty_bay/presentation/ui/widgets/bottom_container_button.dart';
@@ -18,9 +20,13 @@ class _CartListScreenState extends State<CartListScreen> {
   @override
   void initState() {
     super.initState();
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
-    Get.find<CartListController>().getCartList();
-    // });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (AuthTokenController.isLoggedIn) {
+        Get.find<CartListController>().getCartList();
+      } else {
+        Get.offAll(() => const EmailVerificationScreen());
+      }
+    });
   }
 
   @override

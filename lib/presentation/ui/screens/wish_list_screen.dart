@@ -1,5 +1,7 @@
+import 'package:crafty_bay/presentation/state_holders/auth/auth_token_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/bottom_nav_base_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/wish_list_controller.dart';
+import 'package:crafty_bay/presentation/ui/screens/auth/email_verification_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/constraints.dart';
 import 'package:crafty_bay/presentation/ui/widgets/all_over_appbar.dart';
 import 'package:crafty_bay/presentation/ui/widgets/wish_list_product_card.dart';
@@ -17,9 +19,13 @@ class _WishScreenState extends State<WishScreen> {
   @override
   void initState() {
     super.initState();
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
-    Get.find<WishListController>().getCartList();
-    // });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (AuthTokenController.isLoggedIn) {
+        Get.find<WishListController>().getCartList();
+      } else {
+        Get.offAll(() => const EmailVerificationScreen());
+      }
+    });
   }
 
   @override
