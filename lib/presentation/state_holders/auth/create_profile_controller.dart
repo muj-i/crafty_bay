@@ -26,9 +26,7 @@ class CreateProfileController extends GetxController {
     );
     _createProfileInProgress = false;
     if (response.isSuccess) {
-      // await AuthTokenController.setAccessToken(response.responseJson?["data"]);
       update();
-
       return true;
     } else {
       _message = 'Create Profile failed! Try again';

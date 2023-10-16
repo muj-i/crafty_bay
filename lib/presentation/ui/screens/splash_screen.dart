@@ -1,5 +1,4 @@
 import 'package:crafty_bay/presentation/state_holders/auth/auth_token_controller.dart';
-import 'package:crafty_bay/presentation/ui/screens/auth/email_verification_screen.dart';
 import 'package:crafty_bay/presentation/ui/screens/bottom_nav_base_screen.dart';
 //import 'package:crafty_bay/presentation/ui/screens/bottom_nav_base_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/asset_images.dart';

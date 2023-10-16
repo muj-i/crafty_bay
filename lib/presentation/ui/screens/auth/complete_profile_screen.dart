@@ -1,6 +1,4 @@
-import 'package:crafty_bay/data/models/read_profile_model.dart';
 import 'package:crafty_bay/presentation/state_holders/auth/create_profile_controller.dart';
-import 'package:crafty_bay/presentation/state_holders/auth/user_data_controller.dart';
 import 'package:crafty_bay/presentation/ui/screens/bottom_nav_base_screen.dart';
 import 'package:crafty_bay/presentation/ui/widgets/all_over_elevatedbutton.dart';
 import 'package:crafty_bay/presentation/ui/widgets/auth/auth_screens_upper_parts.dart';
@@ -25,17 +23,6 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   final TextEditingController _cityController = TextEditingController();
   final TextEditingController _shippingAddressController =
       TextEditingController();
-
-// UserDataController().
-//   @override
-//   void initState() {
-//     super.initState();
-//     _firstNameController.text = userData.fir ?? '';
-//     _lastNameController.text = userSharedperfData.lastName ?? '';
-//     _mobileNumberController.text = userSharedperfData.mobile ?? '';
-//     _emailController.text = userSharedperfData.email ?? '';
-//   }
-
 
   @override
   Widget build(BuildContext context) {
