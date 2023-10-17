@@ -1,5 +1,7 @@
 import 'package:crafty_bay/presentation/state_holders/auth/auth_token_controller.dart';
+import 'package:crafty_bay/presentation/state_holders/auth/read_profile_controller.dart';
 import 'package:crafty_bay/presentation/ui/screens/auth/complete_profile_screen.dart';
+import 'package:crafty_bay/presentation/ui/screens/auth/email_verification_screen.dart';
 import 'package:crafty_bay/presentation/ui/widgets/home_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,9 +17,13 @@ class AppBarActionButtons extends StatelessWidget {
       children: [
         HomeIconButton(
           icon: Icons.person_outlined,
-          onPressed: () {
-            // AuthTokenController.clear();
-            Get.to(const CompleteProfileScreen());
+          onPressed: () async {
+            await Get.find<ReadProfileController>().readProfileData();
+            if (AuthTokenController.isLoggedIn) {
+              Get.to(const CompleteProfileScreen());
+            } else {
+              Get.to(const EmailVerificationScreen());
+            }
           },
         ),
         const SizedBox(

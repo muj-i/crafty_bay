@@ -135,8 +135,8 @@ class ProductCard extends StatelessWidget {
                                         Get.offAll(() =>
                                             const EmailVerificationScreen());
                                         Get.snackbar(
-                                          'Opps! You need to complete your profile before adding items to wish list.',
-                                          'If you didn\'t complete your profile when logging in.\nYou can complete by naviagting to the profile screen from the home page',
+                                          'Opps!',
+                                          ' You need to complete your profile before adding items to wish list.',
                                           backgroundColor:
                                               Colors.red.withOpacity(.2),
                                           snackPosition: SnackPosition.TOP,

@@ -8,25 +8,19 @@ import 'package:crafty_bay/presentation/state_holders/auth/auth_token_controller
 import 'package:get/get.dart';
 
 class ReadProfileController extends GetxController {
-  bool _readProfileInProgress = false;
   String _message = '';
   UserProfileModel _readProfileModel = UserProfileModel();
 
-  bool get readProfileInProgress => _readProfileInProgress;
   String get message => _message;
   UserProfileModel get readProfileModel => _readProfileModel;
 
   Future<bool> readProfileData() async {
-    _readProfileInProgress = true;
     update();
     final NetworkResponse response =
         await NetworkCaller.getRequest(Urls.readProfile);
-    _readProfileInProgress = false;
     if (response.isSuccess) {
-      // log(AuthTokenController.accessToken.toString());
       _readProfileModel = UserProfileModel.fromJson(response.responseJson);
       update();
-      // log(AuthTokenController.accessToken.toString());
       return true;
     } else {
       log(AuthTokenController.accessToken.toString());

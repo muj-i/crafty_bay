@@ -16,7 +16,7 @@ class CartListController extends GetxController {
     _getCartListInProgress = true;
     update();
     final NetworkResponse response =
-        await NetworkCaller.getRequest(Urls.getCartList);
+        await NetworkCaller.getRequest(Urls.getCartList, loginRequired: true);
     _getCartListInProgress = false;
     if (response.isSuccess) {
       _cartListModel = CartAndWishListModel.fromJson(response.responseJson!);

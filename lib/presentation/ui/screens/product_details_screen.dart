@@ -92,39 +92,41 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 subTitle:
                     '৳${productDetailsController.productDetailsData.product!.price ?? ''}',
                 button: GetBuilder<AddToCartController>(
-                    builder: (addToCartController) {
-                  if (addToCartController.addToCartInProgress) {
-                    return const Center(child: CircularProgressIndicator());
-                  }
-                  return BottomContainerButton(
-                    text: 'Add To Cart',
-                    onPressed: () async {
-                      final result = await addToCartController.addToCart(
-                        productDetailsController.productDetailsData.id!,
-                        productDetailsController.colorCode[_selectedColorIndex]
-                            .toString(),
-                        productDetailsController
-                            .availableSizes[_selectedSizeIndex],
-                      );
-                      if (result) {
-                        Get.snackbar(
-                          'Happy Shopping! ツ',
-                          'This product has been added to cart list',
-                          backgroundColor: Colors.green.withOpacity(.2),
-                          snackPosition: SnackPosition.TOP,
+                  builder: (addToCartController) {
+                    if (addToCartController.addToCartInProgress) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                    return BottomContainerButton(
+                      text: 'Add To Cart',
+                      onPressed: () async {
+                        final result = await addToCartController.addToCart(
+                          productDetailsController.productDetailsData.id!,
+                          productDetailsController
+                              .colorCode[_selectedColorIndex]
+                              .toString(),
+                          productDetailsController
+                              .availableSizes[_selectedSizeIndex],
                         );
-                      } else {
-                        Get.snackbar(
-                          'Product cannot be added to cart',
-                          'You need to complete your profile before shopping.\nIf you didn\'t complete your profile when logging in.\nYou can complete by naviagting to the profile screen from the home page',
-                          backgroundColor: Colors.redAccent.withOpacity(.2),
-                          snackPosition: SnackPosition.TOP,
-                          duration: const Duration(seconds: 15),
-                        );
-                      }
-                    },
-                  );
-                }),
+                        if (result) {
+                          Get.snackbar(
+                            'Happy Shopping! ツ',
+                            'This product has been added to cart list',
+                            backgroundColor: Colors.green.withOpacity(.2),
+                            snackPosition: SnackPosition.TOP,
+                          );
+                        } else {
+                          Get.snackbar(
+                            'Product cannot be added to cart',
+                            'You need to complete your profile before shopping.\nIf you didn\'t complete your profile when logging in.\nYou can complete by naviagting to the profile screen from the home page',
+                            backgroundColor: Colors.redAccent.withOpacity(.2),
+                            snackPosition: SnackPosition.TOP,
+                            duration: const Duration(seconds: 15),
+                          );
+                        }
+                      },
+                    );
+                  },
+                ),
               ),
             ],
           ),

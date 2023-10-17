@@ -12,11 +12,11 @@ class WishListController extends GetxController {
 
   String get message => _message;
   CartAndWishListModel get wishListModel => _wishListModel;
-  Future<bool> getCartList() async {
+  Future<bool> getWishList() async {
     _getWishListInProgress = true;
     update();
     final NetworkResponse response =
-        await NetworkCaller.getRequest(Urls.getWishItem);
+        await NetworkCaller.getRequest(Urls.getWishItem, loginRequired: true);
     _getWishListInProgress = false;
     if (response.isSuccess) {
       _wishListModel = CartAndWishListModel.fromJson(response.responseJson!);

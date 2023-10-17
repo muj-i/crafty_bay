@@ -1,10 +1,6 @@
-import 'dart:developer';
-
 import 'package:crafty_bay/presentation/state_holders/auth/email_verification_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/auth/pin_verification_controller.dart';
-import 'package:crafty_bay/presentation/state_holders/auth/read_profile_controller.dart';
-import 'package:crafty_bay/presentation/ui/screens/auth/complete_profile_screen.dart';
-import 'package:crafty_bay/presentation/ui/screens/bottom_nav_base_screen.dart';
+import 'package:crafty_bay/presentation/ui/screens/auth/read_profile_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
 import 'package:crafty_bay/presentation/ui/widgets/all_over_elevatedbutton.dart';
 import 'package:crafty_bay/presentation/ui/widgets/auth/auth_screens_upper_parts.dart';
@@ -140,14 +136,7 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
     final response = await pinVerificationController.verifyPin(
         widget.email, _pinTEController.text.trim());
     if (response) {
-      await Future.delayed(const Duration(seconds: 3)).then(
-          (value) async => Get.find<ReadProfileController>().readProfileData());
-
-      log(Get.find<ReadProfileController>().readProfileModel.data!.toString());
-
-      Get.find<ReadProfileController>().readProfileModel.data!.length == 1
-          ? Get.offAll(() => const BottomNavBaseScreen())
-          : Get.offAll(() => const CompleteProfileScreen());
+      Get.to(() => const ReadProfileScreen());
     } else {
       if (mounted) {
         _pinTEController.clear();

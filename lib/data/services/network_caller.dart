@@ -14,10 +14,7 @@ class NetworkCaller {
     try {
       Response response = await get(
         Uri.parse(url),
-        headers: {
-          //'Content-Type': 'application/json',
-          'token': AuthTokenController.accessToken.toString()
-        },
+        headers: {'token': AuthTokenController.accessToken.toString()},
       );
 
       log(response.statusCode.toString());
