@@ -5,8 +5,6 @@ import 'package:crafty_bay/presentation/ui/screens/auth/email_verification_scree
 import 'package:crafty_bay/presentation/ui/screens/bottom_nav_base_screen.dart';
 import 'package:crafty_bay/presentation/ui/widgets/all_over_elevatedbutton.dart';
 import 'package:crafty_bay/presentation/ui/widgets/auth/auth_screens_upper_parts.dart';
-import 'package:crafty_bay/presentation/ui/widgets/auth/complete_screen_shimmer.dart';
-import 'package:crafty_bay/presentation/ui/widgets/home/shimmers/products_shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -30,31 +28,30 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
       TextEditingController();
   ReadProfileController readProfileController =
       Get.put(ReadProfileController());
- bool _isApiFetchingInProgress = false;
+  bool _isApiFetchingInProgress = false;
   @override
   void initState() {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-if (AuthTokenController.isLoggedIn) {
+      if (AuthTokenController.isLoggedIn) {
         fetchData().then((value) {
-        _firstNameController.text =
-            readProfileController.readProfileModel.data?.first.firstName ?? '';
-        _lastNameController.text =
-            readProfileController.readProfileModel.data?.first.lastName ?? '';
-        _mobileController.text =
-            readProfileController.readProfileModel.data?.first.mobile ?? '';
-        _cityController.text =
-            readProfileController.readProfileModel.data?.first.city ?? '';
-        _shippingAddressController.text = readProfileController
-                .readProfileModel.data?.first.shippingAddress ??
-            '';
-      });
+          _firstNameController.text =
+              readProfileController.readProfileModel.data?.first.firstName ??
+                  '';
+          _lastNameController.text =
+              readProfileController.readProfileModel.data?.first.lastName ?? '';
+          _mobileController.text =
+              readProfileController.readProfileModel.data?.first.mobile ?? '';
+          _cityController.text =
+              readProfileController.readProfileModel.data?.first.city ?? '';
+          _shippingAddressController.text = readProfileController
+                  .readProfileModel.data?.first.shippingAddress ??
+              '';
+        });
       } else {
         Get.offAll(() => const EmailVerificationScreen());
       }
-
-      
     });
   }
 
@@ -68,7 +65,6 @@ if (AuthTokenController.isLoggedIn) {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,8 +74,10 @@ if (AuthTokenController.isLoggedIn) {
           child: Form(
             key: _formKey,
             child: SingleChildScrollView(
-              child:_isApiFetchingInProgress == false
-                  ? const Center(child: CompleteScreenShimmer())
+              child: _isApiFetchingInProgress
+                  ? const SizedBox(
+                      height: 700,
+                      child: Center(child: CircularProgressIndicator()))
                   : userInfoTextFormFields,
             ),
           ),

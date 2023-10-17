@@ -143,11 +143,7 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
       await Future.delayed(const Duration(seconds: 3)).then(
           (value) async => Get.find<ReadProfileController>().readProfileData());
 
-      log(Get.find<ReadProfileController>()
-          .readProfileModel
-          .data!
-          .length
-          .toString());
+      log(Get.find<ReadProfileController>().readProfileModel.data!.toString());
 
       Get.find<ReadProfileController>().readProfileModel.data!.length == 1
           ? Get.offAll(() => const BottomNavBaseScreen())

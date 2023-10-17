@@ -107,9 +107,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             .availableSizes[_selectedSizeIndex],
                       );
                       if (result) {
-                        // Get.to(const BottomNavBaseScreen());
-                        // Get.find<BottomNavBaseController>().changeScreen(2);
-
                         Get.snackbar(
                           'Happy Shopping! ツ',
                           'This product has been added to cart list',
@@ -119,9 +116,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       } else {
                         Get.snackbar(
                           'Product cannot be added to cart',
-                          'You need to verify your email before shopping',
+                          'You need to complete your profile before shopping.\nIf you didn\'t complete your profile when logging in.\nYou can complete by naviagting to the profile screen from the home page',
                           backgroundColor: Colors.redAccent.withOpacity(.2),
                           snackPosition: SnackPosition.TOP,
+                          duration: const Duration(seconds: 15),
                         );
                       }
                     },

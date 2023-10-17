@@ -25,5 +25,3 @@ class CategoriesModel {
     return data;
   }
 }
-
-

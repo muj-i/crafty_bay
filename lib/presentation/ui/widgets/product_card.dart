@@ -1,5 +1,6 @@
 import 'package:crafty_bay/data/models/product_data.dart';
 import 'package:crafty_bay/presentation/state_holders/create_wish_list_controller.dart';
+import 'package:crafty_bay/presentation/ui/screens/auth/email_verification_screen.dart';
 import 'package:crafty_bay/presentation/ui/screens/product_details_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
 import 'package:flutter/material.dart';
@@ -128,15 +129,18 @@ class ProductCard extends StatelessWidget {
                                           'This product has been added to wish list',
                                           backgroundColor:
                                               Colors.green.withOpacity(.2),
-                                          snackPosition: SnackPosition.BOTTOM,
+                                          snackPosition: SnackPosition.TOP,
                                         );
                                       } else {
+                                        Get.offAll(() =>
+                                            const EmailVerificationScreen());
                                         Get.snackbar(
-                                          'Opps!',
-                                          'Unable add to wish to list',
+                                          'Opps! You need to complete your profile before adding items to wish list.',
+                                          'If you didn\'t complete your profile when logging in.\nYou can complete by naviagting to the profile screen from the home page',
                                           backgroundColor:
                                               Colors.red.withOpacity(.2),
-                                          snackPosition: SnackPosition.BOTTOM,
+                                          snackPosition: SnackPosition.TOP,
+                                          duration: const Duration(seconds: 15),
                                         );
                                       }
                                     },

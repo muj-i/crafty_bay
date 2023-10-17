@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
 
 class CraftyBayApp extends StatefulWidget {
- static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   const CraftyBayApp({super.key});
 
   @override
@@ -23,41 +23,39 @@ class _CraftyBayAppState extends State<CraftyBayApp> {
         primarySwatch: MaterialColor(
             ColorPalette.primaryColor.value, ColorPalette().colors),
         inputDecorationTheme: InputDecorationTheme(
-            contentPadding: const EdgeInsets.symmetric(
-              horizontal: 15,
-              vertical: 8,
-            ),
-            hintStyle: TextStyle(
-              color: Colors.grey[350],
-            ),
-            filled: true,
-            fillColor: Colors.grey[50],
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5.0),
-              borderSide: const BorderSide(color: ColorPalette.primaryColor),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5.0),
-              borderSide: const BorderSide(color: ColorPalette.primaryColor),
-            ),
-            errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5.0),
-              borderSide: const BorderSide(color: Colors.redAccent),
-            ),
-            focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5.0),
-              borderSide: const BorderSide(color: Colors.redAccent),
-            ),
-            errorStyle: const TextStyle(color: Colors.redAccent),
-            
-            ),
-            // elevatedButtonTheme: const ElevatedButtonThemeData(
-            //   style: Colors.accents
-            // )
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 15,
+            vertical: 8,
+          ),
+          hintStyle: TextStyle(
+            color: Colors.grey[350],
+          ),
+          filled: true,
+          fillColor: Colors.grey[50],
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5.0),
+            borderSide: const BorderSide(color: ColorPalette.primaryColor),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5.0),
+            borderSide: const BorderSide(color: ColorPalette.primaryColor),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5.0),
+            borderSide: const BorderSide(color: Colors.redAccent),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5.0),
+            borderSide: const BorderSide(color: Colors.redAccent),
+          ),
+          errorStyle: const TextStyle(color: Colors.redAccent),
+        ),
+        // elevatedButtonTheme: const ElevatedButtonThemeData(
+        //   style: Colors.accents
+        // )
       ),
       home: const SplashScreen(),
       initialBinding: StateHolderBinder(),
     );
   }
 }
-

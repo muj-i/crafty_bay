@@ -15,10 +15,10 @@ class PinVerificationController extends GetxController {
     update();
     final NetworkResponse response =
         await NetworkCaller.getRequest(Urls.verifyPin(email, pin));
-    _pinVerificationInProgress = false;
+    // _pinVerificationInProgress = false;
     update();
     if (response.isSuccess) {
-     await AuthTokenController.setAccessToken(response.responseJson?["data"]);
+      await AuthTokenController.setAccessToken(response.responseJson?["data"]);
 
       return true;
     } else {
