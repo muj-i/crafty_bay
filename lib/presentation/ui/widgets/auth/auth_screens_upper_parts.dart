@@ -12,7 +12,7 @@ class AuthScreensUpperParts extends StatelessWidget {
     return Column(
       children: [
         const SizedBox(
-          height: 120,
+          height: 100,
         ),
         Center(
           child: SvgPicture.asset(

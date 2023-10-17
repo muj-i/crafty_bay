@@ -1,8 +1,12 @@
+import 'package:crafty_bay/presentation/state_holders/auth/auth_token_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/auth/create_profile_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/auth/read_profile_controller.dart';
+import 'package:crafty_bay/presentation/ui/screens/auth/email_verification_screen.dart';
 import 'package:crafty_bay/presentation/ui/screens/bottom_nav_base_screen.dart';
 import 'package:crafty_bay/presentation/ui/widgets/all_over_elevatedbutton.dart';
 import 'package:crafty_bay/presentation/ui/widgets/auth/auth_screens_upper_parts.dart';
+import 'package:crafty_bay/presentation/ui/widgets/auth/complete_screen_shimmer.dart';
+import 'package:crafty_bay/presentation/ui/widgets/home/shimmers/products_shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -26,27 +30,58 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
       TextEditingController();
   ReadProfileController readProfileController =
       Get.put(ReadProfileController());
-
-    
+ bool _isApiFetchingInProgress = false;
   @override
   void initState() {
-    super.initState();    
-    _firstNameController.text = readProfileController.readProfileModel.data?.first.firstName ?? '';
-    _lastNameController.text = readProfileController.readProfileModel.data?.first.lastName ?? '';
-    _mobileController.text = readProfileController.readProfileModel.data?.first.mobile ?? '';
-    _cityController.text = readProfileController.readProfileModel.data?.first.city ?? '';
-    _shippingAddressController.text = readProfileController.readProfileModel.data?.first.shippingAddress ?? '';
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+if (AuthTokenController.isLoggedIn) {
+        fetchData().then((value) {
+        _firstNameController.text =
+            readProfileController.readProfileModel.data?.first.firstName ?? '';
+        _lastNameController.text =
+            readProfileController.readProfileModel.data?.first.lastName ?? '';
+        _mobileController.text =
+            readProfileController.readProfileModel.data?.first.mobile ?? '';
+        _cityController.text =
+            readProfileController.readProfileModel.data?.first.city ?? '';
+        _shippingAddressController.text = readProfileController
+                .readProfileModel.data?.first.shippingAddress ??
+            '';
+      });
+      } else {
+        Get.offAll(() => const EmailVerificationScreen());
+      }
+
+      
+    });
   }
+
+  Future<void> fetchData() async {
+    setState(() {
+      _isApiFetchingInProgress = true;
+    });
+    await readProfileController.readProfileData();
+    setState(() {
+      _isApiFetchingInProgress = false;
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: SingleChildScrollView(
-            child: userInfoTextFormFields,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Form(
+            key: _formKey,
+            child: SingleChildScrollView(
+              child:_isApiFetchingInProgress == false
+                  ? const Center(child: CompleteScreenShimmer())
+                  : userInfoTextFormFields,
+            ),
           ),
         ),
       ),
@@ -177,15 +212,14 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                     (result) {
                       if (result) {
                         Get.snackbar(
-                          'Thank you for joining us! ツ',
-                          'Profile created successfully',
+                          'Thank you for completing profile! ツ',
+                          'Profile updated successfully',
                           backgroundColor: Colors.green.withOpacity(.2),
                           snackPosition: SnackPosition.TOP,
                         );
                         Get.offAll(() => const BottomNavBaseScreen());
-                        
                       } else {
-                        Get.snackbar('Opps! :(', 'Profile create failed',
+                        Get.snackbar('Opps! :(', 'Profile update failed',
                             backgroundColor: Colors.red.withOpacity(.2),
                             snackPosition: SnackPosition.BOTTOM);
                       }
