@@ -32,17 +32,20 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _firstNameController.text =
-          readProfileController.readProfileModel.data?.first.firstName ?? '';
-      _lastNameController.text =
-          readProfileController.readProfileModel.data?.first.lastName ?? '';
-      _mobileController.text =
-          readProfileController.readProfileModel.data?.first.mobile ?? '';
-      _cityController.text =
-          readProfileController.readProfileModel.data?.first.city ?? '';
-      _shippingAddressController.text =
-          readProfileController.readProfileModel.data?.first.shippingAddress ??
-              '';
+      if (readProfileController.readProfileModel.data != null &&
+          readProfileController.readProfileModel.data!.isNotEmpty) {
+        _firstNameController.text =
+            readProfileController.readProfileModel.data?.first.firstName ?? '';
+        _lastNameController.text =
+            readProfileController.readProfileModel.data?.first.lastName ?? '';
+        _mobileController.text =
+            readProfileController.readProfileModel.data?.first.mobile ?? '';
+        _cityController.text =
+            readProfileController.readProfileModel.data?.first.city ?? '';
+        _shippingAddressController.text = readProfileController
+                .readProfileModel.data?.first.shippingAddress ??
+            '';
+      }
     });
   }
 

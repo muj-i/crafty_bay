@@ -144,7 +144,7 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
           'Failed',
           'Otp verification failed! Try again',
           backgroundColor: Colors.red.withOpacity(.2),
-          snackPosition: SnackPosition.BOTTOM,
+          snackPosition: SnackPosition.TOP,
         );
       }
     }

@@ -31,10 +31,7 @@ class AppBarActionButtons extends StatelessWidget {
         ),
         HomeIconButton(
           icon: Icons.call_outlined,
-          onPressed: () {
-            AuthTokenController.clear();
-            // Get.to(const EmailVerificationScreen());
-          },
+          onPressed: () {},
         ),
         const SizedBox(
           width: 12,
@@ -47,6 +44,56 @@ class AppBarActionButtons extends StatelessWidget {
               'This is your friend CraftyBay!',
               backgroundColor: Colors.green.withOpacity(.2),
               snackPosition: SnackPosition.TOP,
+            );
+          },
+        ),
+        const SizedBox(
+          width: 12,
+        ),
+        HomeIconButton(
+          icon: Icons.logout_rounded,
+          onPressed: () {
+            Get.defaultDialog(
+              middleText: "Do you want to log out?",
+              actions: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        AuthTokenController.clear();
+                        AuthTokenController.getAccessToken();
+                        Get.back();
+                        if (AuthTokenController.isLoggedIn) {
+                          Get.snackbar(
+                            'Log out done',
+                            'See you soon!',
+                            backgroundColor: Colors.green.withOpacity(.2),
+                            snackPosition: SnackPosition.TOP,
+                          );
+                        } else {
+                          Get.snackbar(
+                            'Already Loged out',
+                            'You need to log in before logging out',
+                            backgroundColor: Colors.red.withOpacity(.2),
+                            snackPosition: SnackPosition.TOP,
+                          );
+                        }
+                      },
+                      child: const Text(
+                        "Logout",
+                        style: TextStyle(color: Colors.redAccent),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      child: const Text("Cancel"),
+                    ),
+                  ],
+                ),
+              ],
             );
           },
         ),

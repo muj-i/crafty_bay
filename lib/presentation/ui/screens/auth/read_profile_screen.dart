@@ -18,8 +18,7 @@ class _ReadProfileScreenState extends State<ReadProfileScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await Future.delayed(const Duration(seconds: 3)).then(
           (value) async => Get.find<ReadProfileController>().readProfileData());
-
-      Get.find<ReadProfileController>().readProfileModel.data?.length == 1
+      Get.find<ReadProfileController>().readProfileModel.data!.isNotEmpty
           ? Get.offAll(() => const BottomNavBaseScreen())
           : Get.offAll(() => const CompleteProfileScreen());
     });

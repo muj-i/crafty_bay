@@ -1,3 +1,4 @@
+import 'package:crafty_bay/presentation/state_holders/auth/auth_token_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/bottom_nav_base_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/wish_list_controller.dart';
 import 'package:crafty_bay/presentation/ui/utils/constraints.dart';
@@ -17,9 +18,10 @@ class _WishScreenState extends State<WishScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Get.find<WishListController>().getWishList();
-    });
+    AuthTokenController.getAccessToken();
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    Get.find<WishListController>().getWishList();
+    // });
   }
 
   @override
