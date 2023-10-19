@@ -27,7 +27,7 @@ During the development of CraftyBay, several challenges were encountered, includ
 
  - State Management and API Optimization: Ensuring efficient state management within the app and minimizing unnecessary API calls to enhance performance and reduce data usage.
 
-How Challenges Were Overcome
+## How Challenges Were Overcome
 To address these challenges, several strategies and solutions were implemented:
 
  - User Authentication: Rigorous security measures were put in place to safeguard user tokens, ensuring that user accounts and data are protected from unauthorized access.
@@ -243,5 +243,5 @@ The CraftyBay directory structure is organized as follows:
 
 ## License
 
-This project is licensed under the MIT License. Refer to the [LICENSE](https://opensource.org/license/mit/) file for details.
+This project is licensed under the MIT License. Refer to the [LICENSE](LICENSE) file for details.
 
