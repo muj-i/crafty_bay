@@ -70,11 +70,11 @@ class NetworkCaller {
 
   static Future<void> gotoLogin() async {
     await AuthTokenController.clear();
-    Navigator.pushAndRemoveUntil(
-        CraftyBayApp.navigatorKey.currentContext!,
-        MaterialPageRoute(
-          builder: (context) => const EmailVerificationScreen(),
-        ),
-        (route) => false);
+    Navigator.push(
+      CraftyBayApp.navigatorKey.currentContext!,
+      MaterialPageRoute(
+        builder: (context) => const EmailVerificationScreen(),
+      ),
+    );
   }
 }
