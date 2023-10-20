@@ -41,41 +41,62 @@ class _HomeCarouselSliderState extends State<HomeCarouselSlider> {
                         color: ColorPalette.primaryColor,
                         borderRadius: BorderRadius.circular(10)),
                     alignment: Alignment.center,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    child: Column(
                       children: [
-                        Image.network(
-                          sliderModelData.image ?? '',
-                          fit: BoxFit.fill,
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            sliderModelData.title ?? '',
+                            style: const TextStyle(
+                                fontSize: 20,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
                         ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                        Stack(
                           children: [
-                            Text(
-                              sliderModelData.title ?? '',
-                              style: const TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold),
+                            Image.network(
+                              sliderModelData.image ?? '',
+                              fit: BoxFit.contain,
                             ),
-                            const SizedBox(
-                              height: 10,
+                            Positioned(
+                              left: 35,
+                              top: 10,
+                              child: SizedBox(
+                                height: 80,
+                                child: Image.asset(
+                                  'assets/images/trending.png',
+                                  fit: BoxFit.contain,
+                                ),
+                              ),
                             ),
-                            SizedBox(
-                              width: 120,
-                              child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    elevation: 0,
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(8)),
-                                    backgroundColor: Colors.white,
-                                    foregroundColor: ColorPalette.primaryColor,
-                                  ),
-                                  child: const Text('Buy Now'),
-                                  onPressed: () {}),
-                            )
                           ],
                         ),
+                        Text(
+                          sliderModelData.price ?? '',
+                          style: const TextStyle(
+                              fontSize: 16,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16.0, vertical: 5),
+                          child: SizedBox(
+                            width: double.infinity,
+                            height: 30,
+                            child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  elevation: 0,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8)),
+                                  backgroundColor: Colors.white,
+                                  foregroundColor: ColorPalette.primaryColor,
+                                ),
+                                child: const Text('Buy Now'),
+                                onPressed: () {}),
+                          ),
+                        )
                       ],
                     ),
                   );

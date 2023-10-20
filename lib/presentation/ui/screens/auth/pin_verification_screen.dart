@@ -70,7 +70,7 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
             ),
             child: PinCodeTextField(
               controller: _pinTEController,
-              length: 4,
+              length: 6,
               obscureText: false,
               keyboardType: TextInputType.number,
               animationType: AnimationType.fade,
