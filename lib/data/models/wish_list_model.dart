@@ -1,17 +1,17 @@
-import 'package:crafty_bay/data/models/slider_data.dart';
+import 'package:crafty_bay/data/models/wish_list_data.dart';
 
-class SliderModel {
+class WishListModel {
   String? msg;
-  List<SliderData>? data;
+  List<WishListData>? data;
 
-  SliderModel({this.msg, this.data});
+  WishListModel({this.msg, this.data});
 
-  SliderModel.fromJson(Map<String, dynamic> json) {
+  WishListModel.fromJson(Map<String, dynamic> json) {
     msg = json['msg'];
     if (json['data'] != null) {
-      data = <SliderData>[];
+      data = <WishListData>[];
       json['data'].forEach((v) {
-        data!.add(SliderData.fromJson(v));
+        data!.add(WishListData.fromJson(v));
       });
     }
   }

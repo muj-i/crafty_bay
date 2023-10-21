@@ -1,9 +1,9 @@
-import 'package:crafty_bay/data/models/categories_model_data.dart';
+import 'package:crafty_bay/data/models/category_data.dart';
 import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
 import 'package:flutter/material.dart';
 
 class CategoryCard extends StatelessWidget {
-  final CategoriesData categoriesData;
+  final CategoryData categoriesData;
   final VoidCallback onTap;
   const CategoryCard({
     super.key,

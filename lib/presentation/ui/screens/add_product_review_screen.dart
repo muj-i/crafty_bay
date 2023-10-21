@@ -11,12 +11,6 @@ class AddProductReviewScreen extends StatelessWidget {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  final TextEditingController _firstNameEditingController =
-      TextEditingController();
-
-  final TextEditingController _lastNameEditingController =
-      TextEditingController();
-
   final TextEditingController _writeReviewEditingController =
       TextEditingController();
 
@@ -46,38 +40,6 @@ class AddProductReviewScreen extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        TextFormField(
-          controller: _firstNameEditingController,
-          keyboardType: TextInputType.text,
-          decoration: const InputDecoration(
-            hintText: 'First Name',
-          ),
-          validator: (String? value) {
-            if (value?.isEmpty ?? true) {
-              return "You must add your first name";
-            }
-            return null;
-          },
-        ),
-        const SizedBox(
-          height: 12,
-        ),
-        TextFormField(
-          controller: _lastNameEditingController,
-          keyboardType: TextInputType.text,
-          decoration: const InputDecoration(
-            hintText: 'Last Name',
-          ),
-          validator: (String? value) {
-            if (value?.isEmpty ?? true) {
-              return "You must add your last name";
-            }
-            return null;
-          },
-        ),
-        const SizedBox(
-          height: 12,
-        ),
         TextFormField(
           controller: _writeReviewEditingController,
           maxLines: 10,

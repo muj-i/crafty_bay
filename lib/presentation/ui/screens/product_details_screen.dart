@@ -33,9 +33,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   @override
   void initState() {
     super.initState();
-    //  WidgetsBinding.instance.addPostFrameCallback((_) {
     Get.find<ProductDetailsController>().getProductDetails(widget.productId);
-    //  });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {});
+    });
   }
 
   @override
@@ -102,7 +103,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         final result = await addToCartController.addToCart(
                           productDetailsController.productDetailsData.id!,
                           productDetailsController
-                              .colorCode[_selectedColorIndex]
+                              .availableColors[_selectedColorIndex]
                               .toString(),
                           productDetailsController
                               .availableSizes[_selectedSizeIndex],
@@ -136,7 +137,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   }
 
   Padding productDetails(
-      ProductDetailsController productDetailsController, List<Color> colors) {
+      ProductDetailsController productDetailsController, List<String> colors) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(

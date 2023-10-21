@@ -1,10 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:crafty_bay/data/models/slider_model_data.dart';
+import 'package:crafty_bay/data/models/slider_data.dart';
 import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
 import 'package:flutter/material.dart';
 
 class HomeCarouselSlider extends StatefulWidget {
-  final List<SliderModelData> sliders;
+  final List<SliderData> sliders;
   const HomeCarouselSlider({super.key, required this.sliders});
 
   @override

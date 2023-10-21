@@ -60,9 +60,9 @@ class AppBarActionButtons extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     TextButton(
-                      onPressed: () {
-                        AuthTokenController.clear();
-                        AuthTokenController.getAccessToken();
+                      onPressed: ()  {
+                         AuthTokenController.clear();
+                         AuthTokenController.getAccessToken();
                         Get.back();
                         if (AuthTokenController.isLoggedIn) {
                           Get.snackbar(

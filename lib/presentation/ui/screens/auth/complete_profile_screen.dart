@@ -3,8 +3,9 @@ import 'package:crafty_bay/presentation/state_holders/auth/read_profile_controll
 import 'package:crafty_bay/presentation/ui/screens/bottom_nav_base_screen.dart';
 import 'package:crafty_bay/presentation/ui/widgets/all_over_elevatedbutton.dart';
 import 'package:crafty_bay/presentation/ui/widgets/auth/auth_screens_upper_parts.dart';
+import 'package:crafty_bay/presentation/ui/widgets/auth/customer_profile_textfields.dart';
+import 'package:crafty_bay/presentation/ui/widgets/auth/shipping_profile_textfields.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class CompleteProfileScreen extends StatefulWidget {
@@ -18,12 +19,38 @@ class CompleteProfileScreen extends StatefulWidget {
 
 class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _firstNameController = TextEditingController();
-  final TextEditingController _lastNameController = TextEditingController();
-  final TextEditingController _mobileController = TextEditingController();
-  final TextEditingController _cityController = TextEditingController();
-  final TextEditingController _shippingAddressController =
+  final TextEditingController _customerNameTEController =
       TextEditingController();
+  final TextEditingController _customerAddressTEController =
+      TextEditingController();
+  final TextEditingController _customerCityTEController =
+      TextEditingController();
+  final TextEditingController _customerStateTEController =
+      TextEditingController();
+  final TextEditingController _customerPostcodeTEController =
+      TextEditingController();
+  final TextEditingController _customerCountryTEController =
+      TextEditingController();
+  final TextEditingController _customerPhoneTEController =
+      TextEditingController();
+  final TextEditingController _customerFaxTEController =
+      TextEditingController();
+
+  final TextEditingController _shippingNameTEController =
+      TextEditingController();
+  final TextEditingController _shippingAddressTEController =
+      TextEditingController();
+  final TextEditingController _shippingCityTEController =
+      TextEditingController();
+  final TextEditingController _shippingStateTEController =
+      TextEditingController();
+  final TextEditingController _shippingPostcodeTEController =
+      TextEditingController();
+  final TextEditingController _shippingCountryTEController =
+      TextEditingController();
+  final TextEditingController _shippingPhoneTEController =
+      TextEditingController();
+
   ReadProfileController readProfileController =
       Get.put(ReadProfileController());
 
@@ -32,19 +59,39 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (readProfileController.readProfileModel.data != null &&
-          readProfileController.readProfileModel.data!.isNotEmpty) {
-        _firstNameController.text =
-            readProfileController.readProfileModel.data?.first.firstName ?? '';
-        _lastNameController.text =
-            readProfileController.readProfileModel.data?.first.lastName ?? '';
-        _mobileController.text =
-            readProfileController.readProfileModel.data?.first.mobile ?? '';
-        _cityController.text =
-            readProfileController.readProfileModel.data?.first.city ?? '';
-        _shippingAddressController.text = readProfileController
-                .readProfileModel.data?.first.shippingAddress ??
-            '';
+      if (readProfileController.readProfileModel.data != null) {
+        _customerNameTEController.text =
+            readProfileController.readProfileModel.data?.cusName ?? '';
+        _customerAddressTEController.text =
+            readProfileController.readProfileModel.data?.cusAdd ?? '';
+        _customerCityTEController.text =
+            readProfileController.readProfileModel.data?.cusCity ?? '';
+        _customerStateTEController.text =
+            readProfileController.readProfileModel.data?.cusState ?? '';
+        _customerPostcodeTEController.text =
+            readProfileController.readProfileModel.data?.cusPostcode ?? '';
+        _customerCountryTEController.text =
+            readProfileController.readProfileModel.data?.cusCountry ?? '';
+        _customerPhoneTEController.text =
+            readProfileController.readProfileModel.data?.cusPhone ?? '';
+        _customerFaxTEController.text =
+            readProfileController.readProfileModel.data?.cusFax ?? '';
+
+        _shippingNameTEController.text =
+            readProfileController.readProfileModel.data?.shipName ?? '';
+        _shippingAddressTEController.text =
+            readProfileController.readProfileModel.data?.shipAdd ?? '';
+        _shippingCityTEController.text =
+            readProfileController.readProfileModel.data?.shipCity ?? '';
+        _shippingStateTEController.text =
+            readProfileController.readProfileModel.data?.shipState ?? '';
+        _shippingPostcodeTEController.text =
+            readProfileController.readProfileModel.data?.shipPostcode ?? '';
+        _shippingCountryTEController.text =
+            readProfileController.readProfileModel.data?.shipCountry ?? '';
+        _shippingPhoneTEController.text =
+            readProfileController.readProfileModel.data?.shipPhone ?? '';
+        
       }
     });
   }
@@ -73,100 +120,48 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
           title: 'Complete Profile',
           subTitle: 'Get started wiyh us with your details',
         ),
-        TextFormField(
-          controller: _firstNameController,
-          keyboardType: TextInputType.text,
-          textInputAction: TextInputAction.next,
-          decoration: const InputDecoration(
-            hintText: 'First Name',
-          ),
-          validator: (String? value) {
-            if (value?.isEmpty ?? true) {
-              return "Enter your first name";
-            }
-            return null;
-          },
-        ),
-        const SizedBox(
-          height: 12,
-        ),
-        TextFormField(
-          controller: _lastNameController,
-          keyboardType: TextInputType.text,
-          textInputAction: TextInputAction.next,
-          decoration: const InputDecoration(
-            hintText: 'Last Name',
-          ),
-          validator: (String? value) {
-            if (value?.isEmpty ?? true) {
-              return "Enter your last name";
-            }
-            return null;
-          },
-        ),
-        const SizedBox(
-          height: 12,
-        ),
-        TextFormField(
-          controller: _mobileController,
-          keyboardType: TextInputType.phone,
-          textInputAction: TextInputAction.next,
-          inputFormatters: [
-            FilteringTextInputFormatter.digitsOnly,
-            LengthLimitingTextInputFormatter(11), // Limit the length
-          ],
-          decoration: const InputDecoration(
-            hintText: 'Mobile',
-          ),
-          validator: (String? value) {
-            if ((value?.isEmpty ?? true) || value!.length < 11) {
-              return "Enter your 11 digit mobile number";
-            }
-            final RegExp mobileRegex = RegExp(r'^01[0-9]{9}$');
-            if (!mobileRegex.hasMatch(value)) {
-              return "Enter a valid mobile number";
-            }
-            return null;
-          },
-        ),
-        const SizedBox(
-          height: 12,
-        ),
-        TextFormField(
-          controller: _cityController,
-          keyboardType: TextInputType.text,
-          textInputAction: TextInputAction.next,
-          decoration: const InputDecoration(
-            hintText: 'City',
-          ),
-          validator: (String? value) {
-            if (value?.isEmpty ?? true) {
-              return "Enter your city name";
-            }
-            return null;
-          },
-        ),
-        const SizedBox(
-          height: 12,
-        ),
-        TextFormField(
-          maxLines: 4,
-          controller: _shippingAddressController,
-          keyboardType: TextInputType.text,
-          textInputAction: TextInputAction.done,
-          decoration: const InputDecoration(
-              hintText: 'Shipping Address',
-              contentPadding:
-                  EdgeInsets.symmetric(horizontal: 15, vertical: 8)),
-          validator: (String? value) {
-            if (value?.isEmpty ?? true) {
-              return "Enter your shipping address";
-            }
-            return null;
-          },
+        Text(
+          'Billing Address',
+          style: Theme.of(context)
+              .textTheme
+              .titleLarge
+              ?.copyWith(fontSize: 20, color: Colors.grey[800]),
         ),
         const SizedBox(
           height: 10,
+        ),
+        CustomerProfileTextFields(
+            customerNameTEController: _customerNameTEController,
+            customerAddressTEController: _customerAddressTEController,
+            customerCityTEController: _customerCityTEController,
+            customerStateTEController: _customerStateTEController,
+            customerPostcodeTEController: _customerPostcodeTEController,
+            customerCountryTEController: _customerCountryTEController,
+            customerPhoneTEController: _customerPhoneTEController,
+            customerFaxTEController: _customerFaxTEController),
+        const SizedBox(
+          height: 20,
+        ),
+        Text(
+          'Shipping Address',
+          style: Theme.of(context)
+              .textTheme
+              .titleLarge
+              ?.copyWith(fontSize: 20, color: Colors.grey[800]),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        ShippingProfileTextFields(
+            shippingNameTEController: _shippingNameTEController,
+            shippingAddressTEController: _shippingAddressTEController,
+            shippingCityTEController: _shippingCityTEController,
+            shippingStateTEController: _shippingStateTEController,
+            shippingPostcodeTEController: _shippingPostcodeTEController,
+            shippingCountryTEController: _shippingCountryTEController,
+            shippingPhoneTEController: _shippingPhoneTEController),
+        const SizedBox(
+          height: 20,
         ),
         GetBuilder<CreateProfileController>(
           builder: (createProfileController) {
@@ -181,11 +176,22 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                 if (_formKey.currentState!.validate()) {
                   createProfileController
                       .createProfileData(
-                          _firstNameController.text.trim(),
-                          _lastNameController.text.trim(),
-                          _mobileController.text.trim(),
-                          _cityController.text.trim(),
-                          _shippingAddressController.text.trim())
+                    _customerNameTEController.text.trim(),
+                    _customerAddressTEController.text.trim(),
+                    _customerCityTEController.text.trim(),
+                    _customerStateTEController.text.trim(),
+                    _customerPostcodeTEController.text.trim(),
+                    _customerCountryTEController.text.trim(),
+                    _customerPhoneTEController.text.trim(),
+                    _customerFaxTEController.text.trim(),
+                    _shippingNameTEController.text.trim(),
+                    _shippingAddressTEController.text.trim(),
+                    _shippingCityTEController.text.trim(),
+                    _shippingStateTEController.text.trim(),
+                    _shippingPostcodeTEController.text.trim(),
+                    _shippingCountryTEController.text.trim(),
+                    _shippingPhoneTEController.text.trim(),
+                  )
                       .then(
                     (result) {
                       if (result) {

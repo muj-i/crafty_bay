@@ -1,10 +1,10 @@
 import 'package:crafty_bay/presentation/state_holders/bottom_nav_base_controller.dart';
-import 'package:crafty_bay/presentation/state_holders/categories_controller.dart';
+import 'package:crafty_bay/presentation/state_holders/category_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/home_slider_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/new_product_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/popular_product_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/special_product_controller.dart';
-import 'package:crafty_bay/presentation/ui/screens/categories_product_list_screen.dart';
+import 'package:crafty_bay/presentation/ui/screens/category_product_list_screen.dart';
 import 'package:crafty_bay/presentation/ui/screens/product_list_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/asset_images.dart';
 import 'package:crafty_bay/presentation/ui/utils/constraints.dart';
@@ -70,11 +70,11 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           );
         }),
-        GetBuilder<CategoriesController>(builder: (categoriesController) {
+        GetBuilder<CategoryController>(builder: (categoriesController) {
           return Visibility(
             visible: categoriesController.getCategoriesInProgress == false,
             replacement: const Center(
-              child: CategoriesShimmer() ,
+              child: CategoriesShimmer(),
             ),
             child: Column(
               children: [

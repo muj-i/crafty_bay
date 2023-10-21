@@ -19,10 +19,9 @@ class _CartListScreenState extends State<CartListScreen> {
   @override
   void initState() {
     super.initState();
-    AuthTokenController.getAccessToken();
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
     Get.find<CartListController>().getCartList();
-    // });
+    });
   }
 
   @override

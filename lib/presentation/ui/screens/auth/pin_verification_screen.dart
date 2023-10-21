@@ -1,6 +1,8 @@
 import 'package:crafty_bay/presentation/state_holders/auth/email_verification_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/auth/pin_verification_controller.dart';
-import 'package:crafty_bay/presentation/ui/screens/auth/read_profile_screen.dart';
+import 'package:crafty_bay/presentation/state_holders/auth/read_profile_controller.dart';
+import 'package:crafty_bay/presentation/ui/screens/auth/complete_profile_screen.dart';
+import 'package:crafty_bay/presentation/ui/screens/bottom_nav_base_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
 import 'package:crafty_bay/presentation/ui/widgets/all_over_elevatedbutton.dart';
 import 'package:crafty_bay/presentation/ui/widgets/auth/auth_screens_upper_parts.dart';
@@ -50,23 +52,23 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
                   color: Colors.grey,
                 ),
               ),
-              TextButton(
-                onPressed: () {
+              GestureDetector(
+                onTap: () {
                   Get.back();
                 },
-                style: TextButton.styleFrom(
-                  padding: const EdgeInsets.all(2),
-                  foregroundColor: ColorPalette.primaryColor,
-                ),
                 child: const Text(
-                  'Reset Email\n\n',
+                  '  Reset Email\n\n',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    color: ColorPalette.primaryColor,
+                  ),
                 ),
               ),
             ],
           ),
           Padding(
             padding: const EdgeInsets.symmetric(
-              horizontal: 60,
+              horizontal: 30,
             ),
             child: PinCodeTextField(
               controller: _pinTEController,
@@ -77,8 +79,8 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
               pinTheme: PinTheme(
                   shape: PinCodeFieldShape.box,
                   borderRadius: BorderRadius.circular(5),
-                  fieldHeight: 50,
-                  fieldWidth: 50,
+                  fieldHeight: 45,
+                  fieldWidth: 45,
                   activeColor: ColorPalette.primaryColor,
                   activeFillColor: Colors.white,
                   inactiveColor: ColorPalette.primaryColor,
@@ -121,11 +123,11 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
               },
             );
           }),
-          OtpExpiryCounterAndResendButton(
-            onPressed: () {
-              Get.find<EmailVerificationController>().verifyEmail(widget.email);
-            },
-          ),
+          // OtpExpiryCounterAndResendButton(
+          //   onPressed: () {
+          //     Get.find<EmailVerificationController>().verifyEmail(widget.email);
+          //   },
+          // ),
         ],
       ),
     );
@@ -136,7 +138,13 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
     final response = await pinVerificationController.verifyPin(
         widget.email, _pinTEController.text.trim());
     if (response) {
-      Get.to(() => const ReadProfileScreen());
+      await Get.find<ReadProfileController>().readProfileData();
+
+      if (Get.find<ReadProfileController>().readProfileModel.data != null) {
+        Get.offAll(() => const BottomNavBaseScreen());
+      } else {
+        Get.offAll(() => const CompleteProfileScreen());
+      }
     } else {
       if (mounted) {
         _pinTEController.clear();

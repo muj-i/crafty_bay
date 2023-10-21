@@ -1,4 +1,4 @@
-import 'package:crafty_bay/data/models/cart_and_wish_list_model.dart';
+import 'package:crafty_bay/data/models/cart_list_model.dart';
 import 'package:crafty_bay/data/models/network_response.dart';
 import 'package:crafty_bay/data/services/network_caller.dart';
 import 'package:crafty_bay/data/utils/urls.dart';
@@ -7,11 +7,11 @@ import 'package:get/get.dart';
 class DeleteCartItemController extends GetxController {
   bool _deleteCartItemInProgress = false;
   String _message = '';
-  CartAndWishListModel _cartListModel = CartAndWishListModel();
+  CartListModel _cartListModel = CartListModel();
   bool get deleteCartItemInProgress => _deleteCartItemInProgress;
 
   String get message => _message;
-  CartAndWishListModel get cartListModel => _cartListModel;
+  CartListModel get cartListModel => _cartListModel;
   Future<bool> deleteCartItem(String id) async {
     _deleteCartItemInProgress = true;
     update();
@@ -19,7 +19,7 @@ class DeleteCartItemController extends GetxController {
         await NetworkCaller.getRequest(Urls.deleteCartItem(id));
     _deleteCartItemInProgress = false;
     if (response.isSuccess) {
-      _cartListModel = CartAndWishListModel.fromJson(response.responseJson!);
+      _cartListModel = CartListModel.fromJson(response.responseJson!);
       update();
       return true;
     } else {

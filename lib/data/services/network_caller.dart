@@ -18,8 +18,8 @@ class NetworkCaller {
       );
 
       log(response.statusCode.toString());
-      log(response.body);
-      log(AuthTokenController.accessToken.toString());
+      log('heleek ${response.body}');
+      // log(AuthTokenController.accessToken.toString());
       if (response.statusCode == 200 &&
           jsonDecode(response.body)['msg'] == 'success') {
         return NetworkResponse(

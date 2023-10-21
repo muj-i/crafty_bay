@@ -1,4 +1,4 @@
-class SliderModelData {
+class SliderData {
   int? id;
   String? title;
   String? shortDes;
@@ -8,7 +8,7 @@ class SliderModelData {
   String? createdAt;
   String? updatedAt;
 
-  SliderModelData(
+  SliderData(
       {this.id,
       this.title,
       this.shortDes,
@@ -18,7 +18,7 @@ class SliderModelData {
       this.createdAt,
       this.updatedAt});
 
-  SliderModelData.fromJson(Map<String, dynamic> json) {
+  SliderData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
     shortDes = json['short_des'];

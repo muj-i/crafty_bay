@@ -1,17 +1,17 @@
-import 'package:crafty_bay/data/models/categories_model_data.dart';
+import 'package:crafty_bay/data/models/category_data.dart';
 
-class CategoriesModel {
+class CategoryModel {
   String? msg;
-  List<CategoriesData>? data;
+  List<CategoryData>? data;
 
-  CategoriesModel({this.msg, this.data});
+  CategoryModel({this.msg, this.data});
 
-  CategoriesModel.fromJson(Map<String, dynamic> json) {
+  CategoryModel.fromJson(Map<String, dynamic> json) {
     msg = json['msg'];
     if (json['data'] != null) {
-      data = <CategoriesData>[];
+      data = <CategoryData>[];
       json['data'].forEach((v) {
-        data!.add(CategoriesData.fromJson(v));
+        data!.add(CategoryData.fromJson(v));
       });
     }
   }

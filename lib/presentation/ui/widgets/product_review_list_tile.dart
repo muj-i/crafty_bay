@@ -1,4 +1,4 @@
-import 'package:crafty_bay/data/models/get_product_review_model.dart';
+import 'package:crafty_bay/data/models/product_review_model.dart';
 import 'package:flutter/material.dart';
 
 class ProductReviewListTile extends StatelessWidget {
@@ -31,8 +31,7 @@ class ProductReviewListTile extends StatelessWidget {
             const SizedBox(
               width: 8,
             ),
-            Text(
-                '${productReviewData.profile?.firstName ?? ''} ${productReviewData.profile?.lastName ?? ''}'),
+            Text(productReviewData.profile?.cusName ?? ''),
           ],
         ),
         subtitle: Column(

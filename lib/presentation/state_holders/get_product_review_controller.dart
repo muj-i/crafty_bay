@@ -1,26 +1,26 @@
-import 'package:crafty_bay/data/models/get_product_review_model.dart';
 import 'package:crafty_bay/data/models/network_response.dart';
+import 'package:crafty_bay/data/models/product_review_model.dart';
 import 'package:crafty_bay/data/services/network_caller.dart';
 import 'package:crafty_bay/data/utils/urls.dart';
 import 'package:get/get.dart';
 
 class GetProductReviewController extends GetxController {
-  bool _getProductReviewInProgress = false;
+  bool _productReviewInProgress = false;
   String _message = '';
-  GetProductReviewModel _getProductReviewModel = GetProductReviewModel();
-  bool get getProductReviewInProgress => _getProductReviewInProgress;
+  ProductReviewModel _getProductReviewModel = ProductReviewModel();
+  bool get productReviewInProgress => _productReviewInProgress;
 
   String get message => _message;
-  GetProductReviewModel get getProductReviewModel => _getProductReviewModel;
+  ProductReviewModel get getProductReviewModel => _getProductReviewModel;
   Future<bool> getProductReview(int id) async {
-    _getProductReviewInProgress = true;
+    _productReviewInProgress = true;
     update();
     final NetworkResponse response =
         await NetworkCaller.getRequest(Urls.getProductReview(id));
-    _getProductReviewInProgress = false;
+    _productReviewInProgress = false;
     if (response.isSuccess) {
       _getProductReviewModel =
-          GetProductReviewModel.fromJson(response.responseJson!);
+          ProductReviewModel.fromJson(response.responseJson!);
       update();
       return true;
     } else {

@@ -1,11 +1,12 @@
+import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
 import 'package:crafty_bay/presentation/ui/widgets/product_details/section_title.dart';
 import 'package:flutter/material.dart';
 
 class ProductColorPicker extends StatefulWidget {
-  final List<Color> colors;
+  final List<String> colors;
   final Function(int selectIndex) onSelected;
   final int initialSelectedColor;
-  
+
   const ProductColorPicker(
       {super.key,
       required this.colors,
@@ -48,21 +49,42 @@ class _ProductColorPickerState extends State<ProductColorPicker> {
                     setState(() {});
                   }
                 },
-                child: CircleAvatar(
-                  radius: 17,
-                  backgroundColor: widget.colors[index],
-                  child: _selectedColorIndex == index
-                      ? const Icon(
-                          Icons.done,
-                          color: Colors.white,
-                        )
-                      : null,
+                child: Container(
+                  height: 60,
+                  width: 60,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    border: Border.all(
+                      color: _selectedColorIndex == index
+                          ? ColorPalette.primaryColor
+                          : Colors.grey.shade600,
+                      width: 2,
+                    ),
+                  ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: _selectedColorIndex == index
+                          ? ColorPalette.primaryColor
+                          : Colors.white,
+                    ),
+                    child: Center(
+                      child: Text(
+                        widget.colors[index],
+                        style: TextStyle(
+                            fontSize: 18,
+                            color: _selectedColorIndex == index
+                                ? Colors.white
+                                : Colors.grey.shade600),
+                      ),
+                    ),
+                  ),
                 ),
               );
             },
             separatorBuilder: (BuildContext context, int index) {
               return const SizedBox(
-                width: 8,
+                width: 5,
               );
             },
             itemCount: widget.colors.length,

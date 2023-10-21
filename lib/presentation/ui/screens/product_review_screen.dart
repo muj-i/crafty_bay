@@ -36,7 +36,7 @@ class _ProductReviewScreenState extends State<ProductReviewScreen> {
       ),
       body: GetBuilder<GetProductReviewController>(
           builder: (getProductReviewController) {
-        if (getProductReviewController.getProductReviewInProgress) {
+        if (getProductReviewController.productReviewInProgress) {
           return const Center(
             child: CircularProgressIndicator(),
           );

@@ -18,10 +18,9 @@ class _WishScreenState extends State<WishScreen> {
   @override
   void initState() {
     super.initState();
-    AuthTokenController.getAccessToken();
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
+     WidgetsBinding.instance.addPostFrameCallback((_) {
     Get.find<WishListController>().getWishList();
-    // });
+     });
   }
 
   @override

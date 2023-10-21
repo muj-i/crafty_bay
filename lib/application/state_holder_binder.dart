@@ -5,7 +5,7 @@ import 'package:crafty_bay/presentation/state_holders/auth/pin_verification_cont
 import 'package:crafty_bay/presentation/state_holders/auth/read_profile_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/bottom_nav_base_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/cart_list_controller.dart';
-import 'package:crafty_bay/presentation/state_holders/categories_controller.dart';
+import 'package:crafty_bay/presentation/state_holders/category_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/categories_list_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/create_product_review_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/create_wish_list_controller.dart';
@@ -27,7 +27,7 @@ class StateHolderBinder extends Bindings {
     Get.put(PinVerificationController());
     Get.put(ReadProfileController());
     Get.put(HomeSliderController());
-    Get.put(CategoriesController());
+    Get.put(CategoryController());
     Get.put(PopularProductController());
     Get.put(SpecialProductController());
     Get.put(NewProductController());

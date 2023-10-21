@@ -1,4 +1,5 @@
-import 'package:crafty_bay/data/models/cart_and_wish_list_model.dart';
+import 'package:crafty_bay/data/models/cart_list_model.dart';
+import 'package:crafty_bay/data/models/wish_list_data.dart';
 import 'package:crafty_bay/presentation/ui/screens/product_details_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 class WishListProductCard extends StatelessWidget {
-  final CartAndWishData wishData;
+  final WishListData wishData;
   final VoidCallback onPressed;
   const WishListProductCard({
     super.key,
@@ -45,7 +46,7 @@ class WishListProductCard extends StatelessWidget {
                   ),
                 ),
                 child: Image.network(
-                  wishData.productData?.image ??
+                  wishData.product?.image ??
                       'https://assets.adidas.com/images/w_600,f_auto,q_auto/f9d52817f7524d3fb442af3b01717dfa_9366/Runfalcon_3.0_Shoes_Black_HQ3790_01_standard.jpg',
                   fit: BoxFit.contain,
                 ),
@@ -56,7 +57,7 @@ class WishListProductCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      wishData.productData?.title ??
+                      wishData.product?.title ??
                           'Wished product name not found',
                       maxLines: 1,
                       style: TextStyle(
@@ -73,7 +74,7 @@ class WishListProductCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          "৳${wishData.productData?.price ?? '0'}",
+                          "৳${wishData.product?.price ?? '0'}",
                           maxLines: 1,
                           style: TextStyle(
                             overflow: TextOverflow.ellipsis,
@@ -94,7 +95,7 @@ class WishListProductCard extends StatelessWidget {
                               size: 15,
                             ),
                             Text(
-                              wishData.productData?.star.toString() ?? '0',
+                              wishData.product?.star.toString() ?? '0',
                               maxLines: 1,
                               style: TextStyle(
                                 overflow: TextOverflow.ellipsis,
