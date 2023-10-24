@@ -1,4 +1,3 @@
-import 'package:crafty_bay/presentation/state_holders/auth/auth_token_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/bottom_nav_base_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/wish_list_controller.dart';
 import 'package:crafty_bay/presentation/ui/utils/constraints.dart';
@@ -18,9 +17,9 @@ class _WishScreenState extends State<WishScreen> {
   @override
   void initState() {
     super.initState();
-     WidgetsBinding.instance.addPostFrameCallback((_) {
-    Get.find<WishListController>().getWishList();
-     });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Get.find<WishListController>().getWishList();
+    });
   }
 
   @override
@@ -51,25 +50,29 @@ class _WishScreenState extends State<WishScreen> {
                 child: Text('No products in the wish list'),
               );
             }
-            return Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 20.0),
-              child: GridView.builder(
-                itemCount: wishListController.wishListModel.data?.length ?? 0,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  crossAxisSpacing: 6,
-                  mainAxisSpacing: 32,
+            return RefreshIndicator(
+              onRefresh: () async {
+                await wishListController.getWishList();
+              },
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 20.0),
+                child: GridView.builder(
+                  itemCount: wishListController.wishListModel.data?.length ?? 0,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    crossAxisSpacing: 6,
+                    mainAxisSpacing: 32,
+                  ),
+                  itemBuilder: (context, index) {
+                    return FittedBox(
+                      fit: BoxFit.cover,
+                      child: WishListProductCard(
+                        wishData: wishListController.wishListModel.data![index],
+                      ),
+                    );
+                  },
                 ),
-                itemBuilder: (context, index) {
-                  return FittedBox(
-                    fit: BoxFit.cover,
-                    child: WishListProductCard(
-                      onPressed: () {},
-                      wishData: wishListController.wishListModel.data![index],
-                    ),
-                  );
-                },
               ),
             );
           },

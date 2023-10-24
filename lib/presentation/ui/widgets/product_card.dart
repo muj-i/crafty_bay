@@ -78,9 +78,7 @@ class ProductCard extends StatelessWidget {
                             color: Colors.grey[600],
                           ),
                         ),
-                        const SizedBox(
-                          width: 4,
-                        ),
+                        const Spacer(),
                         Wrap(
                           crossAxisAlignment: WrapCrossAlignment.center,
                           children: [
@@ -101,9 +99,7 @@ class ProductCard extends StatelessWidget {
                             ),
                           ],
                         ),
-                        const SizedBox(
-                          width: 4,
-                        ),
+                        const Spacer(),
                         GetBuilder<CreateWishListController>(
                             builder: (createWishListController) {
                           return SizedBox(

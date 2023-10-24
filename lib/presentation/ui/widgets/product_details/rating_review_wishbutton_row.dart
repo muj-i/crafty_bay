@@ -1,5 +1,4 @@
 import 'package:crafty_bay/data/models/product_details_data.dart';
-import 'package:crafty_bay/data/models/product_details_model.dart';
 import 'package:crafty_bay/presentation/state_holders/create_wish_list_controller.dart';
 import 'package:crafty_bay/presentation/ui/screens/product_review_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';

@@ -123,11 +123,11 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
               },
             );
           }),
-          // OtpExpiryCounterAndResendButton(
-          //   onPressed: () {
-          //     Get.find<EmailVerificationController>().verifyEmail(widget.email);
-          //   },
-          // ),
+          OtpExpiryCounterAndResendButton(
+            onPressed: () {
+              Get.find<EmailVerificationController>().verifyEmail(widget.email);
+            },
+          ),
         ],
       ),
     );

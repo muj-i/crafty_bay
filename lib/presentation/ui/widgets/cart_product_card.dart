@@ -1,4 +1,3 @@
-
 import 'package:crafty_bay/data/models/cart_list_model.dart';
 import 'package:crafty_bay/presentation/state_holders/cart_list_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/delete_cart_item_controller.dart';
@@ -55,8 +54,7 @@ class CartProductCard extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            cartData.product?.title ??
-                                'Product name not found',
+                            cartData.product?.title ?? 'Product name not found',
                             maxLines: 1,
                             style: const TextStyle(
                               fontSize: 17,
@@ -65,10 +63,10 @@ class CartProductCard extends StatelessWidget {
                           ),
                         ),
                         IconButton(
-                          onPressed: () async {
-                            await Get.find<DeleteCartItemController>()
+                          onPressed: () {
+                            Get.find<DeleteCartItemController>()
                                 .deleteCartItem(cartData.productId.toString());
-                            await Get.find<CartListController>().getCartList();
+                            Get.find<CartListController>().getCartList();
                           },
                           icon: const Icon(
                             FontAwesomeIcons.trashCan,

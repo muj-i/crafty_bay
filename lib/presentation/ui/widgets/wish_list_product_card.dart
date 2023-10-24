@@ -1,5 +1,6 @@
-import 'package:crafty_bay/data/models/cart_list_model.dart';
 import 'package:crafty_bay/data/models/wish_list_data.dart';
+import 'package:crafty_bay/presentation/state_holders/delete_wish_item_controller.dart';
+import 'package:crafty_bay/presentation/state_holders/wish_list_controller.dart';
 import 'package:crafty_bay/presentation/ui/screens/product_details_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
 import 'package:flutter/material.dart';
@@ -8,10 +9,8 @@ import 'package:get/get.dart';
 
 class WishListProductCard extends StatelessWidget {
   final WishListData wishData;
-  final VoidCallback onPressed;
   const WishListProductCard({
     super.key,
-    required this.onPressed,
     required this.wishData,
   });
 
@@ -31,11 +30,11 @@ class WishListProductCard extends StatelessWidget {
         elevation: 4,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         child: SizedBox(
-          width: 120,
+          width: 150,
           child: Column(
             children: [
               Container(
-                height: 90,
+                height: 135,
                 width: double.infinity,
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
@@ -62,7 +61,7 @@ class WishListProductCard extends StatelessWidget {
                       maxLines: 1,
                       style: TextStyle(
                         overflow: TextOverflow.ellipsis,
-                        fontSize: 12,
+                        fontSize: 16,
                         fontWeight: FontWeight.w500,
                         color: Colors.grey[600],
                       ),
@@ -78,14 +77,12 @@ class WishListProductCard extends StatelessWidget {
                           maxLines: 1,
                           style: TextStyle(
                             overflow: TextOverflow.ellipsis,
-                            fontSize: 12,
+                            fontSize: 16,
                             fontWeight: FontWeight.w500,
                             color: Colors.grey[600],
                           ),
                         ),
-                        const SizedBox(
-                          width: 4,
-                        ),
+                        const Spacer(),
                         Wrap(
                           crossAxisAlignment: WrapCrossAlignment.center,
                           children: [
@@ -99,30 +96,34 @@ class WishListProductCard extends StatelessWidget {
                               maxLines: 1,
                               style: TextStyle(
                                 overflow: TextOverflow.ellipsis,
-                                fontSize: 12,
+                                fontSize: 16,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.grey[600],
                               ),
                             ),
                           ],
                         ),
-                        const SizedBox(
-                          width: 4,
-                        ),
+                        const Spacer(),
                         SizedBox(
-                          height: 22,
+                          height: 28,
                           child: FittedBox(
                             child: Card(
                               color: ColorPalette.primaryColor,
                               child: Padding(
-                                padding: const EdgeInsets.all(4.0),
+                                padding: const EdgeInsets.all(1.0),
                                 child: IconButton(
                                   icon: const Icon(
                                     FontAwesomeIcons.trashCan,
                                     size: 32,
                                   ),
                                   color: Colors.white,
-                                  onPressed: onPressed,
+                                  onPressed: () {
+                                    Get.find<DeleteWishItemController>()
+                                        .deleteWishItem(
+                                            wishData.productId.toString());
+                                    Get.find<WishListController>()
+                                        .getWishList();
+                                  },
                                 ),
                               ),
                             ),
