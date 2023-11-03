@@ -29,6 +29,7 @@ class ProductDetailsScreen extends StatefulWidget {
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   int _selectedColorIndex = 0;
   int _selectedSizeIndex = 0;
+int quantity = 1;
 
   @override
   void initState() {
@@ -107,6 +108,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               .toString(),
                           productDetailsController
                               .availableSizes[_selectedSizeIndex],
+                              quantity,
                         );
                         if (result) {
                           Get.snackbar(
@@ -161,7 +163,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   stepValue: 1,
                   value: 1,
                   onChange: (newValue) {
-                    log(newValue.toString());
+                   quantity = newValue;
                   })
             ],
           ),

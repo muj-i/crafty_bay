@@ -46,6 +46,7 @@ dependencies:
   shimmer: ^3.0.0
   get_storage: ^2.1.1
   connectivity_plus: ^5.0.1
+  webview_flutter: ^4.4.1
   
 
 flutter_launcher_icons:
