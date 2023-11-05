@@ -9,7 +9,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 class CartProductCard extends StatelessWidget {
-  final CartData cartData;
+  final CartListData cartData;
   const CartProductCard({
     super.key,
     required this.cartData,
