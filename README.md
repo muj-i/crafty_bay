@@ -42,11 +42,11 @@ CraftyBay is continuously evolving to enhance the shopping experience for users,
 
 
 ## CraftyBay UI
-
+<!--
 ### Video demonstration of News Reader
 
 [![Video](https://img.youtube.com/vi/xxx/hqdefault.jpg)](https://www.youtube.com/watch?v=xxxx)
-
+-->
 ### Online Screen
 <div style="display: flex; flex-wrap: wrap;">
    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss0.png" width="200" />
