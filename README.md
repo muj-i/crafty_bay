@@ -64,18 +64,18 @@ CraftyBay is continuously evolving to enhance the shopping experience for users,
 -->
 ### Online Screen
 <div style="display: flex; flex-wrap: wrap;">
-   <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss0.png" width="200" />
-    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss1.png" width="200" />
-    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss2.png" width="200" />
-    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss3.png" width="200" />
-    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss4.png" width="200" />
-    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss5.png" width="200" />
-    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss11.png" width="200" />
-    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss6.png" width="200" />
-    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss7.png" width="200" />
-    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss8.png" width="200" />
-    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss9.png" width="200" />
-    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss10.png" width="200" />
+   <img src="https://raw.githubusercontent.com/muj-i/crafty_bay/api_v2/screenshots/ss0.png" width="200" />
+    <img src="https://raw.githubusercontent.com/muj-i/crafty_bay/api_v2/screenshots/ss1.png" width="200" />
+    <img src="https://raw.githubusercontent.com/muj-i/crafty_bay/api_v2/screenshots/ss2.png" width="200" />
+    <img src="https://raw.githubusercontent.com/muj-i/crafty_bay/api_v2/screenshots/ss3.png" width="200" />
+    <img src="https://raw.githubusercontent.com/muj-i/crafty_bay/api_v2/screenshots/ss4.png" width="200" />
+    <img src="https://raw.githubusercontent.com/muj-i/crafty_bay/api_v2/screenshots/ss5.png" width="200" />
+    <img src="https://raw.githubusercontent.com/muj-i/crafty_bay/api_v2/screenshots/ss6.png" width="200" />
+    <img src="https://raw.githubusercontent.com/muj-i/crafty_bay/api_v2/screenshots/ss7.png" width="200" />
+    <img src="https://raw.githubusercontent.com/muj-i/crafty_bay/api_v2/screenshots/ss8.png" width="200" />
+    <img src="https://raw.githubusercontent.com/muj-i/crafty_bay/api_v2/screenshots/ss9.png" width="200" />
+    <img src="https://raw.githubusercontent.com/muj-i/crafty_bay/api_v2/screenshots/ss10.png" width="200" />
+    <img src="https://raw.githubusercontent.com/muj-i/crafty_bay/api_v2/screenshots/ss11.png" width="200" />
 </div>
 
 ## Getting Started
