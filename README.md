@@ -1,3 +1,18 @@
+# Message for the Project Reviewer
+
+**Dear Project Reviewer,**
+
+I would like to express my appreciation for taking the time to review my project. Unfortunately, due to recent commitments related to my **new job**, I was unable to allocate the necessary time to implement the required changes for updating the **payment gateway** from API v1 to v2. Additionally, there have been modifications to the **product add review** feature that remain **unaddressed**.
+
+I sincerely **apologize** for any inconvenience this may cause and assure you that I am fully committed to resolving these issues in the near future. Balancing the demands of my course project with the new job responsibilities has proven to be more challenging than anticipated.
+
+Once again, thank you for your understanding, and I look forward to your valuable feedback on the aspects of the project that are complete.
+
+Warm regards,
+**Mujahedul Islam.**
+
+
+
 # CraftyBay
 
 ## Description
