@@ -62,7 +62,7 @@ CraftyBay is continuously evolving to enhance the shopping experience for users,
 
 [![Video](https://img.youtube.com/vi/xxx/hqdefault.jpg)](https://www.youtube.com/watch?v=xxxx)
 -->
-### Online Screen
+
 <div style="display: flex; flex-wrap: wrap;">
    <img src="https://raw.githubusercontent.com/muj-i/crafty_bay/api_v2/screenshots/ss0.png" width="200" />
     <img src="https://raw.githubusercontent.com/muj-i/crafty_bay/api_v2/screenshots/ss1.png" width="200" />
